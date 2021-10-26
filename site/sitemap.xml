@@ -56,6 +56,21 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://weekwith.me/java/live-study/chapter-01/</loc>
+         <lastmod>2021-10-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://weekwith.me/java/live-study/chapter-02/</loc>
+         <lastmod>2021-10-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://weekwith.me/java/live-study/chapter-03/</loc>
+         <lastmod>2021-10-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://weekwith.me/project/</loc>
          <lastmod>2021-10-26</lastmod>
          <changefreq>daily</changefreq>
