@@ -62,7 +62,7 @@ title: "2주차 과제: 자바 데이터 타입, 변수 그리고 배열"
 여기서 유의할 점은 **선언을 통해서 변수 테이블(Symbol Table)에 변수의 이름, 다시 말해 식별자(Identifier)를 지정하고 초기화를 통해 해당 식별자에 값의 주소를 연결** 해주게 되는데 `System.out.println(c)` 와 같이 만약 선언하지 않아서 테이블에 존재하지 않는 값을 불러올 경우 해당 변수를 찾을 수 없다는 `cannot find symbol error` 가 발생한다.
 
 ```Java
-{!../../../docs_src/java/live-study/Chapter02.java!}
+{!../../docs_src/java/live-study/Chapter02.java!}
 ```
 
 
