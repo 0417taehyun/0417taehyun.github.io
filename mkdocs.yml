@@ -72,8 +72,6 @@ nav:
   - 백기선의 자바 스터디:
     - java/live-study/chapter-01.md
     - java/live-study/chapter-02.md
-- 파이썬:
-  - python/index.md
 - FastAPI 문서 번역:
   - fastapi/index.md
 - Pydantic 문서 번역:

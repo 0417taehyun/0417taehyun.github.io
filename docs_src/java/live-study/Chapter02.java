@@ -4,7 +4,7 @@ class Chapter02 {
         int a;
         a = 3;
         int b = 4;
-        // System.out.println(c); > cannot find symbol error
+        System.out.println(c); // > cannot find symbol error
 
 
         // 유니코드
@@ -28,6 +28,13 @@ class Chapter02 {
         }
         System.out.println(doubleNum); // > 1001.000000000159
 
+        
+        // 변수의 기본값
+        Test test = new Test();
+        int testNum2;
+        // System.out.println(testNum2); > variable testNum2 might not have been initialized
+        System.out.println(test.testNum); // > 0
+
 
         // 리터럴의 타입과 접미사
         // float floatNum = 3.14; > incompatible types: possible lossy conversion from double to float
@@ -45,13 +52,5 @@ class Chapter02 {
         System.out.println(i); // > 65
         System.out.println(j); // > 65
         System.out.println(k); // > A
-
-
-        // 변수의 기본값
-        Test test = new Test();
-        int testNum2;
-        // System.out.println(testNum2); > variable testNum2 might not have been initialized
-        System.out.println(test.testNum); // > 0
-
     }
 }
