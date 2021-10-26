@@ -32,12 +32,12 @@ class Chapter02 {
         // 변수의 기본값
         Test test = new Test();
         int testNum2;
-        // System.out.println(testNum2); > variable testNum2 might not have been initialized
+        System.out.println(testNum2); // > variable testNum2 might not have been initialized
         System.out.println(test.testNum); // > 0
 
 
         // 리터럴의 타입과 접미사
-        // float floatNum = 3.14; > incompatible types: possible lossy conversion from double to float
+        float floatNum = 3.14; // > incompatible types: possible lossy conversion from double to float
         float floatNum = 3.14F;
         System.out.println(floatNum); // > 3.14
 
