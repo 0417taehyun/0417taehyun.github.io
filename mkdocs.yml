@@ -73,7 +73,7 @@ nav:
     - java/live-study/chapter-01.md
     - java/live-study/chapter-02.md
 - 파이썬:
-  index.md
+  - index.md
 - FastAPI 문서 번역:
   - fastapi/index.md
 - Pydantic 문서 번역:
