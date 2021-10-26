@@ -1,6 +1,7 @@
 site_name: weekwith.me
 site_description: Studying every week with me.
 site_url: https://weekwith.me
+site_dir: docs_src
 theme:
   name: material
   custom_dir: overrides
