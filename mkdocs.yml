@@ -62,9 +62,9 @@ nav:
         - article/retrospect/study/twil/3.md
     - 프로젝트:
       - article/retrospect/project/studeep.md
-      - article/retrospect/project/forour.md s
+      - article/retrospect/project/forour.md
   - 소프트-웨어:
-    - article/soft-where/index.md
+    - article/soft-where/01.md
 - 알고리즘:
   - 쓰면서 익히는 알고리즘과 자료구조:
     - algorithms/writing-algorithm/1-array.md
