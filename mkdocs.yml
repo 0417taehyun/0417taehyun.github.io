@@ -1,12 +1,10 @@
 site_name: weekwith.me
-site_description: Dev-log by using mkdocs.
+site_description: Studying every week with me.
 site_url: https://weekwith.me
 theme:
   name: material
   custom_dir: overrides
   language: en
-  font:
-    text: Noto Sans
   palette: 
     - scheme: default
       toggle:
@@ -70,6 +68,9 @@ nav:
   - data-structures/index.md
 - 컴퓨터 공학:
   - computer-science/index.md
+- 자바:
+  - 백기선의 자바 스터디:
+    - java/live-study/chapter-01.md
 - FastAPI 문서 번역:
   - fastapi/index.md
 - Pydantic 문서 번역:
