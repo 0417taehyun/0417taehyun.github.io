@@ -1,0 +1,89 @@
+site_name: weekwith.me
+site_description: Dev-log by using mkdocs.
+site_url: https://weekwith.me
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  font:
+    text: Noto Sans
+  palette: 
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode      
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+  features:
+    - header.autohide      
+    - navigation.tabs
+    - search.suggest
+    - search.highlight
+  icon:
+    repo: fontawesome/brands/github-alt
+repo_name: GitHub
+repo_url: https://github.com/0417taehyun 
+edit_uri: ''
+
+plugins:
+- search
+- markdownextradata:
+    data: data
+- git-revision-date    
+
+markdown_extensions:
+- meta
+- toc:
+    permalink: true
+- markdown.extensions.codehilite:
+    guess_lang: false
+- mdx_include:
+    base_path: docs
+- admonition
+- codehilite
+- extra
+- pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: !!python/name:pymdownx.superfences.fence_code_format ''
+- pymdownx.tabbed  
+
+nav:
+- About me: index.md
+- 프로젝트:
+  - project/index.md
+- 아티클:
+  - 소프트-웨어:
+    - article/soft-where/index.md
+  - 회고:
+    - article/retrospect/index.md
+- 알고리즘:
+  - 프로그래머스:
+    - Level 1:
+      - algorithms/programmers/level-1/test.md
+    - Level 2:
+      - algorithms/programmers/level-2/index.md
+- 자료구조:
+  - data-structures/index.md
+- 컴퓨터 공학:
+  - computer-science/index.md
+- FastAPI 문서 번역:
+  - fastapi/index.md
+- Pydantic 문서 번역:
+  - pydantic/index.md
+
+
+extra:
+  alternate:
+    - name: 한국어
+      link: /
+      lang: ko
+extra_css:
+- css/termynal.css
+- css/custom.css
+extra_javascript:
+- js/termynal.js
+- js/custom.js      
