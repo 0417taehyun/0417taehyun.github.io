@@ -1,16 +1,17 @@
-# About Me
-
-## Hi
-
-### Test
+---
+title: "About Me"
+---
 
 
-=== "Linux, macOS"
+<div class="termy">
 
-    <div class="termy">
+```console
+$ pip install weekwith.me
+---> 100%
+Successfully installed weekwith.me
 
-    ```console
-    $ source ./env/bin/activate
-    ```
+$ weekwith.me
 
-    </div>
+```
+
+</div>

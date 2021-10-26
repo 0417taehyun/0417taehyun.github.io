@@ -53,27 +53,36 @@ markdown_extensions:
 nav:
 - About me: index.md
 - 프로젝트:
-  - project/index.md
+  - project/studeep.md
+  - project/forour.md
 - 아티클:
+  - 회고:
+    - 스터디:
+      - TWIL:
+        - article/retrospect/study/twil/3.md
+    - 프로젝트:
+      - article/retrospect/project/studeep.md
+      - article/retrospect/project/forour.md s
   - 소프트-웨어:
     - article/soft-where/index.md
-  - 회고:
-    - article/retrospect/index.md
 - 알고리즘:
-  - 프로그래머스:
-    - Level 1:
-      - algorithms/programmers/level-1/test.md
-    - Level 2:
-      - algorithms/programmers/level-2/index.md
-- 자료구조:
-  - data-structures/index.md
+  - 쓰면서 익히는 알고리즘과 자료구조:
+    - algorithms/writing-algorithm/1-array.md
+  - 이것이 취업을 위한 코딩 테스트다 with 파이썬:
+    - algorithms/coding-test-for-employment/1-big-o.md
+    - algorithms/coding-test-for-employment/2-greedy.md
 - 컴퓨터 공학:
-  - computer-science/index.md
-- 자바:
-  - 백기선의 자바 스터디:
-    - java/live-study/chapter-01.md
-    - java/live-study/chapter-02.md
-    - java/live-study/chapter-03.md
+  - CODE:
+    - computer-science/code/01.md
+  - From Nand to Tetris:
+    - computer-science/from-nand-to-tetris/project01.md
+    - computer-science/from-nand-to-tetris/project02.md
+- 프로그래밍:
+  - 자바:
+    - 백기선의 자바 스터디:
+      - programming/java/live-study/chapter-01.md
+      - programming/java/live-study/chapter-02.md
+      - programming/java/live-study/chapter-03.md
 - FastAPI 문서 번역:
   - fastapi/index.md
 - Uvicorn 문서 번역:
