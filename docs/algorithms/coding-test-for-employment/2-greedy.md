@@ -1,5 +1,8 @@
 ---
 title: "그리디"
+date: ""
+tags:
+    - Algorithms
 ---
 
 # 그리디

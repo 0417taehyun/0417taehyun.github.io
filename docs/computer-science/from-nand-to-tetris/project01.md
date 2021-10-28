@@ -1,5 +1,8 @@
 ---
 title: "불 함수와 게이트 로직"
+date: ""
+tags:
+    - Computer Science
 ---
 
 # 불 함수와 게이트 로직

@@ -1,5 +1,8 @@
 ---
 title: "배열"
+date: ""
+tags:
+    - Algorithms
 ---
 
 # 배열

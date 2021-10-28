@@ -12,7 +12,6 @@ mkdocs-material = "^7.3.4"
 mkdocs-markdownextradata-plugin = "^0.2.4"
 PyYAML = "^6.0"
 mdx-include = "^1.4.1"
-mkdocs-git-revision-date-plugin = "^0.3.1"
 
 [tool.poetry.dev-dependencies]
 

@@ -1,5 +1,8 @@
 ---
 title: "불 연산과 ALU"
+date: ""
+tags:
+    - Computer Science
 ---
 
 # 불 연산과 ALU

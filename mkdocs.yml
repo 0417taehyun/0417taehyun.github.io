@@ -30,7 +30,8 @@ plugins:
 - search
 - markdownextradata:
     data: data
-- git-revision-date    
+- tags:
+    tags_file: tags/index.md
 
 markdown_extensions:
 - meta
@@ -83,6 +84,9 @@ nav:
       - programming/java/live-study/chapter-01.md
       - programming/java/live-study/chapter-02.md
       - programming/java/live-study/chapter-03.md
+- 머신러닝:
+  - 파이썬 머신러닝 완벽가이드:
+    - machine-learning/python-ml/01.md
 - FastAPI 문서 번역:
   - fastapi/index.md
 - Uvicorn 문서 번역:
@@ -90,14 +94,11 @@ nav:
 - Pydantic 문서 번역:
   - pydantic/index.md
 - SQLModel 문서 번역:
-  - sqlmodel/index.md  
+  - sqlmodel/index.md
+- 태그:
+  - tags/index.md
 
 
-extra:
-  alternate:
-    - name: 한국어
-      link: /
-      lang: ko
 extra_css:
 - css/termynal.css
 - css/custom.css
