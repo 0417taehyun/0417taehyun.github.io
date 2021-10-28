@@ -5,8 +5,9 @@ tags:
     - Java
 ---
 
-> 해당 글은 백기선의 온라인 자바 기초 스터디 목차를 바탕으로 학습한 내용입니다.  
-> [2주차 과제: 자바 데이터 타입, 변수 그리고 배열 · Issue #2 · whiteship/live-study](https://github.com/whiteship/live-study/issues/2)
+!!! note "참고"
+    해당 글은 백기선의 온라인 자바 기초 스터디 [2주차 과제: 자바 데이터 타입, 변수 그리고 배열](https://github.com/whiteship/live-study/issues/2)을 바탕으로 학습한 내용입니다.
+
 
 ## 2진법
 

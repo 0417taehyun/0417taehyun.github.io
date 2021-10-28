@@ -5,8 +5,9 @@ tags:
     - Java
 ---
 
-> 해당 글은 백기선의 온라인 자바 기초 스터디 목차를 바탕으로 학습한 내용입니다.  
-> [1주차 과제: JVM은 무엇이며 자바 코드는 어떻게 실행하는 것인가. · Issue #1 · whiteship/live-study](https://github.com/whiteship/live-study/issues/1)
+!!! note "참고"
+    해당 글은 백기선의 온라인 자바 기초 스터디 [1주차 과제: JVM은 무엇이며 자바 코드는 어떻게 실행하는 것인가](https://github.com/whiteship/live-study/issues/1)를 바탕으로 학습한 내용입니다.
+
 
 ## 자바언어의 특징
 

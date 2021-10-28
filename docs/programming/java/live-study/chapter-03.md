@@ -5,8 +5,8 @@ tags:
     - Java
 ---
 
-> 해당 글은 백기선의 온라인 자바 기초 스터디 목차를 바탕으로 학습한 내용입니다.  
-> [3주차 과제: 연산자 · Issue #3 · whiteship/live-study](https://github.com/whiteship/live-study/issues/3)
+!!! note "참고"
+    해당 글은 백기선의 온라인 자바 기초 스터디 [3주차 과제: 연산자](https://github.com/whiteship/live-study/issues/3)를 바탕으로 학습한 내용입니다.  
 
 
 ## 연산자 (Operator)
