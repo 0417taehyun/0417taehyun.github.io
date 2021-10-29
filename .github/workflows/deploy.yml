@@ -1,0 +1,42 @@
+name: Deploy
+on:
+  push:
+    branches: 
+      - main
+jobs:
+  deploy:
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set-up GitHub
+        uses: actions/checkout@v2
+
+      - name: Set-up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      
+      - name: Install Poetry
+        run: |
+          curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+          source $HOME/.poetry/env
+
+      - name: Install dependencies
+        run: |
+          source $HOME/.poetry/env
+          poetry install
+
+      - name: Install mkdocs-material-insiders
+        run: |
+          source $HOME/.poetry/env
+          poetry add git+thttps://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
+
+      - name: Deploy
+        run: |
+          source $HOME/.poetry/env
+          poetry run mkdocs gh-deploy --force
+
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}

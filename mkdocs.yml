@@ -35,6 +35,7 @@ plugins:
 
 markdown_extensions:
 - meta
+- tables
 - toc:
     permalink: true
 - markdown.extensions.codehilite:
