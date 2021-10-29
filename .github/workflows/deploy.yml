@@ -31,12 +31,11 @@ jobs:
       - name: Install mkdocs-material-insiders
         run: |
           source $HOME/.poetry/env
-          poetry add git+thttps://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
+          poetry add git+https://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
 
       - name: Deploy
         run: |
           source $HOME/.poetry/env
           poetry run mkdocs gh-deploy --force
-
 env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
