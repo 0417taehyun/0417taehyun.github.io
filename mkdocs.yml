@@ -96,6 +96,8 @@ nav:
   - pydantic/index.md
 - SQLModel 문서 번역:
   - sqlmodel/index.md
+- Starlette 문서 번역:
+  - starlette/index.md  
 - 태그:
   - tags/index.md
 
