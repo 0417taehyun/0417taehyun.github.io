@@ -94,8 +94,12 @@ nav:
   - uvicorn/index.md
 - Pydantic 번역:
   - pydantic/index.md
+  - pydantic/install.md
+  - 사용법:
+    - pydantic/usage/models.md
 - SQLModel 번역:
   - sqlmodel/index.md
+  - sqlmodel/features.md
 - Starlette 번역:
   - starlette/index.md  
 - 태그:
