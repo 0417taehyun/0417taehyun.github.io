@@ -90,6 +90,12 @@ nav:
       - programming/machine-learning/python-ml/01.md
 - FastAPI 번역:
   - fastapi/index.md
+  - fastapi/features.md
+  - 튜토리얼:
+    - 보안:
+      - fastapi/tutorial/security/index.md
+      - fastapi/tutorial/security/first-steps.md
+
 - Uvicorn 번역:
   - uvicorn/index.md
 - Pydantic 번역:
