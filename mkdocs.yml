@@ -51,6 +51,10 @@ markdown_extensions:
       class: mermaid
       format: !!python/name:pymdownx.superfences.fence_code_format ''
 - pymdownx.tabbed  
+- pymdownx.mark
+- pymdownx.critic
+- pymdownx.caret
+- pymdownx.keys
 
 nav:
 - About me: index.md
