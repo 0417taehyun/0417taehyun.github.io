@@ -55,6 +55,8 @@ markdown_extensions:
 - pymdownx.critic
 - pymdownx.caret
 - pymdownx.keys
+- pymdownx.arithmatex:
+    generic: true
 
 nav:
 - About me: index.md
@@ -108,24 +110,22 @@ nav:
       - fastapi/tutorial/security/first-steps.md
   - 배포:
     - fastapi/deployment/index.md
-- Uvicorn 번역:
-  - uvicorn/index.md
-- Pydantic 번역:
-  - pydantic/index.md
-  - pydantic/install.md
-  - 사용법:
-    - pydantic/usage/models.md
 - SQLModel 번역:
   - sqlmodel/index.md
   - sqlmodel/features.md
-- Starlette 번역:
-  - starlette/index.md  
 - 태그:
   - tags/index.md
 
+extra:
+  anaylytics:
+    provider: google
+    property: G-Q4X9B4PNF7
 extra_css:
 - css/termynal.css
 - css/custom.css
 extra_javascript:
 - js/termynal.js
 - js/custom.js      
+- js/mathjax.js
+- https://polyfill.io/v3/polyfill.min.js?features=es6
+- https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
