@@ -73,6 +73,7 @@ nav:
       - article/retrospect/project/forour.md
   - 소프트-웨어:
     - article/soft-where/01.md
+    - article/soft-where/02.md
 - 알고리즘:
   - 쓰면서 익히는 알고리즘과 자료구조:
     - algorithms/writing-algorithm/1-array.md
