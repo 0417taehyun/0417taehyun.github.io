@@ -1,6 +1,10 @@
 site_name: weekwith.me
 site_description: Studying every week with me.
 site_url: https://weekwith.me
+
+docs_dir: docs/en
+site_dir: site
+
 theme:
   name: material
   custom_dir: overrides
@@ -27,11 +31,12 @@ repo_url: https://github.com/0417taehyun
 edit_uri: ''
 
 plugins:
-- search
+- search:
+    lang: [en]
 - markdownextradata:
     data: data
 - tags:
-    tags_file: tags/index.md
+    tags_file: tags.md
 
 markdown_extensions:
 - meta
@@ -60,67 +65,20 @@ markdown_extensions:
 
 nav:
 - About me: index.md
-- 프로젝트:
-  - project/studeep.md
-  - project/forour.md
-- 아티클:
-  - 회고:
-    - 스터디:
-      - TWIL:
-        - article/retrospect/study/twil/3.md
-    - 프로젝트:
-      - article/retrospect/project/studeep.md
-      - article/retrospect/project/forour.md
-  - 소프트-웨어:
-    - article/soft-where/01.md
-    - article/soft-where/02.md
-- 알고리즘:
-  - 쓰면서 익히는 알고리즘과 자료구조:
-    - algorithms/writing-algorithm/1-array.md
-  - 이것이 취업을 위한 코딩 테스트다 with 파이썬:
-    - algorithms/coding-test-for-employment/1-big-o.md
-    - algorithms/coding-test-for-employment/2-greedy.md
-- 컴퓨터 공학:
-  - CODE:
-    - computer-science/code/01.md
-  - From Nand to Tetris:
-    - computer-science/from-nand-to-tetris/project01.md
-    - computer-science/from-nand-to-tetris/project02.md
-- 프로그래밍:
-  - 자바:
-    - 백기선의 자바 스터디:
-      - programming/java/live-study/chapter-01.md
-      - programming/java/live-study/chapter-02.md
-      - programming/java/live-study/chapter-03.md
-  - 머신러닝:
-    - 파이썬 머신러닝 완벽가이드:
-      - programming/machine-learning/python-ml/01.md
-- FastAPI 번역:
-  - fastapi/index.md
-  - fastapi/features.md
-  - 튜토리얼:
-    - 의존성:
-      - fastapi/tutorial/dependencies/index.md
-      - fastapi/tutorial/dependencies/classes-as-dependencies.md
-      - fastapi/tutorial/dependencies/sub-dependencies.md
-      - fastapi/tutorial/dependencies/dependencies-in-path-operation-decorators.md
-      - fastapi/tutorial/dependencies/global-dependencies.md
-      - fastapi/tutorial/dependencies/dependencies-with-yield.md    
-    - 보안:
-      - fastapi/tutorial/security/index.md
-      - fastapi/tutorial/security/first-steps.md
-  - 배포:
-    - fastapi/deployment/index.md
-- SQLModel 번역:
-  - sqlmodel/index.md
-  - sqlmodel/features.md
-- 태그:
-  - tags/index.md
+
 
 extra:
   anaylytics:
     provider: google
     property: G-Q4X9B4PNF7
+  alternate:
+    - name: English
+      link: /
+      lang: en
+    - name: Korean
+      link: /ko/
+      lang: kr
+  
 extra_css:
 - css/termynal.css
 - css/custom.css
