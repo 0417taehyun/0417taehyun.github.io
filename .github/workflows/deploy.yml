@@ -7,7 +7,7 @@ jobs:
   deploy:
     strategy:
       matrix:
-        python-version: [3.8, 3.9]
+        python-version: [3.9]
     runs-on: ubuntu-latest
     steps:
       - name: Set-up GitHub
@@ -36,11 +36,11 @@ jobs:
       - name: Build Docs
         run : |
           source $HOME/.poetry/env
-          poetry run mkdocs build --clean -f mkdocs.yml & mkdocs-ko.yml
+          poetry run mkdocs build --clean -f mkdocs.yml & mkdocs build mkdocs-ko.yml
 
       - name: Deploy
         run: |
           ghp-import -p ./site
-          
+
 env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}

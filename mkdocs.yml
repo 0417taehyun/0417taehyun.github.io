@@ -65,6 +65,7 @@ markdown_extensions:
 
 nav:
 - About me: index.md
+- Tag: tags.md
 
 
 extra:

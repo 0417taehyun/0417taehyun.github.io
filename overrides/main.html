@@ -5,13 +5,10 @@
 {% endblock %}
 
 {% block disqus %}
-  {% if not page.is_index %}
+  {% if not page.is_tags %}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7400981351083358"
     crossorigin="anonymous"></script>
     <div id="__comments">
-      <hr />
-      <p><strong>작성일</strong>: {{ page.meta.date }}</p>
-      <hr />
       <script src="https://utteranc.es/client.js"
             repo="0417taehyun/blog"
             issue-term="pathname"
@@ -22,5 +19,4 @@
       </script>
     </div>
   {% endif %}
-  
 {% endblock %}

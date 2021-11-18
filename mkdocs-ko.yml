@@ -120,7 +120,7 @@ nav:
 #   - sqlmodel/index.md
 #   - sqlmodel/features.md
 - 태그:
-  - tags/index.md
+  - tags.md
 
 extra:
   anaylytics:
