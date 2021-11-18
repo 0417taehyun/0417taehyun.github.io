@@ -40,7 +40,8 @@ jobs:
 
       - name: Deploy
         run: |
-          ghp-import -p ./site
+          source $HOME/.poetry/env
+          poetry run ghp-import -p ./site
 
 env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
