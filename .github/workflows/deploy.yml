@@ -36,7 +36,7 @@ jobs:
       - name: Build Docs
         run : |
           source $HOME/.poetry/env
-          poetry run mkdocs build --clean -f mkdocs.yml & mkdocs build mkdocs-ko.yml
+          poetry run mkdocs build -f mkdocs.yml & poetry run mkdocs build -f mkdocs-ko.yml
 
       - name: Deploy
         run: |
