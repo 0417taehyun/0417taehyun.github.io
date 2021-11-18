@@ -1,9 +1,8 @@
 ---
-title: "소개"
+title: "weekwith.me"
 ---
 
-# 소개
-
+# weekwith.me
 
 <div class="termy">
 

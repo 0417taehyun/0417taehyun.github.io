@@ -1,8 +1,8 @@
 ---
-title: "About Me"
+title: "weekwith.me"
 ---
 
-# About Me
+# weekwith.me
 
 <div class="termy">
 
