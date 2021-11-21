@@ -1,5 +1,6 @@
 ---
 title: "SQLModel"
+description: ""
 ---
 
 # SQLModel
@@ -8,7 +9,7 @@ title: "SQLModel"
   <a href="https://sqlmodel.tiangolo.com"><img src="https://sqlmodel.tiangolo.com/img/logo-margin/logo-margin-vector.svg" alt="SQLModel"></a>
 </p>
 <p align="center">
-    <em>SQLModel, SQL databases in Python, designed for simplicity, compatibility, and robustness.</em>
+    <em>단순함, 호환성, 그리고 견고성을 위해 설계된, 파이썬 SQL 데이터베이스, SQLModel.</em>
 </p>
 <p align="center">
 <a href="https://github.com/tiangolo/sqlmodel/actions?query=workflow%3ATest" target="_blank">

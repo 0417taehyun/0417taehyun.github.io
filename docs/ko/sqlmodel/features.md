@@ -1,5 +1,6 @@
 ---
 title: "특징"
+description: ""
 ---
 
 # 특징
