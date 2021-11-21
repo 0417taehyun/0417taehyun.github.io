@@ -83,7 +83,7 @@ UNIVAC: 11011100 00011000 10011000
 
 ### 과정
 
-<img src="../../../images/java/live-study/chapter-01/1.jpg">
+<img src="https://weekwith.me/images/java/live-study/chapter-01/1.jpg">
 
 1. 프로그램이 실행되면 JVM은 운영체제로부터 필요한 메모리를 할당 받고 메모리 용도에 따라 영역을 나누어 관리한다.
 2. 자바 컴파일러( `javac` )가 자바 소스 코드( `.java` )를 읽어들여 자바 바이트코드( `.class` )로 변환시킨다.
@@ -99,13 +99,13 @@ UNIVAC: 11011100 00011000 10011000
 
 클래스 로더 시스템으로 넘어 온 바이트코드는 메모리 영역으로 넘어 가 글로벌하게 또는 개별적인 스레드 별로 공유되며 이때 실질적으로 소스 코드를 실행시키기 위해 실행 엔진으로 넘어 가서 인터프리터, JIT 컴파일러 과정을 거쳐 효율적으로 실행되며 메모리 누수 방지 등과 같은 관리를 위해 GC가 동작한다. 그리고 이러한 과정 중 C언어 또는 C++로 작성된 경우 네이티브 메서드 영역으로 넘어가서 실행된다.
 
-<img src="../../../images/java/live-study/chapter-01/2.png">
+<img src="https://weekwith.me/images/java/live-study/chapter-01/2.png">
 
 #### 클래스 로더 (Class Loader)
 
 `.class` 에서 바이트코드를 읽고 메모리에 저장한다. 이때 **클래스 로더는 계층형 구조** 다. 클래스 로더에서 이뤄지는 작업들을 이미지로 나타내면 아래와 같다.
 
-<img src="../../../images/java/live-study/chapter-01/3.jpg">
+<img src="https://weekwith.me/images/java/live-study/chapter-01/3.jpg">
 
 1. **로딩 (Loading)** : **클래스 로더가 `.class` 파일을 읽고** 그 내용에 따라 적절한 **바이너리 데이터를 만들어 메서드 영역에 저장** 한다. 이때 메서드 영역에 저장하는 데이터는 FQCN(Fully Qualified Class Name), 클래스인지 인터페이스인지 이넘(ENUM)인지 구분, 메서드, 변수가 있다. **로딩이 끝나면 해당 클래스 타입의 `Class` 객체를 생성하여 힙 영역에 저장** 한다.
 
@@ -129,7 +129,7 @@ UNIVAC: 11011100 00011000 10011000
 
 우선 메모리 공간에 대해 이해할 필요가 있다. **운영체제는 메모리(RAM__Random Access Memory)에 프로그램을 할당** 해주는 데 이때 4가지 공간으로 나누어 할당해준다. 이를 쉽게 나타내면 아래 이미지와 같다.
 
-<img src="../../../images/java/live-study/chapter-01/4.png">
+<img src="https://weekwith.me/images/java/live-study/chapter-01/4.png">
 
 1. **코드 영역 (Code Area)** : 작성한 **소스 코드** 가 들어가는 부분이다. **텍스트 영역(Text Area)** 이라고도 한다.
 2. **데이터 영역 (Data Area)** : **전역 변수와 `static` 변수가 할당** 되는 영역이다. **프로그램 시작과 동시에 할당되며 프로그램이 종료되면 자동으로 소멸** 된다. 
@@ -181,7 +181,7 @@ JVM은 크게 **클래스 로더(Class Loader)** , **실행 엔진(Execution Eng
 
 아래 이미지는 Java 애플리케이션과 일반 애플리케이션의 차이점이다. Java는 앞서 WORA 특징을 갖는다고 이야기 했었는데 이는 곧 JVM을 통해서 가능하다고 말했다. JVM 자체는 운영체제에 종속적이지만 일반 애플리케이션과 달리 Java 애플리케이션의 소스 코드는 운영체제에 맞게 수정할 필요 없이 아래 이미지처럼 애플리케이션이 JVM에 종속적이기 때문에 JVM만 OS에 맞게 구성해준다면 동일한 소스 코드로 어디에서나 같은 애플리케이션의 수행 작업물을 얻을 수 있다.
 
-<img src="../../../images/java/live-study/chapter-01/5.png">
+<img src="https://weekwith.me/images/java/live-study/chapter-01/5.png">
 
 이러한 과정에서 일반 애플리케이션과 달리 Java 애플리케이션은 JVM을 거치기 때문에, 그리고 하드웨어에 맞게 완전히 컴파일 된 상태가 아니고 실행 시에 해석(interpret)되기 때문에 속도가 느리다는 단점이 있다. 이를 보완하기 위해 바이트코드를 기계어로 바로 변환해주는 JIT 컴파일러를 활용한다.
 
@@ -208,7 +208,7 @@ JVM, JRE, JDK의 가장 차이점은 결론적으로 JVM은 자바의 바이트�
 
 결론적으로 아래 이미지와 같다.
 
-<img src="../../../images/java/live-study/chapter-01/6.jpg">
+<img src="https://weekwith.me/images/java/live-study/chapter-01/6.jpg">
 
 ---
 
