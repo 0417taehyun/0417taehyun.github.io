@@ -63,8 +63,7 @@ tags:
 바로 이러한 개별 또는 그룹의 권한 설정을 가능하게 해주는 AWS의 서비스가 바로 **IAM(Identity and Access Management)**입니다.  
 
 #### IAM 계정 생성
-AWS를 루트 계정으로 로그인 한 이후 아래 이미지와 같이 IAM을 검색하여 사용자 탭에 들어갑니다. 이후 사용자 추가 버튼을 누릅니다.
-
+AWS를 루트 계정으로 로그인 한 이후 아래 이미지와 같이 IAM을 검색하여 사용자 탭에 들어갑니다. 이후 사용자 추가 버튼을 누릅니다.  
 
 
 
@@ -689,7 +688,7 @@ GitHub Secret
 
 
 
-아래 이미지와 같이 Name의 경우 yml 파일 (이 예시에서는 deploy.yml ) 내에 작성된 ${{ secrets.SOMETHING }} 부분에서 SOMETHING 에 해당합니다. 따라서 해당 이름과 동일하게 입력한 다음 Value 또한 알맞게 입력합니다. 이 예시에서는 AWS_ACCESS_KEY_ID 를 Name에 입력하고 이에 알맞는 액세스 키를 이전에 IAM 계정을 생성하며 다운로드 받았던 CSV 파일에서 복사하여 붙여 넣었습니다.
+아래 이미지와 같이 Name의 경우 yml 파일 (이 예시에서는 deploy.yml ) 내에 작성된 `${{ secrets.SOMETHING }}` 부분에서 SOMETHING 에 해당합니다. 따라서 해당 이름과 동일하게 입력한 다음 Value 또한 알맞게 입력합니다. 이 예시에서는 AWS_ACCESS_KEY_ID 를 Name에 입력하고 이에 알맞는 액세스 키를 이전에 IAM 계정을 생성하며 다운로드 받았던 CSV 파일에서 복사하여 붙여 넣었습니다.
 
 
 
