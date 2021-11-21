@@ -7,7 +7,7 @@ site_dir: site
 
 theme:
   name: material
-  custom_dir: overrides
+  custom_dir: resources
   language: en
   palette: 
     - scheme: default
@@ -64,9 +64,24 @@ markdown_extensions:
     generic: true
 
 nav:
-- About me: index.md
+- weekwith.me: index.md
+- Career:
+  - "2020":
+    - career/2020/whatssub.md
+    - career/2020/meat-people.md
+- Project:
+  - "2020":
+    - project/2020/hince.md
+    - project/2020/stockx.md
+    - project/2020/market-kurly.md
+  - "2021":
+    - project/2021/hufspace.md
+    - project/2021/notion-slack-integration.md
+    - project/2021/slack-automatic-notification.md    
+    - project/2021/studeep.md
+    - project/2021/forour.md
+    - project/2021/haus.md
 - Tag: tags.md
-
 
 extra:
   anaylytics:

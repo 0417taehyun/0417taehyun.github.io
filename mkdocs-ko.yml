@@ -7,7 +7,7 @@ site_dir: site/ko
 
 theme:
   name: material
-  custom_dir: overrides
+  custom_dir: resources
   language: kr
   palette: 
     - scheme: default
@@ -64,29 +64,41 @@ markdown_extensions:
     generic: true
 
 nav:
-- 소개: index.md
+- weekwith.me: index.md
+- 커리어:
+  - "2020":
+    - career/2020/whatssub.md
+    - career/2020/meat-people.md
 - 프로젝트:
-  - 2021:
-    - project/studeep.md
-    - project/forour.md
+  - "2020":
+    - project/2020/hince.md
+    - project/2020/stockx.md
+    - project/2020/market-kurly.md
+  - "2021":
+    - project/2021/hufspace.md
+    - project/2021/notion-slack-integration.md
+    - project/2021/slack-automatic-notification.md
+    - project/2021/studeep.md
+    - project/2021/forour.md
+    - project/2021/haus.md
 - 아티클:
   - 회고:
-    - 스터디:
-      - TWIL:
-        - article/retrospect/study/twil/3.md
-    - 프로젝트:
-      - 2021:
-        - article/retrospect/project/studeep.md
-        - article/retrospect/project/forour.md
+    - TWIL:
+      - article/retrospect/twil/2.md
+      - article/retrospect/twil/3.md
+    - 컨퍼런스:
+      - article/retrospect/conference/toss-design-conference-1.md
+      - article/retrospect/conference/toss-design-conference-2.md
+      - article/retrospect/conference/toss-design-conference-3.md
   - 소프트-웨어:
     - article/soft-where/01.md
     - article/soft-where/02.md
-- 프로그래밍:
+- 프로그래밍 공부 일지:
   - 자바:
     - 백기선의 자바 스터디:
-      - programming/java/live-study/chapter-01.md
-      - programming/java/live-study/chapter-02.md
-      - programming/java/live-study/chapter-03.md
+      - devlog/java/live-study/chapter-01.md
+      - devlog/java/live-study/chapter-02.md
+      - devlog/java/live-study/chapter-03.md
 - FastAPI 번역:
   - fastapi/features.md
   - 튜토리얼:
@@ -105,8 +117,7 @@ nav:
 - SQLModel 번역:
   - sqlmodel/index.md
   - sqlmodel/features.md
-- 태그:
-  - tags.md
+- 태그: tags.md
 
 extra:
   anaylytics:
