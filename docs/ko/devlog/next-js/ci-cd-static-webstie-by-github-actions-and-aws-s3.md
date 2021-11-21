@@ -10,16 +10,16 @@ tags:
 
 ## 도입
 
-이 글을 통해 AWS IAM, AWS S3, AWS CloudFront, AWS Route53, ACM(AWS Certification Manager)을 활용해 Next.js 프로젝트를 정적 웹 사이트로 배포하고 GitHub Actions를 활용하여 해당 배포를 자동화하는 방법에 대해 배웁니다. 그리고 이 과정에서 GitHub Actions 및 배포 방식 중 하나인 CI/CD에 관한 기초적인 개념을 익힐 수 있습니다.  
+이 글을 통해 **AWS IAM**, **S3**, **CloudFront**, **Route53**, **Certification Manager**을 활용해 Next.js 프로젝트를 정적 웹 사이트로 배포하고 **GitHub Actions**를 활용하여 해당 배포를 자동화하는 방법에 대해 배웁니다. 그리고 이 과정에서 **GitHub Actions** 및 배포 방식 중 하나인 **CI/CD**에 관한 기초적인 개념을 익힐 수 있습니다.  
 
 !!! info "참고"
 
     이 글에 사용된 모든 소스 코드는 맨 아래 참고 부분에 있는 [GitHub 레포지토리](https://github.com/week-with-me/next-js-deployment-practice)에서 확인할 수 있습니다.
 
 
-배울 수 있는 것과 배울 수 없는 것, 그리고 유의사항을 각각 정리하면 아래와 같습니다.  
+**배울 수 있는 것**과 **배울 수 없는 것**, 그리고 **유의사항**을 각각 정리하면 아래와 같습니다.  
 
-해당 글을 통해 배울 수 있는 것은 아래와 같습니다.  
+해당 글을 통해 **배울 수 있는 것**은 아래와 같습니다.  
 
 * AWS IAM을 통한 사용자 계정 관리
 * AWS S3를 통한 정적 웹 사이트 배포
@@ -657,10 +657,7 @@ Deploy to S3: run Action을 활용하여, AWS CLI를 통해 (이 예시에서는
 CloudFront Invalidate Cache: run Action을 활용하여, AWS CLI를 통해(이 예시에서는 cloudfront create-invalidation 를 사용한다. 이때 --distruibution-id 옵션은 CloudFront에 기존에 배포된 아이디를 의미하며 --paths 의 경우 삭제할 캐시의 경로를 의미한다. 이 예시에서는 전부 삭제하여 새로 업로드된 S3를 연결하기 때문에 '/*' 로 설정한다.) 기존 배포한 콘텐츠(캐시)를 삭제하고 S3에 새로 배포된 콘텐츠를 연결한다.
 
 
-이때 해당 yml 파일 (이 예시에서는 deploy.yml ) 을 잘 보면 마치 변수를 사용하듯 `${{ secrets.SOMETHING }}` 과 같은 형태로 작성되어 있는 걸 확인할 수 있습니다. 이는 AWS 액세스 키와 같이 보안에 취약한 값들을 GitHub 레포지토리 내에 **Secrets**라는 곳에서 관리하여 Action단계에서 사용할 때 불러오게 (이 예시에서는 SOMETHING ) 합니다.
-
-
-
+이때 해당 yml 파일 (이 예시에서는 `deploy.yml`) 을 잘 보면 마치 변수를 사용하듯 `secrets.SOMETHING` 과 같은 형태로 작성되어 있는 걸 확인할 수 있습니다. 이는 AWS 액세스 키와 같이 보안에 취약한 값들을 GitHub 레포지토리 내에 **Secrets**라는 곳에서 관리하여 Action단계에서 사용할 때 불러오게 (이 예시에서는 SOMETHING ) 합니다.
 
 
 GitHub Secret
@@ -679,16 +676,9 @@ GitHub Secret
 
 
 
-아래 이미지와 같이 Name의 경우 yml 파일 (이 예시에서는 deploy.yml ) 내에 작성된 `${{ secrets.SOMETHING }}` 부분에서 SOMETHING 에 해당합니다. 따라서 해당 이름과 동일하게 입력한 다음 Value 또한 알맞게 입력합니다. 이 예시에서는 AWS_ACCESS_KEY_ID 를 Name에 입력하고 이에 알맞는 액세스 키를 이전에 IAM 계정을 생성하며 다운로드 받았던 CSV 파일에서 복사하여 붙여 넣었습니다.
+아래 이미지와 같이 Name의 경우 yml 파일 (이 예시에서는 `deploy.yml`) 내에 작성된 `secrets.SOMETHING` 부분에서 SOMETHING 에 해당합니다. 따라서 해당 이름과 동일하게 입력한 다음 Value 또한 알맞게 입력합니다. 이 예시에서는 AWS_ACCESS_KEY_ID 를 Name에 입력하고 이에 알맞는 액세스 키를 이전에 IAM 계정을 생성하며 다운로드 받았던 CSV 파일에서 복사하여 붙여 넣었습니다.  
 
-
-
-
-
-
-이 예시에서 입력해야 할 **Secrets**은 아래와 같습니다.
-
-
+이 예시에서 입력해야 할 **Secrets**은 아래와 같습니다.  
 
 * `AWS_ACCESS_KEY_ID` : IAM 계정을 생성할 때 발급 받은 액세스 키입니다.
 * `AWS_SECRET_ACCESS_KEY` : IAM 계정을 생성할 때 발급 받은 시크릿 키입니다.
@@ -698,26 +688,19 @@ GitHub Secret
 * `AWS_CLOUDFRONT_DISTRIBUTION_ID` : S3와 연결된 CloudFront의 배포 ID입니다.
 
 
-해당 **Secrets**를 모두 입력했으면 이제 푸쉬(`git push`)하여 변경 사항을 메인(`main`) 브랜치에 반영합니다. 그러면 아래 이미지와 같이 Actions에서 성공적으로 AWS 서비스에 배포가 된 것을 확인할 수 있습니다.
-
-
-
-
-
+해당 **Secrets**를 모두 입력했으면 이제 푸쉬(`git push`)하여 변경 사항을 메인(`main`) 브랜치에 반영합니다. 그러면 아래 이미지와 같이 Actions에서 성공적으로 AWS 서비스에 배포가 된 것을 확인할 수 있습니다.  
 
 다시 본인의 도메인 (이 예시에서는 `artfrom.life`) 에 접근하면 GitHub 레포지토리에 변경 사항만 적용시켰을 뿐인데 AWS에도 자동으로 반영되어 아래 이미지와 같이 성공적으로 배포 및 적용된 것을 확인할 수 있습니다.  
 
 
 
-
-
-
 ## 결론
 
-AWS IAM, S3, CloudFront, Route53, Certificatoin Manager를 사용하여 구매한 도메인을 통해 정적 웹 사이트를 배포해봤습니다.  
+**AWS IAM**, **S3**, **CloudFront**, **Route53**, **Certificatoin Manager**를 사용하여 구매한 도메인을 통해 정적 웹 사이트를 배포해봤습니다.  
 
-그리고 GitHub Actions를 활용해 CI/CD 파이프라인을 구축하여 애플리케이션에 변동 사항이 생겼을 때 이를 자동으로 빌드하고 배포되게 하였습니다.  
+그리고 **GitHub Actions**를 활용해 **CI/CD** 파이프라인을 구축하여 애플리케이션에 변동 사항이 생겼을 때 이를 자동으로 빌드하고 배포되게 하였습니다.  
 
+--- 
 
 ## 참고
 
