@@ -81,7 +81,7 @@ UNIVAC: 11011100 00011000 10011000
 
 ### 과정
 
-<img src="images/java/live-study/chapter-01/1.jpg">
+<img src="/images/java/live-study/chapter-01/1.jpg">
 
 1. 프로그램이 실행되면 JVM은 운영체제로부터 필요한 메모리를 할당 받고 메모리 용도에 따라 영역을 나누어 관리한다.
 2. 자바 컴파일러( `javac` )가 자바 소스 코드( `.java` )를 읽어들여 자바 바이트코드( `.class` )로 변환시킨다.

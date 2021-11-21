@@ -1,5 +1,6 @@
 ---
 title: "3주차 과제: 연산자"
+description: "자바의 연산자"
 tags:
     - "2021"
     - Java
