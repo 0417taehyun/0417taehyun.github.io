@@ -94,11 +94,13 @@ nav:
     - article/soft-where/01.md
     - article/soft-where/02.md
 - 프로그래밍 공부 일지:
-  - 자바:
+  - Java:
     - 백기선의 자바 스터디:
       - devlog/java/live-study/chapter-01.md
       - devlog/java/live-study/chapter-02.md
       - devlog/java/live-study/chapter-03.md
+  - NextJS:
+    - devlog/next-js/ci-cd-static-webstie-by-github-actions-and-aws-s3.md
 - FastAPI 번역:
   - fastapi/features.md
   - 튜토리얼:
