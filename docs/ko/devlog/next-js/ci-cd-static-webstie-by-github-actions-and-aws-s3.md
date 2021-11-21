@@ -432,6 +432,12 @@ CI/CD 파이프라인을 이미지로 표현하면 아래와 같습니다.
 
 프로젝트의 루트 폴더에 `.github` 폴더를 만든 뒤 해당 폴더 내에 `worflows` 폴더를 만들고 아래 이미지와 같이 `yml` 파일 (이 예시에서는 `deploy.yml`) 을 만듭니다.
 
+!!! danger "위험"
+
+    아래 `secrets.`로 시작하는 모든 코드는 `${{}}`와 같은 형태로 감싸져있어야 합니다. 해당 코드에 `${{}}` 부분이 포함되지 않은 이유는 블로그 자체가 Actions를 통해 자동 빌드되기 때문에 아래 코드 값을 읽어서 오류가 발생해서입니다.  
+
+    정확한 코드를 위해선 [저장소 코드](https://github.com/week-with-me/next-js-deployment-practice/blob/main/.github/workflows/deploy.yml)를 확인해주시기 바랍니다.
+
 ```yaml
 name: Next.js deployment practice
 
@@ -460,18 +466,17 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}         
+          aws-access-key-id: secrets.AWS_ACCESS_KEY_ID
+          aws-secret-access-key: secrets.AWS_SECRET_ACCESS_KEY
+          aws-region: secrets.AWS_REGION
 
       - name: Deploy to S3
-        run: aws s3 sync ./${{ secrets.BUILD_DIRECTORY }} ${{ secrets.AWS_S3_BUCKET_NAME }} --acl public-read --delete
+        run: aws s3 sync ./secrets.BUILD_DIRECTORY secrets.AWS_S3_BUCKET_NAME --acl public-read --delete
 
       - name: CloudFront Invalidate Cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths '/*'
+        run: aws cloudfront create-invalidation --distribution-id secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID --paths '/*'
 
 ```
-
 
 GitHub Action의 경우 기본적으로 **Worflow**, **Event**, **Job**, **Step**, **Action** 등의 개념으로 구성되어 있습니다.  
 
