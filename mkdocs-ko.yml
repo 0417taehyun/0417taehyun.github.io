@@ -99,8 +99,8 @@ nav:
       - devlog/java/live-study/chapter-01.md
       - devlog/java/live-study/chapter-02.md
       - devlog/java/live-study/chapter-03.md
-  - NextJS:
-    - devlog/next-js/ci-cd-static-webstie-by-github-actions-and-aws-s3.md
+  # - NextJS:
+  #   - devlog/next-js/ci-cd-static-webstie-by-github-actions-and-aws-s3.md
 - FastAPI 번역:
   - fastapi/features.md
   - 튜토리얼:

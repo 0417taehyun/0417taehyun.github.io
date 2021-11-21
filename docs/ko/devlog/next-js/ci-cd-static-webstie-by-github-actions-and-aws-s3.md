@@ -98,30 +98,27 @@ AWS를 루트 계정으로 로그인 한 이후 아래 이미지와 같이 IAM�
 
 
 
-AmazonS3FullAccess
-AmazonRoute53FullAccess
-AmazonCloudFrontFullAccess
-IAMUserChangePassword
-AWSCertificateManagerFullAccess
+* AmazonS3FullAccess
+* AmazonRoute53FullAccess
+* AmazonCloudFrontFullAccess
+* IAMUserChangePassword
+* AWSCertificateManagerFullAccess
 
 
-주의
+!!! warning "주의"
 
-해당 이미지에는 ACM 관련 권한이 빠져있습니다.
-
-
-
+    해당 이미지에는 ACM 관련 권한이 빠져있습니다.
 
 
 그 뒤에 사용자 만들기 버튼을 누르고나면 아래 이미지와 같이 액세스 키와 관련된 CSV 파일을 다운로드 받을 수 있는 페이지가 나타납니다.
 
 
 
-위험
+!!! danger "위험"
 
-이때 꼭 해당 CSV 파일을 다운로드 받고 외부에 유출하거나 삭제해서는 안 됩니다.
+    이때 꼭 해당 CSV 파일을 다운로드 받고 외부에 유출하거나 삭제해서는 안 됩니다.
 
-만약 해당 파일을 잃어버리거나, 파일이 유출되었을 경우 액세스 키를 삭제하고 재생성해야 합니다.
+    만약 해당 파일을 잃어버리거나, 파일이 유출되었을 경우 액세스 키를 삭제하고 재생성해야 합니다.
 
 
 
@@ -671,13 +668,7 @@ GitHub Secret
 
 
 
-
-
-
 이제 아래 이미지와 같이 왼쪽 메뉴들 중에서 Secrets를 클릭합니다.
-
-
-
 
 
 
