@@ -83,9 +83,10 @@ nav:
     - project/2021/haus.md
 - 아티클:
   - 회고:
-    - TWIL:
-      - article/retrospect/twil/2.md
-      - article/retrospect/twil/3.md
+    - 기타:
+      - article/retrospect/etc/aws-girls-in-tech-mentoring.md
+    # - TWIL:
+    #   - article/retrospect/twil/3.md
     - 컨퍼런스:
       - article/retrospect/conference/toss-design-conference-1.md
       - article/retrospect/conference/toss-design-conference-2.md
