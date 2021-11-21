@@ -657,7 +657,7 @@ Deploy to S3: run Action을 활용하여, AWS CLI를 통해 (이 예시에서는
 CloudFront Invalidate Cache: run Action을 활용하여, AWS CLI를 통해(이 예시에서는 cloudfront create-invalidation 를 사용한다. 이때 --distruibution-id 옵션은 CloudFront에 기존에 배포된 아이디를 의미하며 --paths 의 경우 삭제할 캐시의 경로를 의미한다. 이 예시에서는 전부 삭제하여 새로 업로드된 S3를 연결하기 때문에 '/*' 로 설정한다.) 기존 배포한 콘텐츠(캐시)를 삭제하고 S3에 새로 배포된 콘텐츠를 연결한다.
 
 
-이때 해당 yml 파일 (이 예시에서는 deploy.yml ) 을 잘 보면 마치 변수를 사용하듯 `${{ secrets.SOMETHING }}` 과 같은 형태로 작성되어 있는 걸 확인할 수 있습니다. 이는 AWS 액세스 키와 같이 보안에 취약한 값들을 GitHub 레포지토리 내에 Secrets라는 곳에서 관리하여 Action단계에서 사용할 때 불러오게 (이 예시에서는 SOMETHING ) 합니다.
+이때 해당 yml 파일 (이 예시에서는 deploy.yml ) 을 잘 보면 마치 변수를 사용하듯 `${{ secrets.SOMETHING }}` 과 같은 형태로 작성되어 있는 걸 확인할 수 있습니다. 이는 AWS 액세스 키와 같이 보안에 취약한 값들을 GitHub 레포지토리 내에 **Secrets**라는 곳에서 관리하여 Action단계에서 사용할 때 불러오게 (이 예시에서는 SOMETHING ) 합니다.
 
 
 
@@ -668,11 +668,11 @@ GitHub Secret
 
 
 
-이제 아래 이미지와 같이 왼쪽 메뉴들 중에서 Secrets를 클릭합니다.
+이제 아래 이미지와 같이 왼쪽 메뉴들 중에서 **Secrets**를 클릭합니다.  
 
 
 
-이제 아래 이미지와 같이 New repository secret 버튼을 클릭하여 비밀 값을 하나씩 등록합니다.
+이제 아래 이미지와 같이 **New repository secret** 버튼을 클릭하여 비밀 값을 하나씩 등록합니다.  
 
 
 
@@ -686,47 +686,39 @@ GitHub Secret
 
 
 
-이 예시에서 입력해야 할 Secrets은 아래와 같습니다.
+이 예시에서 입력해야 할 **Secrets**은 아래와 같습니다.
 
 
 
-AWS_ACCESS_KEY_ID : IAM 계정을 생성할 때 발급 받은 액세스 키입니다.
-AWS_SECRET_ACCESS_KEY : IAM 계정을 생성할 때 발급 받은 시크릿 키입니다.
-AWS_REGION : AWS 지역을 의미하며 이 예시에서는 us-east-1 로 설정하였습니다.
-BUILD_DIRECTORY : S3에 업로드할 폴더를 의미하며 이 예시에서는 next export 를 통해 생성되는 out 입니다.
-AWS_S3_BUCKET_NAME : 빌드된 파일 및 폴더가 업로드될 S3 버킷의 이름을 의미하며 s3://next-js-deployment-practice 와 같습니다.
-AWS_CLOUDFRONT_DISTRIBUTION_ID : S3와 연결된 CloudFront의 배포 ID입니다.
+* `AWS_ACCESS_KEY_ID` : IAM 계정을 생성할 때 발급 받은 액세스 키입니다.
+* `AWS_SECRET_ACCESS_KEY` : IAM 계정을 생성할 때 발급 받은 시크릿 키입니다.
+* `AWS_REGION` : AWS 지역을 의미하며 이 예시에서는 `us-east-1` 로 설정하였습니다.
+* `BUILD_DIRECTORY` : S3에 업로드할 폴더를 의미하며 이 예시에서는 `next export` 를 통해 생성되는 `out` 입니다.
+* `AWS_S3_BUCKET_NAME` : 빌드된 파일 및 폴더가 업로드될 S3 버킷의 이름을 의미하며 `s3://next-js-deployment-practice`와 같습니다.
+* `AWS_CLOUDFRONT_DISTRIBUTION_ID` : S3와 연결된 CloudFront의 배포 ID입니다.
 
 
-해당 Secrets를 모두 입력했으면 이제 푸쉬( git push )하여 변경 사항을 메인( main ) 브랜치에 반영합니다. 그러면 아래 이미지와 같이 Actions에서 성공적으로 AWS 서비스에 배포가 된 것을 확인할 수 있습니다.
-
-
-
-
-
-
-다시 본인의 도메인 (이 예시에서는 artfrom.life ) 에 접근하면 GitHub 레포지토리에 변경 사항만 적용시켰을 뿐인데 AWS에도 자동으로 반영되어 아래 이미지와 같이 성공적으로 배포 및 적용된 것을 확인할 수 있습니다.
+해당 **Secrets**를 모두 입력했으면 이제 푸쉬(`git push`)하여 변경 사항을 메인(`main`) 브랜치에 반영합니다. 그러면 아래 이미지와 같이 Actions에서 성공적으로 AWS 서비스에 배포가 된 것을 확인할 수 있습니다.
 
 
 
 
 
 
-결론
-AWS IAM, S3, CloudFront, Route53, Certificatoin Manager를 사용하여 구매한 도메인을 통해 정적 웹 사이트를 배포해봤습니다.
+다시 본인의 도메인 (이 예시에서는 `artfrom.life`) 에 접근하면 GitHub 레포지토리에 변경 사항만 적용시켰을 뿐인데 AWS에도 자동으로 반영되어 아래 이미지와 같이 성공적으로 배포 및 적용된 것을 확인할 수 있습니다.  
 
 
 
-그리고 GitHub Actions를 활용해 CI/CD 파이프라인을 구축하여 애플리케이션에 변동 사항이 생겼을 때 이를 자동으로 빌드하고 배포되게 하였습니다.
 
 
 
-참고
+## 결론
+
+AWS IAM, S3, CloudFront, Route53, Certificatoin Manager를 사용하여 구매한 도메인을 통해 정적 웹 사이트를 배포해봤습니다.  
+
+그리고 GitHub Actions를 활용해 CI/CD 파이프라인을 구축하여 애플리케이션에 변동 사항이 생겼을 때 이를 자동으로 빌드하고 배포되게 하였습니다.  
+
+
+## 참고
+
 GitHub 레포지토리
-
-
-GitHub - week-with-me/next-js-deployment-practice: Next.js deployment practice with AWS and GitHub Actions
-
-Next.js deployment practice with AWS and GitHub Actions - GitHub - week-with-me/next-js-deployment-practice: Next.js deployment practice with AWS and GitHub Actions
-
-github.com
