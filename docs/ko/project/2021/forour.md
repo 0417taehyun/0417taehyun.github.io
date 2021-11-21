@@ -2,7 +2,7 @@
 title: "ForOur"
 description: "성격 테스트를 통해 어울리는 꽃을 찾아주는 웹 서비스, ForOur"
 tags:
-    - Project
+    - 프로젝트
     - "2021"
 ---
 

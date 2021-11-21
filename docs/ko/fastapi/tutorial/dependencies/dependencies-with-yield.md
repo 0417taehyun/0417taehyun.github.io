@@ -1,6 +1,6 @@
 ---
 title: "yield를 사용한 의존성"
-date: "2021-10-31"
+description: ""
 ---
 
 # yield를 사용한 의존성
