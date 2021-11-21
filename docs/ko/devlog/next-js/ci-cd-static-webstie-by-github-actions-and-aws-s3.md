@@ -661,7 +661,7 @@ Deploy to S3: run Action을 활용하여, AWS CLI를 통해 (이 예시에서는
 CloudFront Invalidate Cache: run Action을 활용하여, AWS CLI를 통해(이 예시에서는 cloudfront create-invalidation 를 사용한다. 이때 --distruibution-id 옵션은 CloudFront에 기존에 배포된 아이디를 의미하며 --paths 의 경우 삭제할 캐시의 경로를 의미한다. 이 예시에서는 전부 삭제하여 새로 업로드된 S3를 연결하기 때문에 '/*' 로 설정한다.) 기존 배포한 콘텐츠(캐시)를 삭제하고 S3에 새로 배포된 콘텐츠를 연결한다.
 
 
-이때 해당 yml 파일 (이 예시에서는 deploy.yml ) 을 잘 보면 마치 변수를 사용하듯 ${{ secrets.SOMETHING }} 과 같은 형태로 작성되어 있는 걸 확인할 수 있습니다. 이는 AWS 액세스 키와 같이 보안에 취약한 값들을 GitHub 레포지토리 내에 Secrets라는 곳에서 관리하여 Action단계에서 사용할 때 불러오게 (이 예시에서는 SOMETHING ) 합니다.
+이때 해당 yml 파일 (이 예시에서는 deploy.yml ) 을 잘 보면 마치 변수를 사용하듯 `${{ secrets.SOMETHING }}` 과 같은 형태로 작성되어 있는 걸 확인할 수 있습니다. 이는 AWS 액세스 키와 같이 보안에 취약한 값들을 GitHub 레포지토리 내에 Secrets라는 곳에서 관리하여 Action단계에서 사용할 때 불러오게 (이 예시에서는 SOMETHING ) 합니다.
 
 
 
