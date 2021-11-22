@@ -94,6 +94,9 @@ nav:
   - 소프트-웨어:
     - article/soft-where/01.md
     - article/soft-where/02.md
+- 알고리즘:
+  - 이것이 취업을 위한 코딩 테스트다 with 파이썬:
+    - algorithms/coding-test-for-employment/1-big-o.md
 - 프로그래밍 공부 일지:
   - Java:
     - 백기선의 자바 스터디:
