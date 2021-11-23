@@ -97,6 +97,9 @@ nav:
 - 알고리즘:
   - 이것이 취업을 위한 코딩 테스트다 with 파이썬:
     - algorithms/coding-test-for-employment/1-big-o.md
+    - algorithms/coding-test-for-employment/2-greedy.md
+  - 쓰면서 익히는 알고리즘과 자료구조:
+    - algorithms/writing-algorithm/1-array.md
 - 프로그래밍 공부 일지:
   - Java:
     - 백기선의 자바 스터디:
