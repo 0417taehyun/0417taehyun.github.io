@@ -268,7 +268,7 @@ Finally, through these various and several experiences, I realized that the popu
 
 > WeCode Bootcamp Interview
 
-<iframe class="youtube" width="1280" height="720" src="https://www.youtube.com/embed/D5Yk64qtVOM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/D5Yk64qtVOM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Study
 
