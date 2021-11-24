@@ -1,6 +1,6 @@
 ---
 title: "[ StockX ] Clone Project"
-description : "Used show auction service Stock X clone project"
+description : "Used shoe auction service Stock X clone project"
 tags:
     - "2020"
     - Project

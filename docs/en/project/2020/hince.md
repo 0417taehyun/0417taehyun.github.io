@@ -1,6 +1,6 @@
 ---
 title: "[ Hince ] Clone Project"
-descirption: "Beauty and Cosmetic products online shopping service Hince clone project"
+descirption: "Beauty and cosmetic products online shopping service Hince clone project"
 tags:
     - "2020"
     - Project

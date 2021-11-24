@@ -8,8 +8,6 @@ tags:
 
 # Notion Slack Integration
 
-
-
 ## 소개
 
 **Notion Slack Integration**은
