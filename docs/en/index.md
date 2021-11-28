@@ -103,7 +103,7 @@ Finally, through these various and several experiences, I realized that the popu
 
 ### Craftsman Information Processing
 
-* **Date** | 2018. 03.
+* **Date** | 2018. 06.
 * **Corporation** | Human Resources Development Service of Korea
 
 
