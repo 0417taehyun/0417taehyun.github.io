@@ -125,7 +125,7 @@ $ weekwith.me --help
 
 > 구독 관리 서비스
 
-* **기간** | 2020. 09. - 2020. 11.
+* **기간** | 2020. 09. - 2020. 10.
 * **역할** | Python 엔지니어 인턴
 * **세부 내용** | 
 * **담당 업무**
@@ -161,7 +161,7 @@ $ weekwith.me --help
 * **담당 업무**
     * AWS IAM 설정을 통한 권한 관리 및 작업 환경 구축
     * GitHub Actions 및 AWS CodeDeploy를 활용한 백엔드 CI/CD 구축
-    * GitHub Actions, AWs S3 및 CloudFront를 활용한 프론트엔드 CI/CD 구축
+    * GitHub Actions, AWS S3 및 CloudFront를 활용한 프론트엔드 CI/CD 구축
 
 #### Studeep
 

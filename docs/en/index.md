@@ -126,7 +126,7 @@ Finally, through these various and several experiences, I realized that the popu
 
 > Subscription management service.
 
-* **Date** | 2020. 09. - 2020. 11.
+* **Date** | 2020. 09. - 2020. 10.
 * **Role** | Python engineer intern
 * **Details** | 
 * **Responsibilities**
