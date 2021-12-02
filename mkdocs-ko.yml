@@ -84,8 +84,8 @@ nav:
   - 회고:
     - 기타:
       - article/retrospect/etc/aws-girls-in-tech-mentoring.md
-    # - TWIL:
-    #   - article/retrospect/twil/3.md
+    - TWIL:
+      - article/retrospect/twil/3.md
     - 컨퍼런스:
       - article/retrospect/conference/toss-design-conference-1.md
       - article/retrospect/conference/toss-design-conference-2.md
