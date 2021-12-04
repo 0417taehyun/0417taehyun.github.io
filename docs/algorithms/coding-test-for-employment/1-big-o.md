@@ -32,7 +32,7 @@ tags:
 파이썬에서 할당된 메모리를 간단하게 확인할 수 있는 방법은 아래 코드와 같습니다.
 
 ```python
-{!../../docs_src/algorithms/coding-test-for-employment/1-big-0/test-1.py!}
+{!../docs_src/algorithms/coding-test-for-employment/1-big-0/test-1.py!}
 ```
 
 내장 모듈인 `tracemalloc`과 해당 모듈의 메서드인 `take_snpshot()`, `compate_to()`를 통해 메모리 할당 전과 후의 차이를 비교해볼 수 있습니다. 이때 `compate_to()` 메서드의 두 번째 매개변수는 `key_type`을 의미하며 작성된 `lineno`는 단어 그대로 줄(line)의 번호(No)를 의미합니다.  
@@ -71,7 +71,7 @@ tags:
 파이썬에서 소요된 시간을 간단하게 확인할 수 있는 방법은 아래 코드와 같습니다.
 
 ```python
-{!../../docs_src/algorithms/coding-test-for-employment/1-big-0/test-2.py!}
+{!../docs_src/algorithms/coding-test-for-employment/1-big-0/test-2.py!}
 ```
 
 내장 모듈인 `time`을 활용하여 대략적으로 연산을 수행하는데 걸리는 시간을 측정해볼 수 있습니다.

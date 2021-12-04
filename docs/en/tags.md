@@ -1,9 +1,0 @@
----
-title: "Tag"
----
-
-# Tag
-
-
-
-[TAGS]
