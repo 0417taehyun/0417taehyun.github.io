@@ -65,21 +65,6 @@ markdown_extensions:
 
 nav:
 - weekwith.me: index.md
-- 커리어:
-  - "2020":
-    - career/2020/whatssub.md
-    - career/2020/meat-people.md
-- 프로젝트:
-  - "2020":
-    - project/2020/hince.md
-    - project/2020/stockx.md
-    - project/2020/market-kurly.md
-  - "2021":
-    - project/2021/hufspace.md
-    - project/2021/notion-slack-integration.md
-    - project/2021/we-ake-up.md
-    - project/2021/studeep.md
-    - project/2021/forour.md
 - 아티클:
   - 회고:
     - 기타:
