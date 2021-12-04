@@ -93,24 +93,6 @@ nav:
     - SQL 첫걸음:
       - devlog/database/sql-first-step/1-database-and-sql.md
       - devlog/database/sql-first-step/2-database-and-sql.md
-- FastAPI 번역:
-  - fastapi/features.md
-  - 튜토리얼:
-    - 의존성:
-      - fastapi/tutorial/dependencies/index.md
-      - fastapi/tutorial/dependencies/classes-as-dependencies.md
-      - fastapi/tutorial/dependencies/sub-dependencies.md
-      - fastapi/tutorial/dependencies/dependencies-in-path-operation-decorators.md
-      - fastapi/tutorial/dependencies/global-dependencies.md
-      - fastapi/tutorial/dependencies/dependencies-with-yield.md    
-    - 보안:
-      - fastapi/tutorial/security/index.md
-      - fastapi/tutorial/security/first-steps.md
-  - 배포:
-    - fastapi/deployment/index.md
-- SQLModel 번역:
-  - sqlmodel/index.md
-  - sqlmodel/features.md
 - 태그: tags.md
 
 extra:
