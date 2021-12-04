@@ -7,7 +7,7 @@ site_dir: site/ko
 
 theme:
   name: material
-  custom_dir: resources
+  custom_dir: overrides
   language: kr
   palette: 
     - scheme: default
