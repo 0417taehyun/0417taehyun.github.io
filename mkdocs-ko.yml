@@ -110,6 +110,7 @@ nav:
   - Database:
     - SQL 첫걸음:
       - devlog/database/sql-first-step/1-database-and-sql.md
+      - devlog/database/sql-first-step/2-database-and-sql.md
 - FastAPI 번역:
   - fastapi/features.md
   - 튜토리얼:
