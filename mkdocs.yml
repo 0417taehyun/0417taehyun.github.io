@@ -93,6 +93,7 @@ nav:
     - SQL 첫걸음:
       - devlog/database/sql-first-step/1-database-and-sql.md
       - devlog/database/sql-first-step/2-database-and-sql.md
+      - devlog/database/sql-first-step/3-database-and-sql.md
 - 태그: tags.md
 
 extra:
