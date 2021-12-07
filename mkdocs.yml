@@ -87,6 +87,9 @@ nav:
       - devlog/java/live-study/chapter-01.md
       - devlog/java/live-study/chapter-02.md
       - devlog/java/live-study/chapter-03.md
+  # - ReactJS:
+  #   - React 완벽 가이드:
+  #     - devlog/react-js/react-complete-guide/1-react-js-react-complete-guide.md
   - NextJS:
     - devlog/next-js/ci-cd-static-webstie-by-github-actions-and-aws-s3.md
   - Blockchain:
@@ -95,9 +98,10 @@ nav:
   - Database:
     - SQL 첫걸음:
       - devlog/database/sql-first-step/1-database-and-sql.md
-      - devlog/database/sql-first-step/2-database-and-sql.md
-      - devlog/database/sql-first-step/3-database-and-sql.md
-      - devlog/database/sql-first-step/4-database-and-sql.md
+      - devlog/database/sql-first-step/2-data-selecting-from-table.md
+      - devlog/database/sql-first-step/3-sorting-and-operation.md
+      - devlog/database/sql-first-step/4-data-insert-delete-update.md
+      - devlog/database/sql-first-step/5-aggregation-and-subquery.md
 - 태그: tags.md
 
 extra:
