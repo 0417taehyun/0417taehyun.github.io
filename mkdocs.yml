@@ -102,6 +102,7 @@ nav:
       - devlog/database/sql-first-step/3-sorting-and-operation.md
       - devlog/database/sql-first-step/4-data-insert-delete-update.md
       - devlog/database/sql-first-step/5-aggregation-and-subquery.md
+      - devlog/database/sql-first-step/6-create-and-delete-database-object.md
 - 태그: tags.md
 
 extra:
