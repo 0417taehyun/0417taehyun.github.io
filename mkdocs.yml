@@ -91,7 +91,8 @@ nav:
   #   - React 완벽 가이드:
   #     - devlog/react-js/react-complete-guide/1-react-js-react-complete-guide.md
   - NextJS:
-    - devlog/next-js/ci-cd-static-webstie-by-github-actions-and-aws-s3.md
+    - 개인 공부:
+      - devlog/next-js/etc/ci-cd-static-webstie-by-github-actions-and-aws-s3.md
   - Blockchain:
     - 힙한 크리토의 비밀:
       - devlog/blockchain/hip-crypto/1-week.md
