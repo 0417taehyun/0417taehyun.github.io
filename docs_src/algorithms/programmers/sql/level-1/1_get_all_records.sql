@@ -1,0 +1,22 @@
+-- [ 프로그래머스 ] 모든 레코드 조회하기
+
+SELECT * FROM ANIMAL_INS ORDER BY ANIMAL_ID;
+
+
+SELECT animals.*
+FROM (
+    SELECT *
+    FROM ANIMAL_INS
+    ORDER BY ANIMAL_INS.ANIMAL_ID
+) AS animals
+GROUP BY animals.ANIMAL_ID;
+
+
+SELECT animals.*
+FROM (
+    SELECT *
+    FROM ANIMAL_INS
+    ORDER BY ANIMAL_INS.ANIMAL_ID
+    LIMIT 18446744073709551615
+) AS animals
+GROUP BY animals.ANIMAL_ID;
