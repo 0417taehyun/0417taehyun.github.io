@@ -32,7 +32,7 @@ tags:
 
 ## 풀이
 
-아래와 같이 간단하개 풀이할 수 있다.
+아래와 같이 간단하게 풀이할 수 있다.
 
 ```sql
 {!../docs_src/algorithms/programmers/sql/level-1/6_find_sick_animal.sql[ln:3-6]!}
