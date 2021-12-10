@@ -84,6 +84,7 @@ nav:
         - algorithms/programmers/sql/level-1/3-no-name-animal-id.md
         - algorithms/programmers/sql/level-1/4-reverse-ordering.md
         - algorithms/programmers/sql/level-1/5-exists-name-animal-id.md
+        - algorithms/programmers/sql/level-1/6-find-sick-animal.md
   - 이것이 취업을 위한 코딩 테스트다 with 파이썬:
     - algorithms/coding-test-for-employment/1-big-o.md
     - algorithms/coding-test-for-employment/2-greedy.md
