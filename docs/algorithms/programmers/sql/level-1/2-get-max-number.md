@@ -8,11 +8,11 @@ tags:
     - SQL
 ---
 
-# [ 프로그래머스 ] SQL LEVEL 1 : 모든 레코드 조회하기
+# [ 프로그래머스 ] SQL LEVEL 1 : 최댓값 구하기
 
 !!! info "정보"
 
-    프로그래머스에서 제공하는 SQL 문제 [모든 레코드 조회하기](https://programmers.co.kr/learn/courses/30/lessons/59034)입니다.
+    프로그래머스에서 제공하는 SQL 문제 [최댓값 구하기](https://programmers.co.kr/learn/courses/30/lessons/59415)입니다.
 
 ## 문제
 
