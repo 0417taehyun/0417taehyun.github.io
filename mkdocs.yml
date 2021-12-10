@@ -57,6 +57,10 @@ markdown_extensions:
 - pymdownx.critic
 - pymdownx.caret
 - pymdownx.keys
+- pymdownx.highlight
+- pymdownx.inlinehilite
+- pymdownx.superfences
+- pymdownx.snippets
 - pymdownx.arithmatex:
     generic: true
 
@@ -80,6 +84,7 @@ nav:
     - SQL:
       - LEVEL 1:
         - algorithms/programmers/sql/level-1/1-get-all-records.md
+        - algorithms/programmers/sql/level-1/2-get-max-number.md
   - 이것이 취업을 위한 코딩 테스트다 with 파이썬:
     - algorithms/coding-test-for-employment/1-big-o.md
     - algorithms/coding-test-for-employment/2-greedy.md
