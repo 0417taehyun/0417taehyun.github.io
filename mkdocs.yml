@@ -88,6 +88,7 @@ nav:
         - algorithms/programmers/sql/level-1/7-find-young-animal.md
         - algorithms/programmers/sql/level-1/8-animal-id-and-name.md
         - algorithms/programmers/sql/level-1/9-ordering-with-multiple-options.md
+        - algorithms/programmers/sql/level-1/10-top-nth-records.md
   - 이것이 취업을 위한 코딩 테스트다 with 파이썬:
     - algorithms/coding-test-for-employment/1-big-o.md
     - algorithms/coding-test-for-employment/2-greedy.md
