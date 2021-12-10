@@ -37,7 +37,7 @@ tags:
 {!../docs_src/algorithms/programmers/sql/level-1/2_get_max_number.sql[ln:3]!}
 ```
 
-또는 아래와 같이 `ORDER BY` 키워드 및 `DESC` 키워드를 통해 `DATETIME` 열을 기준으로 오름차순 정렬한 뒤 `LIMIT` 키워드를 사용하여 첫 번째 행만 반환하는 방법도 있다.
+또는 아래와 같이 `ORDER BY` 키워드 및 `DESC` 키워드를 통해 `DATETIME` 열을 기준으로 내림차순 정렬한 뒤 `LIMIT` 키워드를 사용하여 첫 번째 행만 반환하는 방법도 있다.
 
 ```sql hl_lines="9"
 {!../docs_src/algorithms/programmers/sql/level-1/2_get_max_number.sql[ln:6-9]!}
