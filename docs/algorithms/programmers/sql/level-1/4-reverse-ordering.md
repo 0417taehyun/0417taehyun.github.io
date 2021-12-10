@@ -35,5 +35,5 @@ tags:
 아래와 같이 간단하개 풀이할 수 있다.
 
 ```sql
-{!../docs_src/algorithms/programmers/sql/level-1/3_no_name_animal_id.sql[ln:3-5]!}
+{!../docs_src/algorithms/programmers/sql/level-1/4_reverse_ordering.sql[ln:3-5]!}
 ```
