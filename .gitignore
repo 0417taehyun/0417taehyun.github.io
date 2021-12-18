@@ -1,4 +1,4 @@
 poetry.lock
 .DS_Store
 site
-test.*
+__pycache__
