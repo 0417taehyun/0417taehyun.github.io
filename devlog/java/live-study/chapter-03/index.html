@@ -1,0 +1,3173 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="자바의 연산자">
+      
+      
+      
+        <link rel="canonical" href="https://weekwith.me/devlog/java/live-study/chapter-03/">
+      
+      
+        
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14+insiders-4.15.0">
+    
+    
+      
+        <title>3주차 과제: 연산자 - weekwith.me</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a7e54750.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.96b5c56e.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../css/termynal.css">
+    
+      <link rel="stylesheet" href="../../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <meta property="robots" content="index, follow" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#operator" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="weekwith.me" class="md-header__button md-logo" aria-label="weekwith.me" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            weekwith.me
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3주차 과제: 연산자
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/0417taehyun" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+
+
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  weekwith.me
+
+      </a>
+    </li>
+  
+
+      
+        
+
+
+  
+    
+    
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../article/retrospect/etc/aws-girls-in-tech-mentoring/" class="md-tabs__link">
+          
+  
+  아티클
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+
+
+  
+    
+    
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../algorithms/programmers/sql/level-1/1-get-all-records/" class="md-tabs__link">
+          
+  
+  알고리즘
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+
+
+  
+    
+    
+      
+    
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../chapter-01/" class="md-tabs__link md-tabs__link--active">
+          
+  
+  프로그래밍 공부 일지
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+
+
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../tags/" class="md-tabs__link">
+        
+  
+  태그
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="weekwith.me" class="md-nav__button md-logo" aria-label="weekwith.me" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    weekwith.me
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/0417taehyun" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    weekwith.me
+  </span>
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          
+  
+  <span class="md-ellipsis">
+    아티클
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="아티클" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          아티클
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          
+  
+  <span class="md-ellipsis">
+    회고
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="회고" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          회고
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1" type="checkbox" id="__nav_2_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1">
+          
+  
+  <span class="md-ellipsis">
+    기타
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="기타" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          기타
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/etc/aws-girls-in-tech-mentoring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ AWS x Girls In Tech Mentoring Program ] 회고
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/etc/analyze-the-complex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    열등감 분석
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_2" type="checkbox" id="__nav_2_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_2">
+          
+  
+  <span class="md-ellipsis">
+    TWIL
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="TWIL" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          TWIL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/twil/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TWIL 3기 회고
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_3" type="checkbox" id="__nav_2_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_3">
+          
+  
+  <span class="md-ellipsis">
+    컨퍼런스
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="컨퍼런스" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          컨퍼런스
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/conference/toss-design-conference-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 토스 디자인 컨퍼런스 ] Simplicity21: 1일차 내용 정리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/conference/toss-design-conference-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 토스 디자인 컨퍼런스 ] Simplicity21: 2일차 내용 정리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/conference/toss-design-conference-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 토스 디자인 컨퍼런스 ] Simplicity21: 3일차 내용 정리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          
+  
+  <span class="md-ellipsis">
+    소프트-웨어
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="소프트-웨어" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          소프트-웨어
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/soft-where/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    개발에도 최최최종 파일이 있다고요?
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/soft-where/02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    데이터베이스에서 김 서방 찾기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          
+  
+  <span class="md-ellipsis">
+    알고리즘
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="알고리즘" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          알고리즘
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          
+  
+  <span class="md-ellipsis">
+    프로그래머스
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="프로그래머스" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          프로그래머스
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_1" type="checkbox" id="__nav_3_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1_1">
+          
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          SQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_1_1" type="checkbox" id="__nav_3_1_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1_1_1">
+          
+  
+  <span class="md-ellipsis">
+    LEVEL 1
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="LEVEL 1" data-md-level="4">
+        <label class="md-nav__title" for="__nav_3_1_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          LEVEL 1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/1-get-all-records/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 모든 레코드 조회하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/2-get-max-number/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 최댓값 구하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/3-no-name-animal-id/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 이름이 없는 동물의 아이디
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/4-reverse-ordering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 역순 정렬하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/5-exists-name-animal-id/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 이름이 있는 동물의 아이디
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/6-find-sick-animal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 아픈 동물 찾기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/7-find-young-animal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 어린 동물 찾기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/8-animal-id-and-name/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 동물의 아이디와 이름
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/9-ordering-with-multiple-options/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 여러 기준으로 정렬하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/10-top-nth-records/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 상위 n개 레코드
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          
+  
+  <span class="md-ellipsis">
+    이것이 취업을 위한 코딩 테스트다 with 파이썬
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="이것이 취업을 위한 코딩 테스트다 with 파이썬" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          이것이 취업을 위한 코딩 테스트다 with 파이썬
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/coding-test-for-employment/1-big-o/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    복잡도
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/coding-test-for-employment/2-greedy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    그리디
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          
+  
+  <span class="md-ellipsis">
+    쓰면서 익히는 알고리즘과 자료구조
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="쓰면서 익히는 알고리즘과 자료구조" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          쓰면서 익히는 알고리즘과 자료구조
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/writing-algorithm/1-array/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    배열
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          
+  
+  <span class="md-ellipsis">
+    프로그래밍 공부 일지
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="프로그래밍 공부 일지" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          프로그래밍 공부 일지
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          
+  
+  <span class="md-ellipsis">
+    Java
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Java" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Java
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1_1" type="checkbox" id="__nav_4_1_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1_1">
+          
+  
+  <span class="md-ellipsis">
+    백기선의 자바 스터디
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="백기선의 자바 스터디" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          백기선의 자바 스터디
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter-01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1주차 과제: JVM은 무엇이며 자바 코드는 어떻게 실행하는 것인가.
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter-02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2주차 과제: 자바 데이터 타입, 변수 그리고 배열
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    3주차 과제: 연산자
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    3주차 과제: 연산자
+  </span>
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      연산자 (Operator)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="연산자 (Operator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      정의
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      대입 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      종류
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      우선순위와 결합규칙
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="우선순위와 결합규칙">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      우선순위
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      결합규칙
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      결론
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usual-arithmetic-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      산술 변환 (usual arithmetic conversion)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="산술 변환 (usual arithmetic conversion)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      정의
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      규칙
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      피연산자의 개수
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="피연산자의 개수">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      단항 연산자
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="단항 연산자">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      증감 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      부호 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      기타
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      산술 연산자
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="산술 연산자">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      사칙 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      나머지 연산자
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      비교 연산자
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="비교 연산자">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      정의
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      대소비교 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      등가비교 연산자
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      논리 연산자
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="논리 연산자">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-circuit-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      효율적인 연산 (short circuit evaluation)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      논리 부정 연산자
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      비트 연산자
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="비트 연산자">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      논리 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      비트 전환 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      쉬프트 연산자
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      대입 연산자
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="대입 연산자">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      정의
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvalue-rvalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      lvalue와 rvalue
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      복합 대입 연산자
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      기타 연산자
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="기타 연산자">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      조건 연산자
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          
+  
+  <span class="md-ellipsis">
+    NextJS
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="NextJS" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          NextJS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_1" type="checkbox" id="__nav_4_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_1">
+          
+  
+  <span class="md-ellipsis">
+    개인 공부
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="개인 공부" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          개인 공부
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../next-js/etc/ci-cd-static-webstie-by-github-actions-and-aws-s3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ Next.js ] AWS, GitHub Actions를 활용한 정적 웹사이트 CI/CD
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          
+  
+  <span class="md-ellipsis">
+    Blockchain
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Blockchain" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Blockchain
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_1" type="checkbox" id="__nav_4_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_1">
+          
+  
+  <span class="md-ellipsis">
+    힙한 크리토의 비밀
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="힙한 크리토의 비밀" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          힙한 크리토의 비밀
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blockchain/hip-crypto/1-week/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 힙한 크립토의 비밀 ] 1주차 과제
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blockchain/hip-crypto/2-week/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 힙한 크립토의 비밀 ] 2주차 과제
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          
+  
+  <span class="md-ellipsis">
+    Database
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Database" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Database
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4_1" type="checkbox" id="__nav_4_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4_1">
+          
+  
+  <span class="md-ellipsis">
+    SQL 첫걸음
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL 첫걸음" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          SQL 첫걸음
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database/sql-first-step/1-database-and-sql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 1장 데이터베이스와 SQL
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database/sql-first-step/2-data-selecting-from-table/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 2장 테이블에서 데이터 검색
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database/sql-first-step/3-sorting-and-operation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 3장 정렬과 연산
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database/sql-first-step/4-data-insert-delete-update/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 4장 데이터의 추가, 삭제, 갱신
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database/sql-first-step/5-aggregation-and-subquery/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 5장 집계와 서브쿼리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database/sql-first-step/6-create-and-delete-database-object/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 6장 데이터베이스 객체 작성과 삭제
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database/sql-first-step/7-manage-multi-tables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 7장 복수의 테이블 다루기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database/sql-first-step/8-design-database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 8장 데이터베이스 설계
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    태그
+  </span>
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      연산자 (Operator)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="연산자 (Operator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      정의
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      대입 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      종류
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      우선순위와 결합규칙
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="우선순위와 결합규칙">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      우선순위
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      결합규칙
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      결론
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usual-arithmetic-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      산술 변환 (usual arithmetic conversion)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="산술 변환 (usual arithmetic conversion)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      정의
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      규칙
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      피연산자의 개수
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="피연산자의 개수">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      단항 연산자
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="단항 연산자">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      증감 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      부호 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      기타
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      산술 연산자
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="산술 연산자">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      사칙 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      나머지 연산자
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      비교 연산자
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="비교 연산자">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      정의
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      대소비교 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      등가비교 연산자
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      논리 연산자
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="논리 연산자">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-circuit-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      효율적인 연산 (short circuit evaluation)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      논리 부정 연산자
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      비트 연산자
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="비트 연산자">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      논리 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      비트 전환 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      쉬프트 연산자
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      대입 연산자
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="대입 연산자">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      정의
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvalue-rvalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      lvalue와 rvalue
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      복합 대입 연산자
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      기타 연산자
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="기타 연산자">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      조건 연산자
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                <div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>해당 글은 백기선의 온라인 자바 기초 스터디 <a href="https://github.com/whiteship/live-study/issues/3">3주차 과제: 연산자</a>를 바탕으로 학습한 내용입니다.  </p>
+</div>
+<h2 id="operator">연산자 (Operator)<a class="headerlink" href="#operator" title="Permanent link">&para;</a></h2>
+<h3 id="_1">정의<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>연산자는 <strong>연산을 수행하는 기호</strong> 를 의미한다. 쉽게 사칙연산을 의미한다고 생각하면 편하다. 이때 연산을 수행하면서 연산의 대상이 되는 <strong>피연산자(operand)</strong> , 연산자와 피연산자를 조합하여 표현한 <strong>식(expression)</strong> 과 <strong>문장(statement)</strong> 그리고 <strong>평가(evaluation)</strong> 의 개념이 생긴다. 정리하면 아래와 같다.</p>
+<div class="admonition info">
+<p class="admonition-title">연산자 관련 개념 정리</p>
+<p><strong>연산자 (operator):</strong> 연산을 수행하는 기호 ( <code>+</code> , <code>-</code> , <code>*</code> , <code>/</code> 등)
+<strong>피연산자 (operand):</strong> 연산자의 작업 대상 (변수, 상수, 리터럴, 수식)
+<strong>식 (expression):</strong> 연산자와 피연산자를 조합하여 계산하고자 하는 바를 표현한 것
+<strong>문장 (statement):</strong> 작성한 식의 끝에 <code>;</code> 를 붙여 프로그램에서 실행될 수 있게 표현한 것
+<strong>평가 (evaluation):</strong> 식을 계한하여 결과를 얻는 것</p>
+</div>
+<h3 id="_2">대입 연산자<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>위 개념을 통해서 우리는 식을 통해 얻은 결괏값을 얻는 걸 평가라고 한다는 걸 알게 되었다. 프로그래밍에서는 얻게 된 결과를 어딘가에 저장해야 이를 다시 활용할 수 있기 때문에, 다시 말해 <strong>연산의 결괏값을 메모리에 저장</strong> 해야 이를 기억하여 사용할 수 있기 때문에 대입연산자( <code>=</code> , assignment operator)를 사용하여 어떤 특정 변수에 저장해야 한다.</p>
+<h3 id="_3">종류<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>연산자의 종류를 기능별로 분류하면 아래 이미지와 같다.</p>
+<p><img src="https://weekwith.me/images/java/live-study/chapter-03/1.jpg"></p>
+<p>또한 피연산자의 개수에 의해서도 분류할 수 있다. 예를 들어 <code>-3 - 5</code> 와 같은 식이 있을 경우 <code>3</code> 앞에 붙어 있는 연산자 <code>-</code> 는 부호 연산자로 <code>3</code> 을 음수로 정의해준다. 반면 <code>-3</code> 과 <code>5</code> 사이에 있는 연산자 <code>-</code> 는 뺄셈 연산자로 피연산자가 두 개가 필요하다. 이처럼 <strong>동일한 기호더라도 피연산자의 개수로 인해 연산자의 역할이 구분</strong> 될 수 있다.</p>
+<h3 id="_4">우선순위와 결합규칙<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h4 id="_5">우선순위<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>식에 사용된 연산자가 둘 이상인 경우 연산자의 우선순위가 존재해야 연산순서를 결정할 수 있다. 학창시절 수학에서 덧셈( <code>+</code> )과 뺄셈( <code>-</code> )보다 곱셈( <code>*</code> )과 나눗셈( <code>/</code> )의 우선순위가 더 높다는 것을 배웠을 것이다. 이처럼 대부분의 우선순위는 상식 선에서 해결된다. </p>
+<h4 id="_6">결합규칙<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p><strong>하나의 식에 같은 우선순위의 연산자들이 여러 개 있는 경우에도 정해진 순서가 있다.</strong> 이 규칙을 연산자의 결합규칙이라 한다. 대부분 왼쪽에서 오른쪽의 순서로 연산을 수행하며 단항 연산자와 대입 연산자만 그 반대인 오른쪽에서 왼쪽으로 연산을 수행한다.</p>
+<h4 id="_7">결론<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p>우선순위와 결합규칙을 하나의 표로 정리하면 아래 이미지와 같다.</p>
+<p><img src="https://weekwith.me/images/java/live-study/chapter-03/2.png"></p>
+<p>그리고 간단하게 아래와 같이 세 가지만 기억하도록 하자.</p>
+<ol>
+<li>산술 &gt; 비교 &gt; 논리 &gt; 대입 연산자의 순서로 우선순위가 높다.</li>
+<li>단항 (1) &gt; 이항 (2) &gt; 삼항 (3) 연산자의 순서로 우선순위가 높다. </li>
+<li>단항 연산자와 대입 연산자를 제외한 모든 연산의 진행방향은 왼쪽에서 오른쪽이다.</li>
+</ol>
+<h3 id="usual-arithmetic-conversion">산술 변환 (usual arithmetic conversion)<a class="headerlink" href="#usual-arithmetic-conversion" title="Permanent link">&para;</a></h3>
+<h4 id="_8">정의<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p>이항 연산자는 <strong>두 피연산자의 자료형이 일치해야 연산이 가능</strong> 하다. 따라서 피연산자의 자료형이 서로 다르다면 연산 전에 형변환 연산자( <code>(type)</code> )를 사용하여 자료형을 일치시켜야 한다. <strong>대부분의 형변환은 두 피연산자 중 더 큰 자료형을 기준으로 일치</strong> 시키는데 더 작은 크기의 자료형으로 일치시킬 경우 값이 손실될 가능성이 있기 때문이다.</p>
+<p>변수 파트에서 더 큰 자료형으로 형변환을 할 경우 자동 형변환(type promotion)이 되는 걸 배웠다. 이와 같이 연산 전에 <strong>피연산자의 자료형을 일치시키기 위해 자동 형변환</strong> 되는 것을 <strong>산술 변환</strong> 또는 <strong>일반 산술 변환</strong> 이라 하며 이는 이항 연산자 뿐만 아니라 단항 연산에서도 발생한다.</p>
+<h4 id="_9">규칙<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p>이때 산술 변환에는 세 가지 규칙이 있다.</p>
+<p>첫 번째는 앞서 정의에서 살펴봤듯이 값손실을 최소화하기 위해, 이를 테면 오버플로우(overflow)와 같은 현상을 예방하기 위해 더 큰 크기의 자료형을 기준으로 자료형을 일치시킨다는 것이다.</p>
+<p>두 번째는 정수형의 기본 타입인 <code>int</code> 자료형이 가장 효율적으로 처리할 수 있는 자료형이기 때문에 그보다 작은 자료형인 <code>byte</code> ,  <code>char</code> , <code>short</code> 의 경우 <code>int</code> 자료형으로 변환된다.</p>
+<p>세 번째는 연산결과의 자료형이 피연산자의 자료형과 일치하는데 이를 테면 <code>5 / 2</code> 식의 결괏값은 피연산자 <code>2</code> 가 <code>int</code> 자료형이기 때문에 <code>2.5</code> 가 아닌 <code>2</code> 가 된다.</p>
+<p>이를 정리하면 아래와 같다.</p>
+<ol>
+<li>두 피연산자의 자료형을 같게 일치시키는데 이때 크기가 더 큰 자료형을 기준으로 한다.</li>
+<li>피연산자의 자료형이 <code>int</code> 보다 작을 경우 <code>int</code> 자료형으로 변환된다.</li>
+<li>연산결과의 자료형은 피연산자의 자료형과 일치한다.</li>
+</ol>
+<h2 id="_10">피연산자의 개수<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h3 id="_11">단항 연산자<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<h4 id="_12">증감 연산자<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+<p>피연산자에 저장된 값을 1 증가( <code>++</code> ) 또는 감소( <code>--</code> )시킨다. 이때 유의할 점은 증감 연산자의 위치인데 만약 <strong>피연산자의 왼쪽에 위치할 경우 이를 전위형(prefix)이라 하며 값이 참조되기 전에 증가</strong> 시킨다. 반대로 <strong>오른쪽에 위치할 경우 이를 후위형(postfix)이라 하며 값이 참조된 후에 증가</strong> 시킨다. </p>
+<p>아래 이미지와 같이 변수 <code>tmp1</code> 의 경우 변수 <code>x</code> 에 증가 연산자( <code>++</code> )를 후위형으로 사용했기 때문에 <code>tmp1</code> 의 값은 <code>5</code> 가 되고 그 뒤에 값이 증가되어 <code>x</code> 는 <code>6</code> 이 된다. 반대로 변수 <code>tmp2</code> 의 경우 변수 <code>y</code> 에 증가 연산자( <code>++</code> )를 전위형으로 사용했기 때문에 <code>y</code> 가 <code>6</code> 이 된 이후 참조되어 <code>tmp2</code> 의 값도 <code>6</code> 이 된다. 따라서 위치에 따라 결괏값이 달라지는 것이다.</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="c1">// 증감 연산자</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">tmp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">tmp2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">tmp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">tmp2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">++</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">tmp1</span><span class="p">);</span><span class="w"> </span><span class="c1">// &gt; 5</span><span class="w"></span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">tmp2</span><span class="p">);</span><span class="w"> </span><span class="c1">// &gt; 6</span><span class="w"></span>
+</code></pre></div>
+<h4 id="_13">부호 연산자<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<p>부호 연산자( <code>-</code> )는 피연산자의 부호를 반대로 변경한 결과를 반환한다. 다시 말해 피연산자가 음수면 양수로, 양수면 음수로 부호를 바꿔 반환한다. <code>boolean</code> 형과 <code>char</code> 형을 제외한 기본형에서만 사용 가능하다.</p>
+<h4 id="_14">기타<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h4>
+<p>이외에도 단항 연산자의 종류로는 <strong>논리부정 연산자( <code>!</code> )</strong> 와 <strong>비트전환 연산자( <code>~</code> )</strong> 가 있지만 이는 편의상 뒤 논리 연산자 부분과 비트 연산자 부분에서 다룰 예정이다.</p>
+<h3 id="_15">산술 연산자<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<h4 id="_16">사칙 연산자<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
+<p>앞서 설명한 것처럼 곱셈( <code>*</code> ), 나눗셈( <code>/</code> ), 나머지( <code>%</code> ) 연산자가 덧셈( <code>+</code> ), 뺄셈( <code>-</code> ) 연산자보다 우선순위가 높다. 또한 피연산자가 정수형인 경우 나누는 수로 <code>0</code> 을 사용할 수 없으며 아래 이미지와 같이 나누기 연산자의 두 피연산자가 모두 <code>int</code> 자료형일 경우 연산결과 역시 <code>int</code> 자료형이다. 따라서 결괏값으로 <code>2.5</code> 가 아닌 <code>2</code> 가 출력된다. 이때 결괏값이 <code>3</code> 이 아닌 <code>2</code> 인 이유는 <code>int</code> 자료형은 소수점을 저장하지 못하형 정수만 남고 소수점 이하는 버려지기 때문이다. 여기서 정수를 나눌 때 버림을 수행한다는 사실을 기억하자.</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="c1">// 자동 형변환</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">// &gt; 2</span><span class="w"></span>
+</code></pre></div>
+<p>중요한 점은 자동 형변환이 되더라도 명시적으로 해주지 않으면 <code>int</code> 자료형끼리의 연산결과는 결국 <code>int</code> 자료형이라는 점이다. 아래 이미지를 한 번 같이 살펴보자. 결괏값으로 <code>2_000_000_000_000</code> 이 출력될 것 같지만 전혀 다른 수인 <code>1_454_759_936</code> 이 출력됐다. 이는 <code>firstNum</code> 과 <code>secondNum</code> 의 곱셈( <code>*</code> ) 결괏값의 자료형이 결국 <code>int</code> 자료형이기 때문에 오버플로우가 발생한 뒤에 <code>long</code> 타입 변수 <code>res</code> 에 저장됐기 때문이다.</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="c1">// 산술 연산자 오버 플로우</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">firstNum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1_000_000</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">secondNum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2_000_000</span><span class="p">;</span><span class="w">        </span>
+
+<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">firstNum</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">secondNum</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">res</span><span class="p">);</span><span class="w"> </span><span class="c1">// &gt; -1454759936</span><span class="w"></span>
+</code></pre></div>
+<p>사칙 연산자 중 <code>+</code> 연산자의 경우 리터럴 간의 연산으로도 사용할 수 있는데 아래 이미지를 한 번 살펴보자. 변수 <code>c2</code> 의 경우 <code>char</code> 타입이기 때문에 연산결과의 타입인 <code>int</code> 와 매칭이 되지 않아 컴파일 오류가 발생한다. 그러나 변수 <code>c3</code> 의 경우 <strong>리터럴 간의 연산</strong> 으로 되기 때문에 컴파일러가 이를 계산하여 미리 덧셈연산을 수행한다. 따라서 컴파일 오류가 발생하지 않는 것이다. 컴파일러는 변수를 미리 계산할 수 없기 때문에 리터럴을 사용하는 경우에만 가능하다는 걸 잊지말자.</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="c1">// 리터럴 연산</span><span class="w"></span>
+<span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// &gt; Type mismatch: cannot convert from int to char</span><span class="w"></span>
+<span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">c3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+<h4 id="_17">나머지 연산자<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
+<p>나머지 연산자는 왼쪽의 피연산자를 오른쪽 피연산자로 나누고 난 나머지 값을 결과고 반환하는 연산자다. 이를 공식으로 나타내면 다음과 같다. <span class="arithmatex">\(a - (a / b) * b\)</span>  다시 말해 왼쪽의 피연산자인 <code>a</code> 에 따라서 부호가 결정된다. 아래 이미지에서 출력되는 결괏값을 보면 이를 쉽게 이해할 수 있다.</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="c1">// 나머지 연산자의 부호</span><span class="w"></span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="c1">// &gt; 1</span><span class="w"></span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="c1">// &gt; 1</span><span class="w"></span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="c1">// &gt; -1</span><span class="w"></span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="c1">// &gt; -1</span><span class="w"></span>
+</code></pre></div>
+<p>이게 중요한 이유는 바로 홀수와 짝수를 구별할 때 발생한다. 보통 나머지 연산자( <code>%</code> )를 활용해서 구하게 되는데 만약 아래 이미지와 같이 나머지가 <code>1</code> 인 경우로 따지게 되면 왼쪽 피연산자의 부호에 따라 값이 달라지기 때문에 제대로 구별할 수 없게 된다.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isOddFirst</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>그렇다면 음수의 경우에도 제대로 홀수와 짝수를 구별하려면 어떻게 해야할까? 이때는 아래 이미지와 같이 나머지 연산의 결괏값을 <code>1</code> 과 비교하는 것이 아닌 <code>0</code> 과 비교하면 된다.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isOddSecond</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>물론 이 방법보다 더 효율적인 방법은 비트 연산자 중 <code>AND</code> ( <code>&amp;</code> )를 사용하는 방법이 있다. 모든 비트의 첫 번째 자리가 곧 부호를 나타내기 때문이다. 이는 뒤에 비트 연산자에서 알아보고자 한다.</p>
+<h3 id="_18">비교 연산자<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<h4 id="_19">정의<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h4>
+<p>비교 연산자는 두 피연산자를 비교하는 데 사용되는 연산자로 관계 연산자라고도 한다. 주로 조건문 또는 반복문의 조건식에 사용되며 연산결과로 얻게 되는 값은 오직 <code>true</code> 와 <code>false</code> 둘 중 하나다. 비교 연산자 역시 이항 연산자이기 때문에 피연산자의 자료형이 서로 다를 경우 자동 형변환을 통해 자료형을 일치시킨 후 비교를 수행한다는 점을 유의해야 한다.</p>
+<h4 id="_20">대소비교 연산자<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h4>
+<p>두 피연산자 값의 크기를 비교하는 연산자다. 이때 기준은 좌변 값이며 종류로는 큰 경우( <code>&gt;</code> ), 작은 경우 ( <code>&lt;</code> ), 크거나 같은 경우( <code>&gt;=</code> ), 작거나 같은 경우( <code>&lt;=</code> )가 있다. 기본형 중에서는 논리형인 <code>boolean</code> 을 제외한 나머지 자료형에서 다 사용할 수 있지만 참조형에서는 사용할 수 없다.</p>
+<h4 id="_21">등가비교 연산자<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h4>
+<p>두 피연산자의 값이 같은지 또는 다른지 비교하는 연산자다. 대소비교 연산자와 달리 기본형은 물론 참조형까지 포함하여 모든 자료형에서 사용할 수 있다. <strong>기본형에 사용할 경우 변수에 저장되어 있는 값이 같은지</strong> 를 알 수 있고 <strong>참조형의 경우 객체의 주소값을 저장하기 때문에 두 피연산자(참조변수)가 같은 객체를 가리키고 있는지</strong> 알 수 있다. 종류로는 같은 경우( <code>==</code> )와 다른 경우( <code>!=</code> )가 있다.</p>
+<h3 id="_22">논리 연산자<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<p>논리 연산자는 둘 이상의 조건을 그리고( <code>AND</code> , <code>&amp;&amp;</code> )나 또는( <code>OR</code> , <code>||</code> )으로 연결하여 하나의 식으로 표현할 수 있게 해준다. 이를 간단하게 표로 표현하면 아래 이미지와 같다.</p>
+<p><img src="https://weekwith.me/images/java/live-study/chapter-03/3.jpg"></p>
+<h4 id="short-circuit-evaluation">효율적인 연산 (short circuit evaluation)<a class="headerlink" href="#short-circuit-evaluation" title="Permanent link">&para;</a></h4>
+<p><strong>논리 연산자의 경우 효율적인 연산이 가능</strong> 하다. 위 이미지를 보면 알 수 있듯 <code>||</code> 연산자의 경우 <strong>어느 한 쪽만 참( <code>true</code> )</strong> 이어도 연산결과가 참이기 때문에 좌측 피연산자가 참( <code>true</code> )이면 우측 피연산자의 값을 평가하지 않는다. 반대로 <code>&amp;&amp;</code> 연산자의 경우 <strong>한쪽만 거짓( <code>false</code> )</strong> 이어도 연산결과가 거짓이기 때문에 좌측 피연산자가 거짓( <code>false</code> )이면 우측 피연산자의 값은 평가하지 않는다. 따라서 이러한 위치에 따라 효율이 달라질 수 있기 때문에 어떤 연산자를 사용하여 조건을 어느 위치에 둘 것인지 고려하는 것이 효율적인 식을 표현할 수 있다.</p>
+<h4 id="_23">논리 부정 연산자<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h4>
+<p>논리 부정 연산자( <code>!</code> )는 피연산자가 <code>true</code> 면 <code>false</code> 를, <code>false</code> 면 <code>true</code> 를 결괏값으로 반환한다. </p>
+<h3 id="_24">비트 연산자<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<h4 id="_25">논리 연산자<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h4>
+<p>피연산자를 비트단위로 논리 연산한다. 피연산자를 이진수로 표현하여 아래와 같은 규칙을 통해 연산을 수행한다. 이때 중요한 점은 피연산자로 실수를 허용하지 않는다는 점이다. 정수 또는 문자만 허용된다.</p>
+<ol>
+<li>
+<p><code>|</code> ( <code>OR</code> 연산자)</p>
+<p>피연산자 중 <strong>한 쪽의 값</strong> 이 <code>1</code> 이면, <code>1</code> 을 결과로 얻는다. 그 외에는 <code>0</code> 을 얻는다. 주로 특정 비트의 값을 변경할 때 사용한다.</p>
+</li>
+<li>
+<p><code>&amp;</code> ( <code>AND</code> 연산자)</p>
+<p>피연산자 중 <strong>양 쪽이 모두</strong> <code>1</code> 이어야만 <code>1</code> 을 결과로 얻는다. 그 외에는 <code>0</code> 을 얻는다. 주로 특정 비트의 값을 뽑아낼 때 사용한다.</p>
+</li>
+<li>
+<p><code>^</code> ( <code>XOR</code> 연산자)</p>
+<p>피연산자의 값이 <strong>서로 다를 때만</strong> <code>1</code> 을 결과로 얻는다. 같을 때는 <code>0</code> 을 얻는다. 간단한 암호화에 사용되는 경우가 많다.</p>
+</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">정보</p>
+<p>잠깐! 이때 2진수로 표현된 결괏값을 확인하기 위해 보통 <code>toBinaryString()</code> 메서드를 사용한다.</p>
+</div>
+<p>앞서 나머지 연산자( <code>%</code> )에서 살펴보았던 비트 연산자를 활용한 홀수-짝수 판별법을 알아보자. 아래 이미지와 같이 식을 나타낼 수 있다.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isOddThird</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">num</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>2진수에서 홀수-짝수를 결정짓는 숫자는 <code>2^0</code> 인 <code>1</code> 이다. 왜냐하면 나머지 자리는 결국 <code>2^n</code> 형태로 수를 표현하기 때문에 나머지는 전부 짝수이기 때문이다. 따라서 <code>1</code> 이 존재하면 홀수 그렇지 않으면 짝수가 된다. 따라서 위 이미지와 같이 <code>num</code> 을 비트 연산자 <code>&amp;</code> 를 사용하여 계산하게 될 경우 만약 <code>num</code> 이 <code>10</code> 일 경우 2진수로 표현하면 <code>1010</code> 이 되고 <code>2^0</code> 자리의 값이 <code>0</code> 이기 때문에 이것과 <code>1</code> 을 비교하면 <code>false</code> 가 결괏값으로 반환된다.</p>
+<h4 id="_26">비트 전환 연산자<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h4>
+<p>논리부정 연산자( <code>!</code> )와 유사하며 <code>0</code> 은 <code>1</code> 로, <code>1</code> 은  <code>0</code> 으로 바꾼다. 이를 통해 결국 부호가 있는 피연산자는 부호가 반대로 바뀌게 된다. 다시 말해 1의 보수를 얻게 되는 것이다. 따라서 비트 전환 연산자를 1의 보수 연산자라고도 한다. 따라서 어떤 정수 <code>p</code> 의 음수값을 얻고 싶을 때는 비트 전환 연사자( <code>~</code> )를 활용하여 1의 보수를 얻은 뒤에 <code>1</code> 을 더해줘, 다시 말해 <code>~p + 1</code> 과 같은 식을 통해 값을 얻을 수 있다.</p>
+<h4 id="_27">쉬프트 연산자<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h4>
+<p>피연산자의 각 자리를 2진수로 표현했을 때 오른쪽( <code>&gt;&gt;</code> ) 또는 왼쪽( <code>&lt;&lt;</code> )으로 이동(shift)한다고 해서 쉬프트 연산자(shift operator)라고 이름이 붙여졌다. 예를 들어 <code>8 &lt;&lt; 2</code> 인 경우 피연산자인 10진수 <code>8</code> 을 2진수로 표현한 뒤 왼쪽으로 <code>2</code> 자리 이동한다. 이때 저장범위를 벗어난 값들은 버려지고 양수의 경우 빈자리는 <code>0</code> 으로, 음수의 경우 빈자리는 부호로 인해 <code>1</code> 로 채워진다. </p>
+<p>예를 들어 아래 이미지와 같이 <code>8 &lt;&lt; 2</code> 는 <code>8</code> 의 2진수를 왼쪽으로 <code>2</code> 자리 이동시키고 저장범위를 벗어난 값은 버려져 빈자리는 <code>0</code> 으로 채워진 뒤 결괏값을 얻게 된다.</p>
+<p><img src="https://weekwith.me/images/java/live-study/chapter-03/4.jpg"></p>
+<p>반대로 아래 이미지와 같이 <code>-8 &gt;&gt; 2</code> 인 경우 <code>-8</code> 의 2진수를 오른쪽으로 <code>2</code> 자리 이동시키고 저장범위를 벗어난 값은 버려져 빈자리는 <code>1</code> 로 채워진 뒤 결괏값을 얻게 된다.</p>
+<p><img src="https://weekwith.me/images/java/live-study/chapter-03/5.png"></p>
+<p>이를 식으로 표현하면 다음과 같다. <code>x &lt;&lt; n</code> 의 경우 <span class="arithmatex">\(x * 2^n\)</span> 과 결괏값이 동일하며 <code>x &gt;&gt; n</code> 의 경우 <span class="arithmatex">\(x / 2^n\)</span> 과 결괏값이 동일하다. 곱셈이나 나눗셈 연산자보다 훨씬 빠른 연산결과를 얻을 수 있지만 가독성 때문에 실행속도가 중요한 경우에만 사용하는 게 좋다.</p>
+<h3 id="_28">대입 연산자<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<h4 id="_29">정의<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h4>
+<p>대입 연산자는 변수와 같은 저장공간에 값 또는 수식의 연산결과를 저장하는데 사용된다. 이 연산자는 오른쪽 피연산자의 값(식이라면 평가값)을 왼쪽 피연산자에 저장한다. 그리고 저장된 값을 연산결과로 반환한다. 이때 대입 연산자는 우리가 앞서 우선순위에서 살펴본 것처럼 가장 낮은 우선순위를 가지고 있기 때문에 식에서 제일 나중에 수행된다. 또한 연산 진행 방향이 오른쪽에서 왼쪽으로 진행된다.</p>
+<h4 id="lvalue-rvalue">lvalue와 rvalue<a class="headerlink" href="#lvalue-rvalue" title="Permanent link">&para;</a></h4>
+<p>대입 연산자의 <strong>왼쪽에 위치한 피연산자를 lvalue(left value)</strong> 라 하고 <strong>오른쪽에 위치한 피연산자를 rvalue(right value)</strong> 라 한다. 이때 rvalue에는 변수 뿐만 아니라 식, 상수 등 모든 값이 올 수 있지만 <strong>lvalue에는 변수처럼 변경 가능한 값만</strong> 올 수 있다. 예를 들어 아래 이미지와 같이 <code>final</code> 키워드를 사용해 선언한 변수 <code>MAX</code> 값을 변화시키려고 시도한 경우 <code>Cannot assign a value to final variable 'MAX'</code> 라는 오류를 반환받는다.</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="c1">// 대입 연산자 lvalue</span><span class="w"></span>
+<span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">MAX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="c1">// &gt; Cannot assign a value to final variable &#39;MAX&#39;        </span><span class="w"></span>
+</code></pre></div>
+<h4 id="_30">복합 대입 연산자<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h4>
+<p>대입 연산자는 다른 연산자와 결합하여 <code>+=</code> 와 같은 형태로 사용할 수 있다. 이때 유의할 점은 <code>i *= 10 + j</code> 와 같은 식일 경우 <code>i = (i * 10) + j</code> 와 같은 식이 아닌 <code>i = i * (10 + j)</code> 와 같은 식이라는 점이다. 또한 결합된 두 연산자는 반드시 공백이 없어야 한다.</p>
+<h3 id="_31">기타 연산자<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h3>
+<h4 id="_32">조건 연산자<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h4>
+<p>조건 연산자는 조건식, 첫 번째 식, 두 번째 식, 이렇게 세 개의 피연산자를 필요로 하는 <strong>삼항 연산자</strong> 다. 조건 연사자는 첫 번째 피연산자인 조건식의 평가결과에 따라 다른 결과를 반환한다. 조건의 평가결과가 <code>true</code> 면 첫 번째 식이 반환되고 <code>false</code> 면 두 번째 식이 반환된다. 이때 조건 연산자 또한 이항 연산자처럼 첫 번째 식과 두 번째 식의 피연산자 자료형이 다른 경우 산술 변환이 발생한다. 조건 연산자는 아래 이미지와 같이 표현한다.</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="c1">// 조건 연산자</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">result</span><span class="p">);</span><span class="w"> </span><span class="c1">// &gt; 0</span><span class="w"></span>
+</code></pre></div>
+<p>이외에도 람다 표현식이 등장하며 나온 화살표 연산자( <code>-&gt;</code> )나 참조변수가 참조하고 있는 인스턴스의 타입을 알아볼 때 사용하는 <code>instanceof</code> 연산자, 그리고 <code>switch</code> 제어문에서 사용하는 <code>switch</code> 연산자( <code>-&gt;</code> , <code>yield</code> )가 있는데 이에 대해선 앞으로 하나씩 더 자세히 알아보고자 한다.</p>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7400981351083358"
+crossorigin="anonymous"></script>
+
+<h2 id="__comments"></h2>
+<div id="utteranc-thread"></div>
+<script src="https://utteranc.es/client.js"
+repo="0417taehyun/blog"
+issue-term="pathname"
+label="comments"
+theme="dark-blue"
+crossorigin="anonymous"
+async>
+</script>
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../chapter-02/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 2주차 과제: 자바 데이터 타입, 변수 그리고 배열" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              2주차 과제: 자바 데이터 타입, 변수 그리고 배열
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../../next-js/etc/ci-cd-static-webstie-by-github-actions-and-aws-s3/" class="md-footer__link md-footer__link--next" aria-label="Next: [ Next.js ] AWS, GitHub Actions를 활용한 정적 웹사이트 CI/CD" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              [ Next.js ] AWS, GitHub Actions를 활용한 정적 웹사이트 CI/CD
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.tabs", "search.suggest", "search.highlight", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.ec8bae80.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.2f76aa63.min.js"></script>
+      
+        <script src="../../../../js/termynal.js"></script>
+      
+        <script src="../../../../js/custom.js"></script>
+      
+        <script src="../../../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

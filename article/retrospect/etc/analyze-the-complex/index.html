@@ -1,0 +1,2375 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="2022년 한국외국어대학교에서 개최한 <스마트 캠퍼스 아이디어 공모전>에 참가하고 나서 생긴 열등감을 극복하는 과정에서 알게 된 더 좋은 소프트웨어 엔지니어로 성장하기 위한 방법에 대해">
+      
+      
+      
+        <link rel="canonical" href="https://weekwith.me/article/retrospect/etc/analyze-the-complex/">
+      
+      
+        
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14+insiders-4.15.0">
+    
+    
+      
+        <title>열등감 분석 - weekwith.me</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a7e54750.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.96b5c56e.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../css/termynal.css">
+    
+      <link rel="stylesheet" href="../../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <meta property="robots" content="index, follow" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="weekwith.me" class="md-header__button md-logo" aria-label="weekwith.me" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            weekwith.me
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              열등감 분석
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/0417taehyun" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+
+
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  weekwith.me
+
+      </a>
+    </li>
+  
+
+      
+        
+
+
+  
+    
+    
+      
+    
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../aws-girls-in-tech-mentoring/" class="md-tabs__link md-tabs__link--active">
+          
+  
+  아티클
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+
+
+  
+    
+    
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../algorithms/programmers/sql/level-1/1-get-all-records/" class="md-tabs__link">
+          
+  
+  알고리즘
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+
+
+  
+    
+    
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../devlog/java/live-study/chapter-01/" class="md-tabs__link">
+          
+  
+  프로그래밍 공부 일지
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+
+
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../tags/" class="md-tabs__link">
+        
+  
+  태그
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="weekwith.me" class="md-nav__button md-logo" aria-label="weekwith.me" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    weekwith.me
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/0417taehyun" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    weekwith.me
+  </span>
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          
+  
+  <span class="md-ellipsis">
+    아티클
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="아티클" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          아티클
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          
+  
+  <span class="md-ellipsis">
+    회고
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="회고" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          회고
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1" type="checkbox" id="__nav_2_1_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1">
+          
+  
+  <span class="md-ellipsis">
+    기타
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="기타" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          기타
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-girls-in-tech-mentoring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ AWS x Girls In Tech Mentoring Program ] 회고
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    열등감 분석
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    열등감 분석
+  </span>
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      도입
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      공모전
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="공모전">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      상황
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      회고
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      골든 서클
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      결론
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_2" type="checkbox" id="__nav_2_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_2">
+          
+  
+  <span class="md-ellipsis">
+    TWIL
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="TWIL" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          TWIL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../twil/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TWIL 3기 회고
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_3" type="checkbox" id="__nav_2_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_3">
+          
+  
+  <span class="md-ellipsis">
+    컨퍼런스
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="컨퍼런스" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          컨퍼런스
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conference/toss-design-conference-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 토스 디자인 컨퍼런스 ] Simplicity21: 1일차 내용 정리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conference/toss-design-conference-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 토스 디자인 컨퍼런스 ] Simplicity21: 2일차 내용 정리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conference/toss-design-conference-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 토스 디자인 컨퍼런스 ] Simplicity21: 3일차 내용 정리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          
+  
+  <span class="md-ellipsis">
+    소프트-웨어
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="소프트-웨어" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          소프트-웨어
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../soft-where/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    개발에도 최최최종 파일이 있다고요?
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../soft-where/02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    데이터베이스에서 김 서방 찾기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          
+  
+  <span class="md-ellipsis">
+    알고리즘
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="알고리즘" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          알고리즘
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          
+  
+  <span class="md-ellipsis">
+    프로그래머스
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="프로그래머스" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          프로그래머스
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_1" type="checkbox" id="__nav_3_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1_1">
+          
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          SQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_1_1" type="checkbox" id="__nav_3_1_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1_1_1">
+          
+  
+  <span class="md-ellipsis">
+    LEVEL 1
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="LEVEL 1" data-md-level="4">
+        <label class="md-nav__title" for="__nav_3_1_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          LEVEL 1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/1-get-all-records/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 모든 레코드 조회하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/2-get-max-number/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 최댓값 구하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/3-no-name-animal-id/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 이름이 없는 동물의 아이디
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/4-reverse-ordering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 역순 정렬하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/5-exists-name-animal-id/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 이름이 있는 동물의 아이디
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/6-find-sick-animal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 아픈 동물 찾기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/7-find-young-animal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 어린 동물 찾기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/8-animal-id-and-name/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 동물의 아이디와 이름
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/9-ordering-with-multiple-options/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 여러 기준으로 정렬하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/10-top-nth-records/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 상위 n개 레코드
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          
+  
+  <span class="md-ellipsis">
+    이것이 취업을 위한 코딩 테스트다 with 파이썬
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="이것이 취업을 위한 코딩 테스트다 with 파이썬" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          이것이 취업을 위한 코딩 테스트다 with 파이썬
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/coding-test-for-employment/1-big-o/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    복잡도
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/coding-test-for-employment/2-greedy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    그리디
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          
+  
+  <span class="md-ellipsis">
+    쓰면서 익히는 알고리즘과 자료구조
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="쓰면서 익히는 알고리즘과 자료구조" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          쓰면서 익히는 알고리즘과 자료구조
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/writing-algorithm/1-array/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    배열
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          
+  
+  <span class="md-ellipsis">
+    프로그래밍 공부 일지
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="프로그래밍 공부 일지" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          프로그래밍 공부 일지
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          
+  
+  <span class="md-ellipsis">
+    Java
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Java" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Java
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1_1" type="checkbox" id="__nav_4_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1_1">
+          
+  
+  <span class="md-ellipsis">
+    백기선의 자바 스터디
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="백기선의 자바 스터디" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          백기선의 자바 스터디
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../devlog/java/live-study/chapter-01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1주차 과제: JVM은 무엇이며 자바 코드는 어떻게 실행하는 것인가.
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../devlog/java/live-study/chapter-02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2주차 과제: 자바 데이터 타입, 변수 그리고 배열
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../devlog/java/live-study/chapter-03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3주차 과제: 연산자
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          
+  
+  <span class="md-ellipsis">
+    NextJS
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="NextJS" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          NextJS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_1" type="checkbox" id="__nav_4_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_1">
+          
+  
+  <span class="md-ellipsis">
+    개인 공부
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="개인 공부" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          개인 공부
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../devlog/next-js/etc/ci-cd-static-webstie-by-github-actions-and-aws-s3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ Next.js ] AWS, GitHub Actions를 활용한 정적 웹사이트 CI/CD
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          
+  
+  <span class="md-ellipsis">
+    Blockchain
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Blockchain" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Blockchain
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_1" type="checkbox" id="__nav_4_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_1">
+          
+  
+  <span class="md-ellipsis">
+    힙한 크리토의 비밀
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="힙한 크리토의 비밀" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          힙한 크리토의 비밀
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../devlog/blockchain/hip-crypto/1-week/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 힙한 크립토의 비밀 ] 1주차 과제
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../devlog/blockchain/hip-crypto/2-week/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 힙한 크립토의 비밀 ] 2주차 과제
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          
+  
+  <span class="md-ellipsis">
+    Database
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Database" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Database
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4_1" type="checkbox" id="__nav_4_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4_1">
+          
+  
+  <span class="md-ellipsis">
+    SQL 첫걸음
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL 첫걸음" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          SQL 첫걸음
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../devlog/database/sql-first-step/1-database-and-sql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 1장 데이터베이스와 SQL
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../devlog/database/sql-first-step/2-data-selecting-from-table/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 2장 테이블에서 데이터 검색
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../devlog/database/sql-first-step/3-sorting-and-operation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 3장 정렬과 연산
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../devlog/database/sql-first-step/4-data-insert-delete-update/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 4장 데이터의 추가, 삭제, 갱신
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../devlog/database/sql-first-step/5-aggregation-and-subquery/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 5장 집계와 서브쿼리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../devlog/database/sql-first-step/6-create-and-delete-database-object/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 6장 데이터베이스 객체 작성과 삭제
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../devlog/database/sql-first-step/7-manage-multi-tables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 7장 복수의 테이블 다루기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../devlog/database/sql-first-step/8-design-database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 8장 데이터베이스 설계
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    태그
+  </span>
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      도입
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      공모전
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="공모전">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      상황
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      회고
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      골든 서클
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      결론
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                <h1 id="_1">열등감 분석<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">도입<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>최근 열등감이 무척 심했다.</p>
+<p>첫째, 스스로 실력에 대해 과신하고 자만했다.
+둘째, 노력에 대해 매번 응당한 결과를 받아야 한다고 생각했다.
+셋째, 그리고 이 모든 원인을 타인과 외부로 돌렸다.</p>
+<p>소프트웨어 엔지니어링 분야에서만의 이야기가 아니라 모두가 살아가면서, 어렸을 때부터 죽을 때까지 다들 한번 쯤은 열등감을 겪는다. 열등감은 순간의 불꽃이 되어 가파른 성장의 원동력이 되기도 하지만 깊숙히 내면에 자리잡으면 뿌리를 갉아 먹고는 삶을 피폐하게 만드는 무서운 녀석이기도 하다.</p>
+<p>모든 사람이 각자만의 방식으로 열등감을 극복하며 오늘도 조금씩 성장하고 있겠지만 오늘은 내가 최근에 겪은 열등감을 솔직하게 밝히며 더 좋은 소프트웨어 엔지니어로 성장할 수 있는 방법에 대해 고민했던 것들을 공유하고자 한다.</p>
+<h2 id="_3">공모전<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">상황<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>깊은 열등감을 안겨다 준 녀석은 바로 교내 공모전이었다.</p>
+<p><img src="https://weekwith.me/images/analyze-the-complex/1.jpeg"></p>
+<p>위 사진을 보면 알 수 있듯 사실 본선에 진출하여 입상하였다. 본선에 진출한 전체 11팀 중 4등을 하며 우수상을 수상하였는데 이 결과 자체가 마음에 들지 않았다. 나는 우리가 대상을 탈 줄 알았다.</p>
+<p><img src="https://weekwith.me/images/analyze-the-complex/2.png"></p>
+<p>아이디어 공모전이었기에 실제로 기능을 구현하지 않고 설계를 했다. 학생들 중 우리 서비스 대상이 되는 학생의 비율이 어느 정도될 지 대략적으로 정량적 데이터 대비 정성적 데이터의 비중을 토대로 추측하였고 이 과정에서 24시간 서버가 안정적으로 운용되고 있을 필요가 없는 API의 경우 AWS Lambda를 활용하기로 결정했다.</p>
+<p>단순히 구현에 치중된 설계를 하지 않고 사용자 경험(UX_User Experience)을 고려하여 특히 사용자가 서비스에 대한 피드백 혹은 문의를 할 때 감정을 선택할 수 있게 하여 긍정적인 고객 경험(CX_Customer Experience)을 경험하도록 설계하였다. 이 과정에서 서비스를 만드는 제공자(Provider)인 우리 팀원이 매 스프린트 별 해당 문의에 따른 우선순위를 효율적으로 설계할 수 있게 Slack 및 Notion API를 활용한 백오피스(Back-office) 측면 또한 고민해서 설계하였다.</p>
+<p>정리하자면 구현 가능성, 비용, 그리고 이후의 서비스 운영을 위한 효율적인 업무 방법까지 고민한 결과였다.</p>
+<p><img src="https://weekwith.me/images/analyze-the-complex/3.png"></p>
+<p>기능에만 치중하지도 않았다. 어떤 마이크로카피(Microcopy)를 가져가면 좋을지 고민하며 실질적인 UX/UI 또한 피그마를 토대로 프로토타입을 완성시켰다.</p>
+<p>대학생이라는 사용자가 정말로 우리의 서비스를 이용할지에 대한 여부, 다시 말해 그들의 비용지불 의사(Willingness to pay)에 대한 부분도 설문조사를 토대로 한 정량적 분석, 그리고 심층 인터뷰를 통한 정성적 분석은 물론 수립된 가설과 정리된 문제를 토대로 세 가지 측정 기준을 두어 점수를 측정하고 순위를 정한뒤 나온 결과였다.</p>
+<p>여기까지 읽고 어떤 생각이 들었을지 모르겠다. 우수상의 억울함을 피력하는 열등감일 수도 있다. 하지만 우리는 열심히했다. 그래서 나는 결과에 불만이 생겼고 열등감이 생겼다.</p>
+<h3 id="_5">회고<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>그런데 사실 이 길고 긴 이야기를 당신이 다 들을 필요가 없다. 이는 본선 때 우리의 발표를 듣고 있던 심사위원도 마찬가지다. AWS Lambda를 사용했다는 사실보다는 비용적인 측면과 모듈화를 고민한 결과라는 이유가 더 중요하다.</p>
+<p>AWS CloudWatch Events를 활용한 스케줄링 잡(Scheduling Job)이라는 구현 방법보다는 평균적으로 학과 내 새로운 공지가 하루에 한번 정도 올라오기에 하루에 한번만 실행하여 학과 정보를 크롤링하게 한다는 이유가 더 중요하다.</p>
+<p>단지 두 가지 설계 측면에 대한 부분만을 이야기 했을 뿐인데 공통적으로 나오는 단어가 있다. 바로 방법(How)과 이유(Why)다. 그리고 방법보다 이유가 훨씬 중요한 것을 쉽게 볼 수 있다.</p>
+<h2 id="_6">골든 서클<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>골든 서클(Golden Cirlce)이라는 일종의 모델(Model)이자 이론(Theory)이 있다. 세계적인 컨설턴트이자 작가이면서 강연자인 사이먼 시넥(Simon Sinek)이라는 사람이 있다. 약 12년 전인 2010년 테드(Ted) 강연에서 <a href="https://www.youtube.com/watch?v=qp0HIF3SfI4">"위대한 리더는 어떻게 행동을 이끌어 내는가?(How great leaders inspire action?)"</a>라는 주제로 강연을 했다. 그리고 그 강연에서 사이먼 시넥은 마케팅에 대한 이야기를 하며 골든 서클 모델을 설명한다.</p>
+<p><img src="https://weekwith.me/images/analyze-the-complex/4.png"></p>
+<p>사람들에게 제품을 팔 때 구매라는 행동(Action)을 이끌어내기 위해서는 제품의 신념과 목적, 그리고 존재 이유를 가장 먼저 설명해야 한다는 것이다. 사람들은 제품에 대한 공감을 하게 되고 이를 구매해야 하는 동기부여가 명확하게 이루어졌기 때문에 결국 어떠한 방식으로도 그들은 제품을 구매한다.</p>
+<p>비단 제품을 판매할 때 뿐만이 아닌 모든 소통(Communication), 심지어 외부의 사람들이 아닌 내면의 자신과의 소통에서도 이 이론은 유용하다.</p>
+<p>앞서 살펴본 것처럼 본선에서의 짧은 발표 시간 동안 AWS라는 전문적인 용어는 중요하지 않았다. 우리가 왜 클라우드 호스팅을 선택했고 그 과정에서 세부적으로 서버를 나눠 구현하게 되었는지 이유가 중요했다.</p>
+<p>팀원끼리, 특히 개발 직군이 비개발 직군의 팀원에게 진행 중인 작업 사항을 설명하거나 회의를 통해 어떤 기능에 대한 구현에 어려움이 있어 변경 사항을 논의해야 할 때도 마찬가지다. 서로 복잡하고 어려운 용어나, 이를 어떻게 해결할 것인지는 실질적으로 구현을 하는 사람들끼리 논의해야 하는 차원이며 단지 이유만을 이야기해서 상황에 대한 상호 동기부여(Motivation)가 훨씬 중요하다.</p>
+<p>나의 열등감도 마찬가지다. 무엇에 대해 열등감을 느꼈고 이를 어떻게 해결할 것인지 보다 왜 느꼈는지 스스로 인지하는 게 더 중요했다. 인간은 스스로에 대한 객관적인 태도를 취할 때, 다시 말해 본인의 감정과 생각에 대한 이유를 논리적으로 생각해보게 될 때 훨씬 성숙해진다.</p>
+<h2 id="_7">결론<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>앞으로도 이 열등감을 잊지 않고 어떤 상황에서라도 이유(Why)를 먼저 설명하려 노력할 것이다. 이를 위해서는 엔지니어로서 어떤 기능을 구현할 때, 어떤 방법을 설계하고 선택할 때 먼저 스스로 납득 가능한 이유를 생각해야 한다. 코드를 치기 위해 키보드에 손을 올리기 전 아이패드 메모장에 먼저 손을 갖다대는 습관이 중요한 이유가 바로 여기서 나온다.</p>
+<p>앞으로 다른 프로젝트를 진행하며 이유를 설명했던 경험을 만들어 내고 이를 잘 정리해서 조금 더 효과적으로 이유를 설명하고, 특히 실질적으로 함께 작업을 하게 되는 팀원끼리는 이유(Why)를 넘어서 무엇(What)을 어떻게(How)할 것인지 논의하는 방법에 대해서도 잘 정리해봐야겠다.</p>
+<p>글또 7기에 합격하여 이제 본격적인 글을 쓰기 시작했다. 기억보다는 기록을, 그리고 이번 7기에서 특히 여러 프로젝트를 통해 스스로 고민하고 노력해본 더 좋은 소프트웨어 엔지니어가 되기 위한 방법에 대해 정리하여 공유해봐야겠다.</p>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7400981351083358"
+crossorigin="anonymous"></script>
+
+<h2 id="__comments"></h2>
+<div id="utteranc-thread"></div>
+<script src="https://utteranc.es/client.js"
+repo="0417taehyun/blog"
+issue-term="pathname"
+label="comments"
+theme="dark-blue"
+crossorigin="anonymous"
+async>
+</script>
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../aws-girls-in-tech-mentoring/" class="md-footer__link md-footer__link--prev" aria-label="Previous: [ AWS x Girls In Tech Mentoring Program ] 회고" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              [ AWS x Girls In Tech Mentoring Program ] 회고
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../twil/3/" class="md-footer__link md-footer__link--next" aria-label="Next: TWIL 3기 회고" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              TWIL 3기 회고
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.tabs", "search.suggest", "search.highlight", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.ec8bae80.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.2f76aa63.min.js"></script>
+      
+        <script src="../../../../js/termynal.js"></script>
+      
+        <script src="../../../../js/custom.js"></script>
+      
+        <script src="../../../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

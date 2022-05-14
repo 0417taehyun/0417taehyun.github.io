@@ -1,0 +1,3476 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="[ SQL 첫걸음 ] 제 2장 테이블에서 데이터 검색">
+      
+      
+      
+        <link rel="canonical" href="https://weekwith.me/devlog/database/sql-first-step/2-data-selecting-from-table/">
+      
+      
+        
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14+insiders-4.15.0">
+    
+    
+      
+        <title>[ SQL 첫걸음 ] 제 2장 테이블에서 데이터 검색 - weekwith.me</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a7e54750.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.96b5c56e.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../css/termynal.css">
+    
+      <link rel="stylesheet" href="../../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <meta property="robots" content="index, follow" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sql-2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="weekwith.me" class="md-header__button md-logo" aria-label="weekwith.me" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            weekwith.me
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              [ SQL 첫걸음 ] 제 2장 테이블에서 데이터 검색
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/0417taehyun" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+
+
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  weekwith.me
+
+      </a>
+    </li>
+  
+
+      
+        
+
+
+  
+    
+    
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../article/retrospect/etc/aws-girls-in-tech-mentoring/" class="md-tabs__link">
+          
+  
+  아티클
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+
+
+  
+    
+    
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../algorithms/programmers/sql/level-1/1-get-all-records/" class="md-tabs__link">
+          
+  
+  알고리즘
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+
+
+  
+    
+    
+      
+    
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../java/live-study/chapter-01/" class="md-tabs__link md-tabs__link--active">
+          
+  
+  프로그래밍 공부 일지
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+
+
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../tags/" class="md-tabs__link">
+        
+  
+  태그
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="weekwith.me" class="md-nav__button md-logo" aria-label="weekwith.me" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    weekwith.me
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/0417taehyun" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    weekwith.me
+  </span>
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          
+  
+  <span class="md-ellipsis">
+    아티클
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="아티클" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          아티클
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          
+  
+  <span class="md-ellipsis">
+    회고
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="회고" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          회고
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1" type="checkbox" id="__nav_2_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1">
+          
+  
+  <span class="md-ellipsis">
+    기타
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="기타" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          기타
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/etc/aws-girls-in-tech-mentoring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ AWS x Girls In Tech Mentoring Program ] 회고
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/etc/analyze-the-complex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    열등감 분석
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_2" type="checkbox" id="__nav_2_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_2">
+          
+  
+  <span class="md-ellipsis">
+    TWIL
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="TWIL" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          TWIL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/twil/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TWIL 3기 회고
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_3" type="checkbox" id="__nav_2_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_3">
+          
+  
+  <span class="md-ellipsis">
+    컨퍼런스
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="컨퍼런스" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          컨퍼런스
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/conference/toss-design-conference-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 토스 디자인 컨퍼런스 ] Simplicity21: 1일차 내용 정리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/conference/toss-design-conference-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 토스 디자인 컨퍼런스 ] Simplicity21: 2일차 내용 정리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/conference/toss-design-conference-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 토스 디자인 컨퍼런스 ] Simplicity21: 3일차 내용 정리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          
+  
+  <span class="md-ellipsis">
+    소프트-웨어
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="소프트-웨어" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          소프트-웨어
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/soft-where/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    개발에도 최최최종 파일이 있다고요?
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/soft-where/02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    데이터베이스에서 김 서방 찾기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          
+  
+  <span class="md-ellipsis">
+    알고리즘
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="알고리즘" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          알고리즘
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          
+  
+  <span class="md-ellipsis">
+    프로그래머스
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="프로그래머스" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          프로그래머스
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_1" type="checkbox" id="__nav_3_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1_1">
+          
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          SQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_1_1" type="checkbox" id="__nav_3_1_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1_1_1">
+          
+  
+  <span class="md-ellipsis">
+    LEVEL 1
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="LEVEL 1" data-md-level="4">
+        <label class="md-nav__title" for="__nav_3_1_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          LEVEL 1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/1-get-all-records/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 모든 레코드 조회하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/2-get-max-number/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 최댓값 구하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/3-no-name-animal-id/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 이름이 없는 동물의 아이디
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/4-reverse-ordering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 역순 정렬하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/5-exists-name-animal-id/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 이름이 있는 동물의 아이디
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/6-find-sick-animal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 아픈 동물 찾기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/7-find-young-animal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 어린 동물 찾기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/8-animal-id-and-name/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 동물의 아이디와 이름
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/9-ordering-with-multiple-options/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 여러 기준으로 정렬하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/10-top-nth-records/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 상위 n개 레코드
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          
+  
+  <span class="md-ellipsis">
+    이것이 취업을 위한 코딩 테스트다 with 파이썬
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="이것이 취업을 위한 코딩 테스트다 with 파이썬" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          이것이 취업을 위한 코딩 테스트다 with 파이썬
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/coding-test-for-employment/1-big-o/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    복잡도
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/coding-test-for-employment/2-greedy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    그리디
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          
+  
+  <span class="md-ellipsis">
+    쓰면서 익히는 알고리즘과 자료구조
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="쓰면서 익히는 알고리즘과 자료구조" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          쓰면서 익히는 알고리즘과 자료구조
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/writing-algorithm/1-array/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    배열
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          
+  
+  <span class="md-ellipsis">
+    프로그래밍 공부 일지
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="프로그래밍 공부 일지" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          프로그래밍 공부 일지
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          
+  
+  <span class="md-ellipsis">
+    Java
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Java" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Java
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1_1" type="checkbox" id="__nav_4_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1_1">
+          
+  
+  <span class="md-ellipsis">
+    백기선의 자바 스터디
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="백기선의 자바 스터디" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          백기선의 자바 스터디
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../java/live-study/chapter-01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1주차 과제: JVM은 무엇이며 자바 코드는 어떻게 실행하는 것인가.
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../java/live-study/chapter-02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2주차 과제: 자바 데이터 타입, 변수 그리고 배열
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../java/live-study/chapter-03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3주차 과제: 연산자
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          
+  
+  <span class="md-ellipsis">
+    NextJS
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="NextJS" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          NextJS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_1" type="checkbox" id="__nav_4_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_1">
+          
+  
+  <span class="md-ellipsis">
+    개인 공부
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="개인 공부" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          개인 공부
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../next-js/etc/ci-cd-static-webstie-by-github-actions-and-aws-s3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ Next.js ] AWS, GitHub Actions를 활용한 정적 웹사이트 CI/CD
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          
+  
+  <span class="md-ellipsis">
+    Blockchain
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Blockchain" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Blockchain
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_1" type="checkbox" id="__nav_4_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_1">
+          
+  
+  <span class="md-ellipsis">
+    힙한 크리토의 비밀
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="힙한 크리토의 비밀" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          힙한 크리토의 비밀
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blockchain/hip-crypto/1-week/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 힙한 크립토의 비밀 ] 1주차 과제
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blockchain/hip-crypto/2-week/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 힙한 크립토의 비밀 ] 2주차 과제
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          
+  
+  <span class="md-ellipsis">
+    Database
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Database" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Database
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4_1" type="checkbox" id="__nav_4_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4_1">
+          
+  
+  <span class="md-ellipsis">
+    SQL 첫걸음
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL 첫걸음" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          SQL 첫걸음
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-database-and-sql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 1장 데이터베이스와 SQL
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 2장 테이블에서 데이터 검색
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 2장 테이블에서 데이터 검색
+  </span>
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#04-hello-world" class="md-nav__link">
+    <span class="md-ellipsis">
+      04강 Hello World 실행하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="04강 Hello World 실행하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      SELECT * FROM 테이블명 실행
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select" class="md-nav__link">
+    <span class="md-ellipsis">
+      SELECT 명령 구분
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      예약어와 데이터베이스 객체명
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="예약어와 데이터베이스 객체명">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      대소문자 구별
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hello-world" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hello World를 실행한 결고 = 테이블
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null" class="md-nav__link">
+    <span class="md-ellipsis">
+      값이 없는 데이터 = NULL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#05" class="md-nav__link">
+    <span class="md-ellipsis">
+      05강 테이블 구조 참조하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="05강 테이블 구조 참조하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#desc" class="md-nav__link">
+    <span class="md-ellipsis">
+      DESC 명령
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      자료형
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="자료형">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integer" class="md-nav__link">
+    <span class="md-ellipsis">
+      INTEGER
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#char" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHAR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#varchar" class="md-nav__link">
+    <span class="md-ellipsis">
+      VARCHAR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date" class="md-nav__link">
+    <span class="md-ellipsis">
+      DATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time" class="md-nav__link">
+    <span class="md-ellipsis">
+      TIME
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#06" class="md-nav__link">
+    <span class="md-ellipsis">
+      06강 검색 조건 지정하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="06강 검색 조건 지정하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      SELECT 구에서 열 지정하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where" class="md-nav__link">
+    <span class="md-ellipsis">
+      WHERE 구에서 행 지정하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WHERE 구에서 행 지정하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      구의 순서와 생략
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wehre" class="md-nav__link">
+    <span class="md-ellipsis">
+      WEHRE 구
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      조건식
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      값이 서로 다른 경우 &lt;&gt;
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      문자열형의 상수
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      NULL값 검색
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NULL값 검색">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#is-null" class="md-nav__link">
+    <span class="md-ellipsis">
+      IS NULL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      비교 연산자
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#07" class="md-nav__link">
+    <span class="md-ellipsis">
+      07강 조건 조합하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="07강 조건 조합하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#and" class="md-nav__link">
+    <span class="md-ellipsis">
+      AND로 조합하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#or" class="md-nav__link">
+    <span class="md-ellipsis">
+      OR로 조합하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#and-or" class="md-nav__link">
+    <span class="md-ellipsis">
+      AND와 OR를 사용할 경우 주의할 점
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AND와 OR를 사용할 경우 주의할 점">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#and-or_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      AND와 OR 조합
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      연산자의 우선 순위
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not" class="md-nav__link">
+    <span class="md-ellipsis">
+      NOT으로 조합
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#08" class="md-nav__link">
+    <span class="md-ellipsis">
+      08강 패턴 매칭에 의한 검색
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="08강 패턴 매칭에 의한 검색">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#like" class="md-nav__link">
+    <span class="md-ellipsis">
+      LIKE로 패턴 매칭하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#like_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      LIKE로 %를 검색하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      문자열 상수 '의 이스케이프!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-sorting-and-operation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 3장 정렬과 연산
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-data-insert-delete-update/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 4장 데이터의 추가, 삭제, 갱신
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-aggregation-and-subquery/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 5장 집계와 서브쿼리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-create-and-delete-database-object/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 6장 데이터베이스 객체 작성과 삭제
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7-manage-multi-tables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 7장 복수의 테이블 다루기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8-design-database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 8장 데이터베이스 설계
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    태그
+  </span>
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#04-hello-world" class="md-nav__link">
+    <span class="md-ellipsis">
+      04강 Hello World 실행하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="04강 Hello World 실행하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      SELECT * FROM 테이블명 실행
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select" class="md-nav__link">
+    <span class="md-ellipsis">
+      SELECT 명령 구분
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      예약어와 데이터베이스 객체명
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="예약어와 데이터베이스 객체명">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      대소문자 구별
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hello-world" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hello World를 실행한 결고 = 테이블
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null" class="md-nav__link">
+    <span class="md-ellipsis">
+      값이 없는 데이터 = NULL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#05" class="md-nav__link">
+    <span class="md-ellipsis">
+      05강 테이블 구조 참조하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="05강 테이블 구조 참조하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#desc" class="md-nav__link">
+    <span class="md-ellipsis">
+      DESC 명령
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      자료형
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="자료형">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integer" class="md-nav__link">
+    <span class="md-ellipsis">
+      INTEGER
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#char" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHAR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#varchar" class="md-nav__link">
+    <span class="md-ellipsis">
+      VARCHAR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date" class="md-nav__link">
+    <span class="md-ellipsis">
+      DATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time" class="md-nav__link">
+    <span class="md-ellipsis">
+      TIME
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#06" class="md-nav__link">
+    <span class="md-ellipsis">
+      06강 검색 조건 지정하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="06강 검색 조건 지정하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      SELECT 구에서 열 지정하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where" class="md-nav__link">
+    <span class="md-ellipsis">
+      WHERE 구에서 행 지정하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WHERE 구에서 행 지정하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      구의 순서와 생략
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wehre" class="md-nav__link">
+    <span class="md-ellipsis">
+      WEHRE 구
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      조건식
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      값이 서로 다른 경우 &lt;&gt;
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      문자열형의 상수
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      NULL값 검색
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NULL값 검색">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#is-null" class="md-nav__link">
+    <span class="md-ellipsis">
+      IS NULL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      비교 연산자
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#07" class="md-nav__link">
+    <span class="md-ellipsis">
+      07강 조건 조합하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="07강 조건 조합하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#and" class="md-nav__link">
+    <span class="md-ellipsis">
+      AND로 조합하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#or" class="md-nav__link">
+    <span class="md-ellipsis">
+      OR로 조합하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#and-or" class="md-nav__link">
+    <span class="md-ellipsis">
+      AND와 OR를 사용할 경우 주의할 점
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AND와 OR를 사용할 경우 주의할 점">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#and-or_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      AND와 OR 조합
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      연산자의 우선 순위
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not" class="md-nav__link">
+    <span class="md-ellipsis">
+      NOT으로 조합
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#08" class="md-nav__link">
+    <span class="md-ellipsis">
+      08강 패턴 매칭에 의한 검색
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="08강 패턴 매칭에 의한 검색">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#like" class="md-nav__link">
+    <span class="md-ellipsis">
+      LIKE로 패턴 매칭하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#like_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      LIKE로 %를 검색하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      문자열 상수 '의 이스케이프!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                <h1 id="sql-2">[ SQL 첫걸음 ] 제 2장 테이블에서 데이터 검색<a class="headerlink" href="#sql-2" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><a href="http://www.kyobobook.co.kr/product/detailViewKor.laf?mallGb=KOR&amp;barcode=9788968482311">SQL 첫걸음</a>을 참고로 공부한 내용입니다. 따라서 아래 명령어를 통해 나오게 되는 결괏값은 전부 해당 책을 통해 다운로드한 파일의 결과물입니다.</p>
+</div>
+<h2 id="04-hello-world">04강 Hello World 실행하기<a class="headerlink" href="#04-hello-world" title="Permanent link">&para;</a></h2>
+<h3 id="select-from"><code>SELECT * FROM 테이블명</code> 실행<a class="headerlink" href="#select-from" title="Permanent link">&para;</a></h3>
+<p><code>SELECT</code> 명령을 사용하여 아래와 같이 조회 기능을 수행할 수 있습니다. 이때 명령문의 마지막에 반드시 세미콜론(<code>;</code>)을 사용해야 하며 그렇지 않을 경우 명령을 계속해서 이어 입력하는 걸로 인지합니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT * FROM sample21<span class="p">;</span>
+
++------+-----------+------------+---------------------------+
+<span class="p">|</span> no   <span class="p">|</span> name      <span class="p">|</span> birthday   <span class="p">|</span> address                   <span class="p">|</span>
++------+-----------+------------+---------------------------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span> 박준용      <span class="p">|</span> <span class="m">1976</span>-10-18 <span class="p">|</span> 대구광역시 수성구             <span class="p">|</span>
+<span class="p">|</span>    <span class="m">2</span> <span class="p">|</span> 김재진      <span class="p">|</span> NULL       <span class="p">|</span> 대구광역시 동구              <span class="p">|</span>
+<span class="p">|</span>    <span class="m">3</span> <span class="p">|</span> 홍길동      <span class="p">|</span> NULL       <span class="p">|</span> 서울특별시 마포구             <span class="p">|</span>
++------+-----------+------------+---------------------------+
+<span class="m">3</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.01 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<div class="admonition info">
+<p class="admonition-title">정보</p>
+<p>사실 굳이 명령을 대문자로 쓸 필요는 없습니다.</p>
+<p>예를 들어 위 명령문은 <code>select * from sample21;</code>와 같이 입력해도 동일한 결괏값을 반환합니다.</p>
+</div>
+<h3 id="select"><code>SELECT</code> 명령 구분<a class="headerlink" href="#select" title="Permanent link">&para;</a></h3>
+<p><code>SELECT</code>는 DML에 속하는 명령으로 <strong>질의</strong> 또는 <strong>쿼리</strong>라 부르기도 합니다.</p>
+<p>만약 위 명령문 <code>SELECT * FROM sample21;</code>을 다시 살펴보면 애스터리스크(<code>*</code>)의 경우 원래 열이 들어가는 자리로 애스터리스크(<code>*</code>)는 모든 열을 의미하는 메타문자이고 <code>FROM</code>은 처리 대상 테이블을 지정하는 키워드입니다.</p>
+<p>결론적으로 <code>SELECT * FROM sample21;</code> 명령문을 해석하면 <code>sample21</code>이라는 테이블로부터 모든 열(<code>*</code>)을 조회(<code>SELECT</code>)하라는 뜻입니다.</p>
+<div class="admonition info">
+<p class="admonition-title">정보</p>
+<p>SQL 명령은 키워드에 의해 <strong>구</strong>라는 단위로 나눌 수 있습니다.</p>
+<p><code>SELECT * FROM sample21;</code> 명령문의 경우 <code>SELECT</code> 구와 <code>FROM</code> 구로 나눌 수 있습니다.</p>
+<p>이때 <code>SELECT</code> 명령은 다시 여러 개의 구로 구성되는데 이는 추후 살펴볼 예정입니다.</p>
+</div>
+<h3 id="_1">예약어와 데이터베이스 객체명<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p><code>SELECT</code>와 <code>FROM</code>이 구를 결정하는 <strong>키워드</strong>면서 동시에 <strong>예약어</strong>입니다.</p>
+<p>데이터베이스에는 테이블 외에도 다양한 데이터를 저장하거나 관리하는 <strong>객체(Object)</strong>를 만들 수 있습니다. 대표적으로 <strong>뷰(View)</strong>가 이에 해당하는데 관련해서는 추후에 더 자세히 살펴볼 예정입니다. 이때 각 개체에 이름을 붙여 관리합니다. 따라서 <code>sample21</code>이라는 테이블 객체가 이미 존재하기 때문에 동일한 이름의 객체를 생성할 수 없습니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">주의</p>
+<p>예약어 또한 객체명으로 사용하지 못합니다. 따라서 <code>SELECT</code>라는 테이블을 생성할 수 없습니다.</p>
+</div>
+<h4 id="_2">대소문자 구별<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<p>예약어와 데이터베이스 객체명은 대소문자를 구별하지 않습니다. 따라서 아래 세 명령문은 모두 동일하게 작동합니다.</p>
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">sample21</span><span class="p">;</span><span class="w"></span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">sample21</span><span class="p">;</span><span class="w"></span>
+<span class="k">Select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">From</span><span class="w"> </span><span class="n">Sample21</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">주의</p>
+<p>SQL과 달리 많은 데이터베이스 제품들은 데이터의 대소문자를 구별합니다.</p>
+</div>
+<h3 id="hello-world">Hello World를 실행한 결고 = 테이블<a class="headerlink" href="#hello-world" title="Permanent link">&para;</a></h3>
+<p><code>SELECT</code> 명령을 통해 표 형식의 데이터가 출력되는 것을 확인했습니다. 표 형식의 데이터는 <strong>행(레코드)</strong>과 <strong>열(컬럼/필드)</strong>로 구성됩니다. 그리고 각 행과 열이 만나는 부분을 <strong>셀</strong>이라 합니다. 따라서 셀에는 하나의 데이터 값이 저장되어 있습니다. 이때 데이터는 자료형으로 분류가 가능한데 아래 예시를 한 번 살펴봅시다.</p>
+<div class="highlight"><pre><span></span><code><span class="o">+</span><span class="c1">------+-----------+------------+---------------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">no</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">birthday</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">address</span><span class="w">                   </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+-----------+------------+---------------------------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">박준용</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="mi">1976</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">18</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">대구광역시</span><span class="w"> </span><span class="err">수성구</span><span class="w">             </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">김재진</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="err">대구광역시</span><span class="w"> </span><span class="err">동구</span><span class="w">              </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">홍길동</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="err">서울특별시</span><span class="w"> </span><span class="err">마포구</span><span class="w">             </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+-----------+------------+---------------------------+</span>
+</code></pre></div>
+<ul>
+<li><code>no</code>과 같이 숫자로만 구성된 데이터를 <strong>수치형</strong> 데이터라고 합니다.</li>
+<li><code>name</code>과 같이 문자로 구성된 데이터를 <strong>문자열형</strong> 데이터라고 합니다.</li>
+<li><code>birtday</code>와 같이 날짜와 시간으로 구성된 데이터를 <strong>날짜시간형</strong> 데이터라고 합니다.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">주의</p>
+<p>이때 각 열은 하나의 자료형만 가질 수 있습니다. 따라서 하나의 열이 수치형 데이터이면서 동시에 문자열형 데이터일 수는 없습니다.</p>
+</div>
+<h3 id="null">값이 없는 데이터 = <code>NULL</code><a class="headerlink" href="#null" title="Permanent link">&para;</a></h3>
+<p>위 결괏값에서 <code>birthday</code> 열의 값을 잘 보면 <code>NULL</code>이라는 값을 확인할 수 있습니다. <code>NULL</code>은 아무것도 저장되어 있지 않은 상태를 의미합니다.</p>
+<h2 id="05">05강 테이블 구조 참조하기<a class="headerlink" href="#05" title="Permanent link">&para;</a></h2>
+<p><code>SELECT</code> 명령에 애스터리스크(<code>*</code>)를 사용하여 모든 열을 조회했습니다. 어떤 열이 존재하는 지 알면 원하는 열만 참조할 수 있게 됩니다. 열에 관한 정보를 알 수 있는 방법, 다시 말해 테이블 구조를 참조하는 방법은 바로 <code>DESC</code> 명령을 사용하는 것입니다.</p>
+<h3 id="desc"><code>DESC</code> 명령<a class="headerlink" href="#desc" title="Permanent link">&para;</a></h3>
+<p><code>sample21</code> 테이블의 구조를 참조하면 아래와 같은 결괏값이 출력됩니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; DESC sample21<span class="p">;</span>
+
++----------+-------------+------+-----+---------+-------+
+<span class="p">|</span> Field    <span class="p">|</span> Type        <span class="p">|</span> Null <span class="p">|</span> Key <span class="p">|</span> Default <span class="p">|</span> Extra <span class="p">|</span>
++----------+-------------+------+-----+---------+-------+
+<span class="p">|</span> no       <span class="p">|</span> int         <span class="p">|</span> YES  <span class="p">|</span>     <span class="p">|</span> NULL    <span class="p">|</span>       <span class="p">|</span>
+<span class="p">|</span> name     <span class="p">|</span> varchar<span class="o">(</span><span class="m">20</span><span class="o">)</span> <span class="p">|</span> YES  <span class="p">|</span>     <span class="p">|</span> NULL    <span class="p">|</span>       <span class="p">|</span>
+<span class="p">|</span> birthday <span class="p">|</span> date        <span class="p">|</span> YES  <span class="p">|</span>     <span class="p">|</span> NULL    <span class="p">|</span>       <span class="p">|</span>
+<span class="p">|</span> address  <span class="p">|</span> varchar<span class="o">(</span><span class="m">40</span><span class="o">)</span> <span class="p">|</span> YES  <span class="p">|</span>     <span class="p">|</span> NULL    <span class="p">|</span>       <span class="p">|</span>
++----------+-------------+------+-----+---------+-------+
+<span class="m">4</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>이처럼 <code>DESC</code> 명령을 통해 테이블 구조를 참조할 수 있게 됩니다.</p>
+<ul>
+<li><code>Field</code> : 열 이름을 보여줍니다..</li>
+<li><code>Type</code> : 자료형을 보여줍니다. 예를 들어 <code>int</code>는 정수(Integer)를, <code>varchar</code>는 문자열을 의미합니다. 이때 <code>varchar(20)</code>와 같이 괄호에 숫자가 적혀있는 부분은 최댓값을 의미합니다. 따라서 <code>varchar(20)</code>은 최대 길이가 20자인 문자열 자료형을 의미합니다.</li>
+<li><code>Null</code> : <code>Null</code> 값을 허용할 것인지 아닌지를 나타내는 <strong>제약사항</strong>입니다. 따라서 <code>Yes</code>는 다시 말해 해당 열에 <code>Null</code> 값이 들어가도 괜찮다는 것을 의미합니다.</li>
+<li><code>Key</code> : 해당 열이 키(Key)로 지정되어 있는지를 보여줍니다.</li>
+<li><code>Default</code> : 값을 생략했을 때 주어지는 기본값을 보여줍니다. 만약 <code>Default</code>가 존재한다면 행을 추가할 때 해당 열의 데이터 값이 생략되어 있더라도 <code>Default</code> 값이 자동으로 할당됩니다.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">주의</p>
+<p><code>DESC</code> 명령어는 MySQL 명령입니다. 따라서 다른 SQL, 예를 들어 PostgreSQL에서 동일한 결과를 출력하고 싶다면 <code>DESC</code> 대신 <code>\d+</code>를 사용해야 합니다.</p>
+</div>
+<h3 id="_3">자료형<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>열에 지정할 수 있는 자료형의 종류에 대해서 알아보려 합니다.</p>
+<h4 id="integer">INTEGER<a class="headerlink" href="#integer" title="Permanent link">&para;</a></h4>
+<p>수치형의 하나로 정수값을 지정할 수 있는 자료형입니다. 정수값을 지정할 수 있기 때문에 값에 소수점을 포함할 수 없습니다.</p>
+<h4 id="char">CHAR<a class="headerlink" href="#char" title="Permanent link">&para;</a></h4>
+<p>문자열형의 하나로 문자열을 저장할 수 있는 자료형입니다. 문자열형에서는 앞서 <code>varchar(20)</code>와 같이 열의 최대 길이를 지정해야합니다. 다음에 살펴볼 VARCHAR와 달리 CHAR의 경우 언제나 고정된 길이로 데이터가 저장되는 자료형으로 <strong>고정 길이 문자열</strong> 자료형이라고도 부릅니다. 따라서 길이가 고정되기 때문에 최대 길이보다 작은 문자열을 저장할 경우 공백문자로 나머지를 채운 후 저장하게 됩니다.</p>
+<h4 id="varchar">VARCHAR<a class="headerlink" href="#varchar" title="Permanent link">&para;</a></h4>
+<p>문자열을 저장할 수 있는 자료형입니다. 최대 길이를 지정해야 하는 점은 CHAR와 동일하지만 데이터 크기에 맞춰 저장공간의 크기도 변경되기 때문에 <strong>가변 길이 문자열</strong> 자료형이라고도 부릅니다.</p>
+<h4 id="date">DATE<a class="headerlink" href="#date" title="Permanent link">&para;</a></h4>
+<p>날짜값을 저장할 수 있는 자료형입니다. 여기서 날짜값이란 <code>2021년 12월 4일</code>과 같이 연월일 형태의 데이터를 의미합니다.</p>
+<h4 id="time">TIME<a class="headerlink" href="#time" title="Permanent link">&para;</a></h4>
+<p>시간을 저장할 수 있는 자료형입니다. 예슬 들어 <code>12시 30분 20</code>초와 같은 시분초 형태의 데이터를 의미합니다.</p>
+<h2 id="06">06강 검색 조건 지정하기<a class="headerlink" href="#06" title="Permanent link">&para;</a></h2>
+<p>실제 데이터베이스에서 어떤 데이터를 조회할 때는 테이블 내에 존재하는 모든 데이터를 조회하는 것보다 특정 조건에 맞는 데이터만을 조회하는 게 더 효율적일 것입니다. 예를 들어 게시판에서 인기 게시글만 조회하는 경우와 같습니다.</p>
+<p>이러한 맥락에서 효율적인 조회를 위해서는 열과 행을 잘 선택해야 합니다. 이전에 <strong>열</strong>을 지정할 때 <code>SELECT</code> 구를 사용한 것처럼 <strong>행</strong>을 지정할 때는 <code>WHERE</code> 구를 사용합니다.</p>
+<h3 id="select_1"><code>SELECT</code> 구에서 열 지정하기<a class="headerlink" href="#select_1" title="Permanent link">&para;</a></h3>
+<p>열을 한정하는 방법은 이전에 애스터리스크(<code>*</code>)를 사용해 전체 열을 선택했던 것과 달리 원하는 열만 지정하여 입력하면 됩니다. 아래 예시를 한 번 살펴보겠습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT no, name FROM sample21<span class="p">;</span>
+
++------+-----------+
+<span class="p">|</span> no   <span class="p">|</span> name      <span class="p">|</span>
++------+-----------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span> 박준용      <span class="p">|</span>
+<span class="p">|</span>    <span class="m">2</span> <span class="p">|</span> 김재진      <span class="p">|</span>
+<span class="p">|</span>    <span class="m">3</span> <span class="p">|</span> 홍길동      <span class="p">|</span>
++------+-----------+
+<span class="m">3</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>열에 <code>no</code>, <code>name</code>을 지정하여 <code>no</code>과 <code>name</code> 열만을 조회하였습니다.</p>
+<p>이때 열을 지정하는 순서는 임의로 정할 수 있습니다. 따라서 <code>SELECT no, name FROM sample21;</code> 명령문이나 <code>SELECT name, no FROM sample21;</code> 명령문의 결괏값은 동일하나 출력 형태는 조금 다릅니다. 지정한 열에 따라 그 순서가 달라집니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT name, no FROM sample21<span class="p">;</span>
+
++-----------+------+
+<span class="p">|</span> name      <span class="p">|</span> no   <span class="p">|</span>
++-----------+------+
+<span class="p">|</span> 박준용    <span class="p">|</span>    <span class="m">1</span>   <span class="p">|</span>
+<span class="p">|</span> 김재진    <span class="p">|</span>    <span class="m">2</span>   <span class="p">|</span>
+<span class="p">|</span> 홍길동    <span class="p">|</span>    <span class="m">3</span>   <span class="p">|</span>
++-----------+------+
+<span class="m">3</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>또한 <code>SELECT no, no, no FROM sample21;</code> 명령문과 같이 동일한 열을 중복해서 지정해도 무관합니다. 이때 해당 중복된 열 모두를 결괏값으로 출력합니다.</p>
+<div class ="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT no, no, no FROM sample21<span class="p">;</span>
+
++------+------+------+
+<span class="p">|</span> no   <span class="p">|</span> no   <span class="p">|</span> no   <span class="p">|</span>
++------+------+------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span>    <span class="m">1</span> <span class="p">|</span>    <span class="m">1</span> <span class="p">|</span>
+<span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>
+<span class="p">|</span>    <span class="m">3</span> <span class="p">|</span>    <span class="m">3</span> <span class="p">|</span>    <span class="m">3</span> <span class="p">|</span>
++------+------+------+
+<span class="m">3</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<div class="admonition warning">
+<p class="admonition-title">주의</p>
+<p>열을 지정할 때 <code>SELECT FROM sample21;</code>과 같이 아무런 열도 지정하지 않거나 존재하지 않는 열을 지정할 경우 오류가 발생합니다.</p>
+</div>
+<h3 id="where"><code>WHERE</code> 구에서 행 지정하기<a class="headerlink" href="#where" title="Permanent link">&para;</a></h3>
+<p><code>SELECT</code>가 <strong>열</strong>을 지정했다면 <code>WHERE</code>은 <strong>행</strong>을 지정합니다. 그 명령문의 형태는 <code>SELECT 열 FROM 테이블명 WHERE 조건식</code>과 같습니다. 조건식에 일치하는 행만 <code>SELECT</code>의 결과로 반환됩니다.</p>
+<h4 id="_4">구의 순서와 생략<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>SQL에서는 구의 순서가 정해져 있어 바꿔적을 수 없습니다. 따라서 <code>SELECT 열 WHERE 조건식 FROM 테이블명</code>과 같이 이미 정해져있는 구의 순서를 바꿔서 명령문을 실행할 경우 오류가 발생합니다.</p>
+<p>앞서 <code>SELECT * FROM sample21;</code> 명령문에서 <code>WHERE</code> 구가 생략된 것처럼 구 중에는 생략 가능한 구도 존재합니다. <code>WHERE</code> 구를 생략할 경우 테이블 내의 모든 행이 대상이 됩니다.</p>
+<h4 id="wehre"><code>WEHRE</code> 구<a class="headerlink" href="#wehre" title="Permanent link">&para;</a></h4>
+<p>만약 아래와 같은 테이블 <code>sample21</code>이 존재한다고 해봅시다.</p>
+<div class="highlight"><pre><span></span><code><span class="o">+</span><span class="c1">------+-----------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">no</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w">      </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+-----------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">박준용</span><span class="w">      </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">김재진</span><span class="w">      </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">홍길동</span><span class="w">      </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+-----------+</span>
+</code></pre></div>
+<p>이때 <code>no</code>의 값이 <code>2</code>인 데이터만 조회하기를 원한다면 아래와 같이 명령문을 입력하면 됩니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT no, name FROM sample21 WHERE <span class="nv">no</span><span class="o">=</span><span class="m">2</span><span class="p">;</span>
+
++------+-----------+
+<span class="p">|</span> no   <span class="p">|</span> name      <span class="p">|</span>
++------+-----------+
+<span class="p">|</span>    <span class="m">2</span> <span class="p">|</span> 김재진      <span class="p">|</span>
++------+-----------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<h4 id="_5">조건식<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>위 예시에서 <code>WHERE no=2</code>는 <code>no</code> 열 값이 <code>2</code>인 경우에 참이 되는 조건입니다. 해당 조건식을 조금 더 세분화하면 다음과 같습니다.</p>
+<ul>
+<li><code>no</code> : 첫 번째 항목으로 열 이름입니다.</li>
+<li><code>=</code> : 두 번째 항목으로 연산자입니다.</li>
+<li><code>2</code> : 마지막 항목으로 값입니다.</li>
+</ul>
+<p>이처럼 해당 열(<code>no</code>)에 조건, 다시 말해 값(<code>2</code>)이 연산자(<code>=</code>)에 일치하는 경우를 반환합니다.</p>
+<h4 id="_6">값이 서로 다른 경우 <code>&lt;&gt;</code><a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>비교 연산자의 종류에는 <code>=</code> 외에도 존재합니다. <code>&lt;&gt;</code>을 사용할 경우 그 값이 아닌 행만 반환합니다. 아래 예시를 한 번 살펴봅시다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT no, name FROM sample21 WHERE no&lt;&gt;2<span class="p">;</span>
+
++------+-----------+
+<span class="p">|</span> no   <span class="p">|</span> name      <span class="p">|</span>
++------+-----------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span> 박준용      <span class="p">|</span>
+<span class="p">|</span>    <span class="m">3</span> <span class="p">|</span> 홍길동      <span class="p">|</span>
++------+-----------+
+<span class="m">2</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>이전 <code>WHERE no=2</code>의 결괏값과 달리 <code>WHERE no&lt;&gt;2</code>를 통해 <code>no</code>의 값이 <code>2</code>가 아닌 행만 반환했습니다. 이처럼 여러 연산자를 통해 조건을 달리 설정하여 원하는 값을 얻을 수 있습니다.</p>
+<p>이때 아래와 같이 조건식에 일치하는 행이 전혀 없는 경우에는 아무것도 반환되지 않습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT no, name FROM sample21 WHERE <span class="nv">no</span><span class="o">=</span><span class="m">4</span><span class="p">;</span>
+
+Empty <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<h3 id="_7">문자열형의 상수<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>수치형 뿐만 아니라 문자열, 날짜시간형 등의 모든 자료형을 조건으로 할 때도 방법은 동일합니다. 이때 유의할 점은 문자열의 경우 <strong>싱글쿼트(<code>''</code>)</strong>로 둘러싸 표기해야 하며 날짜시간형의 경우 연월일을 구분할 때는 <strong>하이픈(<code>-</code>)</strong>, 시분초를 구분할 때는 <strong>콜론(<code>:</code>)</strong>으로 구분하여 표기합니다.</p>
+<p>예를 들어 <code>name</code> 열의 값이 <code>박준용</code>인 행을 조회하는 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT no, name FROM sample21 WHERE <span class="nv">name</span><span class="o">=</span><span class="s1">&#39;박준용&#39;</span><span class="p">;</span>
+
++------+-----------+
+<span class="p">|</span> no   <span class="p">|</span> name      <span class="p">|</span>
++------+-----------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span> 박준용    <span class="p">|</span>
++------+-----------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<div class="admonition info">
+<p class="admonition-title">정보</p>
+<p>이때 자료형에 맞게 표기한 상수값을 <strong>리터럴(Literal)</strong>이라 합니다.</p>
+</div>
+<h3 id="null_1"><code>NULL</code>값 검색<a class="headerlink" href="#null_1" title="Permanent link">&para;</a></h3>
+<p>조건식을 통해 원하는 값만 조회할 때 가장 유의해야 할 것은 바로 <code>=</code> 연산자로 <code>NULL</code>을 검색할 수 없다는 것입니다.</p>
+<h4 id="is-null"><code>IS NULL</code><a class="headerlink" href="#is-null" title="Permanent link">&para;</a></h4>
+<p><code>NULL</code>을 검색할 때는 <code>IS NULL</code>이라는 연산자를 사용합니다. 예를 들어 <code>birthday</code>열의 값이 <code>NULL</code>인 행을 조회하는 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT * FROM sample21 WHERE birthday IS NULL<span class="p">;</span>
+
++------+-----------+----------+---------------------------+
+<span class="p">|</span> no   <span class="p">|</span> name      <span class="p">|</span> birthday <span class="p">|</span> address                   <span class="p">|</span>
++------+-----------+----------+---------------------------+
+<span class="p">|</span>    <span class="m">2</span> <span class="p">|</span> 김재진      <span class="p">|</span> NULL     <span class="p">|</span> 대구광역시 동구              <span class="p">|</span>
+<span class="p">|</span>    <span class="m">3</span> <span class="p">|</span> 홍길동      <span class="p">|</span> NULL     <span class="p">|</span> 서울특별시 마포구             <span class="p">|</span>
++------+-----------+----------+---------------------------+
+<span class="m">2</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>반대로 <code>NULL</code> 값이 아닌 행을 표시하고 싶을 때는 다음과 같이 <code>IS NOT NULL</code>을 사용하면 됩니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECt * FROM sample21 WHERE birthday IS NOT NULL<span class="p">;</span>
+
++------+-----------+------------+---------------------------+
+<span class="p">|</span> no   <span class="p">|</span> name      <span class="p">|</span> birthday   <span class="p">|</span> address                   <span class="p">|</span>
++------+-----------+------------+---------------------------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span> 박준용    <span class="p">|</span> <span class="m">1976</span>-10-18 <span class="p">|</span> 대구광역시 수성구               <span class="p">|</span>
++------+-----------+------------+---------------------------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<h3 id="_8">비교 연산자<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p><code>=</code>, <code>&lt;&gt;</code>, <code>IS NULL</code>, <code>IS NOT NULL</code> 외에도 다양한 연산자가 존재합니다. 대표적으로 사칙연산과 동일하게 <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>와 같은 <strong>비교 연산자</strong> 또한 존재합니다.</p>
+<h2 id="07">07강 조건 조합하기<a class="headerlink" href="#07" title="Permanent link">&para;</a></h2>
+<p>논리 연산자를 통해 조건을 조합하여 더 세밀한 검색이 가능합니다.</p>
+<h3 id="and"><code>AND</code>로 조합하기<a class="headerlink" href="#and" title="Permanent link">&para;</a></h3>
+<p>복수의 조건을 조합할 경우 <code>AND</code> 논리 연산자를 사용합니다. 좌우의 식이 모두 참일 경우 참을 반환합니다. 따라서 <code>AND</code> 논리 연산자는 논리곱을 계산하는 <strong>교집합</strong>에 해당합니다.</p>
+<p>예를 들어 아래와 같은 테이블 <code>sample24</code>가 있다고 가정해봅시다.</p>
+<div class="highlight"><pre><span></span><code><span class="o">+</span><span class="c1">------+------+------+------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">no</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">c</span><span class="w">    </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+------+------+------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+------+------+------+</span>
+</code></pre></div>
+<p>이때 <code>a</code>열과 <code>b</code>열의 값이 모두 <code>0</code>이 아닌 행을 검색하는 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT * FROM sample24 WHERE a&lt;&gt;0 AND b&lt;&gt;0<span class="p">;</span>
+
++------+------+------+------+
+<span class="p">|</span> no   <span class="p">|</span> a    <span class="p">|</span> b    <span class="p">|</span> c    <span class="p">|</span>
++------+------+------+------+
+<span class="p">|</span>    <span class="m">4</span> <span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>    <span class="m">0</span> <span class="p">|</span>
++------+------+------+------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<h3 id="or"><code>OR</code>로 조합하기<a class="headerlink" href="#or" title="Permanent link">&para;</a></h3>
+<p><code>OR</code> 논리 연산자의 경우 <code>AND</code>와 달리 어느 하나만 참이 되면 참이 됩니다. 따라서 <code>OR</code> 논리 연산자는 논리합을 계산하는 <strong>합집합</strong>에 해당합니다.</p>
+<p><code>a</code>열이 <code>0</code>이 아니거나 <code>b</code>열이 <code>0</code>이 아닌 행을 검색하는 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT * FROM sample24 WHERE a&lt;&gt;0 OR b&lt;&gt;0<span class="p">;</span>
+
++------+------+------+------+
+<span class="p">|</span> no   <span class="p">|</span> a    <span class="p">|</span> b    <span class="p">|</span> c    <span class="p">|</span>
++------+------+------+------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span>    <span class="m">1</span> <span class="p">|</span>    <span class="m">0</span> <span class="p">|</span>    <span class="m">0</span> <span class="p">|</span>
+<span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>    <span class="m">0</span> <span class="p">|</span>    <span class="m">1</span> <span class="p">|</span>    <span class="m">0</span> <span class="p">|</span>
+<span class="p">|</span>    <span class="m">4</span> <span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>    <span class="m">0</span> <span class="p">|</span>
+<span class="p">|</span>    <span class="m">5</span> <span class="p">|</span>    <span class="m">0</span> <span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>
++------+------+------+------+
+<span class="m">4</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<h3 id="and-or"><code>AND</code>와 <code>OR</code>를 사용할 경우 주의할 점<a class="headerlink" href="#and-or" title="Permanent link">&para;</a></h3>
+<p>열이나 상수만을 지정해도 오류가 발생하지는 않지만 원하는 결괏값이 아닐 수 있습니다. 상수의 경우 논리 연산 기준에서는 항상 참이 되기 때문입니다. 예를 들어 <code>SELECT * FROM sample24 WHERE no=1 OR 2;</code>라는 명령문에서 <code>WHERE no=1 OR 2</code>의 의미는 <code>no</code>열의 값이 <code>1</code> 또는 <code>2</code>가 아닌 <code>no</code>열의 값이 <code>1</code> 또는 뒤의 상수 <code>2</code>는 무조건 참이 됩니다. 따라서 해당 명령문은 모든 행을 반환하게 됩니다.</p>
+<p>올바르게 <code>no</code>열의 값이 <code>1</code> 또는 <code>2</code>를 의미하는 조건식을 원한다면 <code>WHERE no=1 OR no=2</code>와 같이 작성해야 합니다.</p>
+<h4 id="and-or_1"><code>AND</code>와 <code>OR</code> 조합<a class="headerlink" href="#and-or_1" title="Permanent link">&para;</a></h4>
+<p><code>AND</code>와 <code>OR</code>을 조합할 수도 있습니다. 예를 들어 앞서 <code>AND</code> 논리 연산자 예시인, <code>a</code>열과 <code>b</code>열의 값이 모두 <code>0</code>이 아닌 행의 경우 <code>a</code>열이 <code>1</code> 또는 <code>2</code>이고, <code>b</code>열이 <code>1</code> 또는 <code>2</code>인 행을 검색하는 것과 동일합니다. 따라서 그 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT * FROM sample24 WHERE <span class="nv">a</span><span class="o">=</span><span class="m">1</span> OR <span class="nv">a</span><span class="o">=</span><span class="m">2</span> AND <span class="nv">b</span><span class="o">=</span><span class="m">1</span> OR <span class="nv">b</span><span class="o">=</span><span class="m">2</span><span class="p">;</span>
+
++------+------+------+------+
+<span class="p">|</span> no   <span class="p">|</span> a    <span class="p">|</span> b    <span class="p">|</span> c    <span class="p">|</span>
++------+------+------+------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span>    <span class="m">1</span> <span class="p">|</span>    <span class="m">0</span> <span class="p">|</span>    <span class="m">0</span> <span class="p">|</span>
+<span class="p">|</span>    <span class="m">4</span> <span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>    <span class="m">0</span> <span class="p">|</span>
+<span class="p">|</span>    <span class="m">5</span> <span class="p">|</span>    <span class="m">0</span> <span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>
++------+------+------+------+
+<span class="m">3</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>그런데 앞선 결괏값과 다른 것을 볼 수 있습니다. 그 이유는 우선순위 때문입니다.</p>
+<h4 id="_9">연산자의 우선 순위<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p><code>OR</code> 보다 <code>AND</code>의 우선 순위가 더 높아 <code>a=1 OR a=2 AND b=1 OR b=2</code>에서 <code>a=2 AND b=1</code> 조건이 먼저 계산됩니다. 이럴 때는 사칙연산과 마찬가지로 괄호(<code>()</code>)을 사용하여 우선 순위를 지정해줄 수 있습니다. 따라서 아래와 같은 방법으로 원하는 결괏값을 얻을 수 있습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT * FROM sample24 WHERE <span class="o">(</span><span class="nv">a</span><span class="o">=</span><span class="m">1</span> OR <span class="nv">a</span><span class="o">=</span><span class="m">2</span><span class="o">)</span> AND <span class="o">(</span><span class="nv">b</span><span class="o">=</span><span class="m">1</span> OR <span class="nv">b</span><span class="o">=</span><span class="m">2</span><span class="o">)</span><span class="p">;</span>
+
++------+------+------+------+
+<span class="p">|</span> no   <span class="p">|</span> a    <span class="p">|</span> b    <span class="p">|</span> c    <span class="p">|</span>
++------+------+------+------+
+<span class="p">|</span>    <span class="m">4</span> <span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>    <span class="m">0</span> <span class="p">|</span>
++------+------+------+------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<h3 id="not"><code>NOT</code>으로 조합<a class="headerlink" href="#not" title="Permanent link">&para;</a></h3>
+<p><code>AND</code>, <code>OR</code> 외에도 <code>NOT</code> 논리 연산자 또한 존재합니다. <code>AND</code>, <code>OR</code> 논리 연산자가 좌우 항목을 필요로 하는 <strong>이항 연산자</strong>라면 <code>NOT</code> 논리 연산자의 경우 우측에만 항목을 지정하는 <strong>단항 연산자</strong>입니다.</p>
+<p><code>a</code>열이 <code>0</code>이 아니거나 <code>b</code>열이 <code>0</code>이 아닌 행을 제외한 나머지 행을 검색하는 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT * FROM sample24 WHERE NOT <span class="o">(</span>a&lt;&gt; <span class="m">0</span> OR b &lt;&gt; <span class="m">0</span><span class="o">)</span><span class="p">;</span>
+
++------+------+------+------+
+<span class="p">|</span> no   <span class="p">|</span> a    <span class="p">|</span> b    <span class="p">|</span> c    <span class="p">|</span>
++------+------+------+------+
+<span class="p">|</span>    <span class="m">3</span> <span class="p">|</span>    <span class="m">0</span> <span class="p">|</span>    <span class="m">0</span> <span class="p">|</span>    <span class="m">1</span> <span class="p">|</span>
++------+------+------+------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<h2 id="08">08강 패턴 매칭에 의한 검색<a class="headerlink" href="#08" title="Permanent link">&para;</a></h2>
+<p><code>=</code>을 통해서 검색할 때 값이 완전히 동일한지 비교하여 결괏값을 반환했습니다. 하지만 특정 문자 또는 문자열이 포함되어 있는지를 검색하고 싶은 경우도 존재하기 때문에 이를 위해 등장한 게 바로 <strong>패턴 매팅</strong> 또는 <strong>부분 검색</strong>입니다. 예를 들어 검색창에 <strong>SQL</strong>을 검색했을 때 <strong>SQL</strong>이라는 문자열이 단어 내에 포함된 <strong>MySQL</strong>과 <strong>PostgreSQL</strong> 모두가 검색되게 하는 경우입니다.</p>
+<h3 id="like"><code>LIKE</code>로 패턴 매칭하기<a class="headerlink" href="#like" title="Permanent link">&para;</a></h3>
+<p><code>LIKE</code> 술어를 사용하면 <code>=</code> 연산자와 달리 열 값이 부분적으로 일치하는 경우에도 참이됩니다. 명령문의 형태는 <code>열명 LIKE '패턴'</code>과 같으며 이때 <code>%</code> 또는 <code>_</code>와 같은 <strong>메타문자</strong>를 사용할 수 있습니다.</p>
+<p><strong>와일드카드</strong>라고도 불리는 이 <strong>메타문자</strong>는 패턴 매칭 시 임의의 문자 또는 문자열에 매치하는 부분을 지정하기 위해 쓰이는 특수 문자입니다. 패턴을 정의할 때 이 메타문자를 여러 개 사용할 수 있습니다. <code>LIKE</code>에서 사용되는 메타문자 두 가지의 의미는 다음과 같습니다.</p>
+<ul>
+<li>퍼센트(<code>%</code>) : 임의의 문자열을 의미합니다.</li>
+<li>언더스코어(<code>_</code>) : 임의의 문자 하나를 의미합니다.</li>
+</ul>
+<p>아래와 같은 테이블 <code>sample25</code>가 있다고 가정해봅시다.</p>
+<div class="highlight"><pre><span></span><code><span class="o">+</span><span class="c1">------+-----------------------------------------------------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">no</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="nb">text</span><span class="w">                                                            </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+-----------------------------------------------------------------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">SQL은</span><span class="w"> </span><span class="n">RDBMS를</span><span class="w"> </span><span class="err">조작하기</span><span class="w"> </span><span class="err">위한</span><span class="w"> </span><span class="err">언어이다</span><span class="p">.</span><span class="w">                                  </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">LIKE에서는</span><span class="w"> </span><span class="err">메타문자</span><span class="w"> </span><span class="o">%</span><span class="err">와</span><span class="w"> </span><span class="n">_를</span><span class="w"> </span><span class="err">사용할</span><span class="w"> </span><span class="err">수</span><span class="w"> </span><span class="err">있다</span><span class="p">.</span><span class="w">                              </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">LIKE는</span><span class="w"> </span><span class="n">SQL에서</span><span class="w"> </span><span class="err">사용할</span><span class="w"> </span><span class="err">수</span><span class="w"> </span><span class="err">있는</span><span class="w"> </span><span class="err">술어</span><span class="w"> </span><span class="err">중</span><span class="w"> </span><span class="err">하나이다</span><span class="p">.</span><span class="w">                          </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+-----------------------------------------------------------------+</span>
+</code></pre></div>
+<p>여기서 문자열 <code>SQL</code>을 폼하는 행을 패턴 매칭으로 검색하는 방법은 다음과 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT * FROM sample25 WHERE text LIKE <span class="s1">&#39;SQL%&#39;</span><span class="p">;</span>
+
++------+---------------------------------------------------+
+<span class="p">|</span> no   <span class="p">|</span> text                                              <span class="p">|</span>
++------+---------------------------------------------------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span> SQL은 RDBMS를 조작하기 위한 언어이다.                    <span class="p">|</span>
++------+---------------------------------------------------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>문제는 <code>no</code>열의 값이 <code>3</code>인 <code>text</code> 열의 값에도 <code>SQL</code>이 포함되어 있는데 반환되지 않았습니다. 그 이유는 <code>LIKE 'SQL%'</code>이 <code>SQL</code>이라는 문자가 맨 앞에 존재하고 그 뒤에 임의의 문자열(<code>%</code>)이 존재하는 행을 검색하라는 의미이기 때문입니다. 만약 앞뒤에 어떤 문자열이 존재하더라도 <code>SQL</code>만 들어있으면 되는 경우를 검색하고 싶다면 그 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT * FROM sample25 WHERE text LIKE <span class="s1">&#39;%SQL%&#39;</span><span class="p">;</span>
+
++------+-----------------------------------------------------------------+
+<span class="p">|</span> no   <span class="p">|</span> text                                                            <span class="p">|</span>
++------+-----------------------------------------------------------------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span> SQL은 RDBMS를 조작하기 위한 언어이다.                                  <span class="p">|</span>
+<span class="p">|</span>    <span class="m">3</span> <span class="p">|</span> LIKE는 SQL에서 사용할 수 있는 술어 중 하나이다.                          <span class="p">|</span>
++------+-----------------------------------------------------------------+
+<span class="m">2</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>여기서 중요한 점은 메타문자인 <code>%</code>가 빈 문자열과도 매치하는 것입니다. 다시 말해 <code>text</code>열의 값이 <code>SQL은 RDBMS를 조작하기 위한 언어이다.</code>인 경우 <code>SQL</code> 문자열 앞에 어떤 문자열이 존재하지 않는, 빈 문자열임에도 <code>LIKE '%SQL%'</code> 조건에 일치하여 반환되었습니다.</p>
+<ul>
+<li>전방 일치 : <code>SQL%</code>과 같이 문자열 앞쪽에 지정한 문자와 일치하는 경우를 <strong>전방 일치</strong>라 합니다.</li>
+<li>중간 일치 : <code>%SQL%</code>과 같이 지정 문자열이 중간에 있어 지정한 문자 앞뒤로 임의의 문자열이 존재하는 경우를 <strong>중간 일치</strong>라 합니다.</li>
+<li>후방 일치 : <code>%SQL</code>과 같이 문자열 뒤쪽에 지정한 문자와 일치하는 경우를 <strong>후방 일치</strong>라 합니다.</li>
+</ul>
+<h3 id="like_1"><code>LIKE</code>로 <code>%</code>를 검색하기<a class="headerlink" href="#like_1" title="Permanent link">&para;</a></h3>
+<p><code>text</code> 열의 값이 <code>LIKE에서는 메타문자 %와 _를 사용할 수 있다.</code>와 같은 경우 문자열 내에 <code>%</code>와 <code>_</code> 같은 메타문자를 포함하고 있습니다. 이때는 <code>\</code>를 사용하여 이스케이프(<code>\</code>) 처리해 원하는 메타문자를 검색 조건으로 포함할 수 있습니다. 그 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT * FROM sample25 WHERE text LIKE <span class="s1">&#39;%\%%&#39;</span><span class="p">;</span>
+
++------+------------------------------------------------------------+
+<span class="p">|</span> no   <span class="p">|</span> text                                                       <span class="p">|</span>
++------+------------------------------------------------------------+
+<span class="p">|</span>    <span class="m">2</span> <span class="p">|</span> LIKE에서는 메타문자 %와 _를 사용할 수 있다.                        <span class="p">|</span>
++------+------------------------------------------------------------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<div class="admonition info">
+<p class="admonition-title">정보</p>
+<p>프로그래밍에서 <strong>이스케이프(Escape)</strong>란 프로그래밍 특성상 표현할 수 없는 문자를 표현하는 방법을 의미합니다.</p>
+</div>
+<h3 id="_10">문자열 상수 <code>'</code>의 이스케이프!<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>메타문자를 검색할 때와 마찬가지로 문자열 상수를 검색할 경우 <code>'</code>을 (<code>''</code>)와 같이 연속으로 기술하여 이스케이프 처리를 할 수 있습니다. 예를 들어 <code>It's</code>라는 문자열을 검색하고 싶을 때 <code>LIKE 'It''s'</code>와 같이 조건을 작성할 수 있습니다. 또한 <code>'</code>하나만 존재할 경우 <code>LIKE ''''</code>와 같이 써서 검색 가능합니다. 겉을 감싸는 <code>''</code>와 <code>'</code>을 검색하기 위해 <code>'</code>을 연속으로 기술한 <code>''</code>이 존재하는 형태입니다.</p>
+<div class="admonition info">
+<p class="admonition-title">정보</p>
+<p>간단한 패턴 매칭의 경우 <code>LIKE</code>를 사용하면 되지만 훨씬 복잡한 패턴 또한 존재합니다. 대부분의 데이터베이스가 <strong>정규 표현식(Regular Expression)</strong>을 지원하기 때문에 그럴 때는 정규 표현식을 사용하는 게 훨씬 효율적입니다.</p>
+</div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7400981351083358"
+crossorigin="anonymous"></script>
+
+<h2 id="__comments"></h2>
+<div id="utteranc-thread"></div>
+<script src="https://utteranc.es/client.js"
+repo="0417taehyun/blog"
+issue-term="pathname"
+label="comments"
+theme="dark-blue"
+crossorigin="anonymous"
+async>
+</script>
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../1-database-and-sql/" class="md-footer__link md-footer__link--prev" aria-label="Previous: [ SQL 첫걸음 ] 제 1장 데이터베이스와 SQL" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              [ SQL 첫걸음 ] 제 1장 데이터베이스와 SQL
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../3-sorting-and-operation/" class="md-footer__link md-footer__link--next" aria-label="Next: [ SQL 첫걸음 ] 제 3장 정렬과 연산" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              [ SQL 첫걸음 ] 제 3장 정렬과 연산
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.tabs", "search.suggest", "search.highlight", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.ec8bae80.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.2f76aa63.min.js"></script>
+      
+        <script src="../../../../js/termynal.js"></script>
+      
+        <script src="../../../../js/custom.js"></script>
+      
+        <script src="../../../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

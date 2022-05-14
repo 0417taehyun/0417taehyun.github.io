@@ -1,0 +1,3199 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="[ Next.js ] AWS, GitHub Actions를 활용한 정적 웹사이트 CI/CD">
+      
+      
+      
+        <link rel="canonical" href="https://weekwith.me/devlog/next-js/etc/ci-cd-static-webstie-by-github-actions-and-aws-s3/">
+      
+      
+        
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14+insiders-4.15.0">
+    
+    
+      
+        <title>[ Next.js ] AWS, GitHub Actions를 활용한 정적 웹사이트 CI/CD - weekwith.me</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a7e54750.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.96b5c56e.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../css/termynal.css">
+    
+      <link rel="stylesheet" href="../../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <meta property="robots" content="index, follow" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#nextjs-aws-github-actions-cicd" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="weekwith.me" class="md-header__button md-logo" aria-label="weekwith.me" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            weekwith.me
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              [ Next.js ] AWS, GitHub Actions를 활용한 정적 웹사이트 CI/CD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/0417taehyun" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+
+
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  weekwith.me
+
+      </a>
+    </li>
+  
+
+      
+        
+
+
+  
+    
+    
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../article/retrospect/etc/aws-girls-in-tech-mentoring/" class="md-tabs__link">
+          
+  
+  아티클
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+
+
+  
+    
+    
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../algorithms/programmers/sql/level-1/1-get-all-records/" class="md-tabs__link">
+          
+  
+  알고리즘
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+
+
+  
+    
+    
+      
+    
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../java/live-study/chapter-01/" class="md-tabs__link md-tabs__link--active">
+          
+  
+  프로그래밍 공부 일지
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+
+
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../tags/" class="md-tabs__link">
+        
+  
+  태그
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="weekwith.me" class="md-nav__button md-logo" aria-label="weekwith.me" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    weekwith.me
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/0417taehyun" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    weekwith.me
+  </span>
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          
+  
+  <span class="md-ellipsis">
+    아티클
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="아티클" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          아티클
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          
+  
+  <span class="md-ellipsis">
+    회고
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="회고" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          회고
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1" type="checkbox" id="__nav_2_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1">
+          
+  
+  <span class="md-ellipsis">
+    기타
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="기타" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          기타
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/etc/aws-girls-in-tech-mentoring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ AWS x Girls In Tech Mentoring Program ] 회고
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/etc/analyze-the-complex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    열등감 분석
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_2" type="checkbox" id="__nav_2_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_2">
+          
+  
+  <span class="md-ellipsis">
+    TWIL
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="TWIL" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          TWIL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/twil/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TWIL 3기 회고
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_3" type="checkbox" id="__nav_2_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_3">
+          
+  
+  <span class="md-ellipsis">
+    컨퍼런스
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="컨퍼런스" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          컨퍼런스
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/conference/toss-design-conference-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 토스 디자인 컨퍼런스 ] Simplicity21: 1일차 내용 정리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/conference/toss-design-conference-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 토스 디자인 컨퍼런스 ] Simplicity21: 2일차 내용 정리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/conference/toss-design-conference-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 토스 디자인 컨퍼런스 ] Simplicity21: 3일차 내용 정리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          
+  
+  <span class="md-ellipsis">
+    소프트-웨어
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="소프트-웨어" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          소프트-웨어
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/soft-where/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    개발에도 최최최종 파일이 있다고요?
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/soft-where/02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    데이터베이스에서 김 서방 찾기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          
+  
+  <span class="md-ellipsis">
+    알고리즘
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="알고리즘" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          알고리즘
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          
+  
+  <span class="md-ellipsis">
+    프로그래머스
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="프로그래머스" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          프로그래머스
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_1" type="checkbox" id="__nav_3_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1_1">
+          
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          SQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_1_1" type="checkbox" id="__nav_3_1_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1_1_1">
+          
+  
+  <span class="md-ellipsis">
+    LEVEL 1
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="LEVEL 1" data-md-level="4">
+        <label class="md-nav__title" for="__nav_3_1_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          LEVEL 1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/1-get-all-records/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 모든 레코드 조회하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/2-get-max-number/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 최댓값 구하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/3-no-name-animal-id/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 이름이 없는 동물의 아이디
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/4-reverse-ordering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 역순 정렬하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/5-exists-name-animal-id/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 이름이 있는 동물의 아이디
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/6-find-sick-animal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 아픈 동물 찾기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/7-find-young-animal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 어린 동물 찾기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/8-animal-id-and-name/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 동물의 아이디와 이름
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/9-ordering-with-multiple-options/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 여러 기준으로 정렬하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/10-top-nth-records/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 상위 n개 레코드
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          
+  
+  <span class="md-ellipsis">
+    이것이 취업을 위한 코딩 테스트다 with 파이썬
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="이것이 취업을 위한 코딩 테스트다 with 파이썬" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          이것이 취업을 위한 코딩 테스트다 with 파이썬
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/coding-test-for-employment/1-big-o/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    복잡도
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/coding-test-for-employment/2-greedy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    그리디
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          
+  
+  <span class="md-ellipsis">
+    쓰면서 익히는 알고리즘과 자료구조
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="쓰면서 익히는 알고리즘과 자료구조" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          쓰면서 익히는 알고리즘과 자료구조
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/writing-algorithm/1-array/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    배열
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          
+  
+  <span class="md-ellipsis">
+    프로그래밍 공부 일지
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="프로그래밍 공부 일지" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          프로그래밍 공부 일지
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          
+  
+  <span class="md-ellipsis">
+    Java
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Java" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Java
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1_1" type="checkbox" id="__nav_4_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1_1">
+          
+  
+  <span class="md-ellipsis">
+    백기선의 자바 스터디
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="백기선의 자바 스터디" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          백기선의 자바 스터디
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../java/live-study/chapter-01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1주차 과제: JVM은 무엇이며 자바 코드는 어떻게 실행하는 것인가.
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../java/live-study/chapter-02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2주차 과제: 자바 데이터 타입, 변수 그리고 배열
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../java/live-study/chapter-03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3주차 과제: 연산자
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          
+  
+  <span class="md-ellipsis">
+    NextJS
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="NextJS" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          NextJS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_1" type="checkbox" id="__nav_4_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_1">
+          
+  
+  <span class="md-ellipsis">
+    개인 공부
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="개인 공부" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          개인 공부
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    [ Next.js ] AWS, GitHub Actions를 활용한 정적 웹사이트 CI/CD
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    [ Next.js ] AWS, GitHub Actions를 활용한 정적 웹사이트 CI/CD
+  </span>
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      도입
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      정적 웹 사이트 배포
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="정적 웹 사이트 배포">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      프로젝트 생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS IAM
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS IAM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      개념
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      IAM 계정 생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      액세스 키 재발급 또는 자동 생성된 비밀번호 재생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      IAM 계정 로그인
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      기타
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-route53" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS Route53
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Route53">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      개념
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      호스팅 생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      네임서버 등록
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acm" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACM
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ACM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      개념
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      인증서 생성
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS S3
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS S3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      개념
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      버킷 생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next.js 배포 관련 주의 사항
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      빌드 파일 및 폴더 업로드
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      정적 웹 사이트 배포
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      기타
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-cloudfront" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS CloudFront
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS CloudFront">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      개념
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      배포 생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#route53" class="md-nav__link">
+    <span class="md-ellipsis">
+      Route53 서비스 연결
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-actions-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub Actions를 통한 CI/CD
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GitHub Actions를 통한 CI/CD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      CI/CD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow 파일 설정
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub Secret
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      결론
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      참고
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          
+  
+  <span class="md-ellipsis">
+    Blockchain
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Blockchain" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Blockchain
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_1" type="checkbox" id="__nav_4_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_1">
+          
+  
+  <span class="md-ellipsis">
+    힙한 크리토의 비밀
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="힙한 크리토의 비밀" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          힙한 크리토의 비밀
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blockchain/hip-crypto/1-week/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 힙한 크립토의 비밀 ] 1주차 과제
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blockchain/hip-crypto/2-week/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 힙한 크립토의 비밀 ] 2주차 과제
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          
+  
+  <span class="md-ellipsis">
+    Database
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Database" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Database
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4_1" type="checkbox" id="__nav_4_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4_1">
+          
+  
+  <span class="md-ellipsis">
+    SQL 첫걸음
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL 첫걸음" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          SQL 첫걸음
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database/sql-first-step/1-database-and-sql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 1장 데이터베이스와 SQL
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database/sql-first-step/2-data-selecting-from-table/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 2장 테이블에서 데이터 검색
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database/sql-first-step/3-sorting-and-operation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 3장 정렬과 연산
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database/sql-first-step/4-data-insert-delete-update/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 4장 데이터의 추가, 삭제, 갱신
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database/sql-first-step/5-aggregation-and-subquery/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 5장 집계와 서브쿼리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database/sql-first-step/6-create-and-delete-database-object/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 6장 데이터베이스 객체 작성과 삭제
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database/sql-first-step/7-manage-multi-tables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 7장 복수의 테이블 다루기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database/sql-first-step/8-design-database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 8장 데이터베이스 설계
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    태그
+  </span>
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      도입
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      정적 웹 사이트 배포
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="정적 웹 사이트 배포">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      프로젝트 생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS IAM
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS IAM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      개념
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      IAM 계정 생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      액세스 키 재발급 또는 자동 생성된 비밀번호 재생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      IAM 계정 로그인
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      기타
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-route53" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS Route53
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Route53">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      개념
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      호스팅 생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      네임서버 등록
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acm" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACM
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ACM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      개념
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      인증서 생성
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS S3
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS S3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      개념
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      버킷 생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next.js 배포 관련 주의 사항
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      빌드 파일 및 폴더 업로드
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      정적 웹 사이트 배포
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      기타
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-cloudfront" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS CloudFront
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS CloudFront">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      개념
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      배포 생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#route53" class="md-nav__link">
+    <span class="md-ellipsis">
+      Route53 서비스 연결
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-actions-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub Actions를 통한 CI/CD
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GitHub Actions를 통한 CI/CD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      CI/CD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow 파일 설정
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub Secret
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      결론
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      참고
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                <h1 id="nextjs-aws-github-actions-cicd">[ Next.js ] AWS, GitHub Actions를 활용한 정적 웹사이트 CI/CD<a class="headerlink" href="#nextjs-aws-github-actions-cicd" title="Permanent link">&para;</a></h1>
+<h2 id="_1">도입<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>이 글을 통해 <strong>AWS IAM</strong>, <strong>S3</strong>, <strong>CloudFront</strong>, <strong>Route53</strong>, <strong>Certificate Manager</strong>을 활용해 Next.js 프로젝트를 정적 웹 사이트로 배포하고 <strong>GitHub Actions</strong>를 활용하여 해당 배포를 자동화하는 방법에 대해 배웁니다. 그리고 이 과정에서 <strong>GitHub Actions</strong> 및 배포 방식 중 하나인 <strong>CI/CD</strong>에 관한 기초적인 개념을 익힐 수 있습니다.  </p>
+<div class="admonition info">
+<p class="admonition-title">참고</p>
+<p>이 글에 사용된 모든 소스 코드는 맨 아래 <a href="#참고">참고</a> 부분에 있는 <a href="https://github.com/week-with-me/next-js-deployment-practice">GitHub 레포지토리</a>에서 확인할 수 있습니다.</p>
+</div>
+<p><strong>배울 수 있는 것</strong>과 <strong>배울 수 없는 것</strong>, 그리고 <strong>유의사항</strong>을 각각 정리하면 아래와 같습니다.  </p>
+<p>해당 글을 통해 <strong>배울 수 있는 것</strong>은 아래와 같습니다.  </p>
+<ul>
+<li><strong>AWS IAM</strong>을 통한 사용자 계정 관리</li>
+<li><strong>AWS S3</strong>를 통한 정적 웹 사이트 배포</li>
+<li><strong>AWS CloudFront</strong>, <strong>Route53</strong>, <strong>Certificatie Manager</strong>을 통한 구매한 도메인 및 HTTPS 리다이렉션 적용</li>
+<li><strong>GitHub Actions</strong>를 활용한 배포 자동화(<strong>CI/CD</strong>)</li>
+</ul>
+<p>해당 글을 통해 <strong>배울 수 없는 것</strong>은 아래와 같습니다.  </p>
+<ul>
+<li><strong>Git</strong> 및 <strong>GitHub</strong> 기초</li>
+<li><strong>Next.js</strong>를 포함한 <strong>프론트엔드</strong> 기초</li>
+<li><strong>AWS</strong> 핵심 개념</li>
+<li><strong>WEB</strong> 및 <strong>HTTP</strong> 핵심 개념</li>
+</ul>
+<p>유의사항은 아래와 같습니다.  </p>
+<ul>
+<li>도메인 구매 비용 및 AWS <strong>과금이 발생</strong>할 수 있습니다.</li>
+<li>쉽게 따라할 수 있는 만큼 이미지가 많아 <strong>글이 깁니다</strong>.**</li>
+<li>글이 작성된 이후 시간이 지나 AWS 또는 GitHub 서비스 UI 등의 <strong>변화가 있을 수 있습니다</strong>.</li>
+</ul>
+<h2 id="_2">정적 웹 사이트 배포<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">프로젝트 생성<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p><code>npx create-next-app next-js-deployment-practice --typescript</code> 라는 명령어를 통해 타입스크립트(TypeScript)를 사용하는 새로운 Next.js 프로젝트를 생성합니다. 명령어를 통해 알 수 있듯 생성된 프로젝트의 이름은 <code>next-js-deployment-practice</code> 입니다.  </p>
+<div class="admonition info">
+<p class="admonition-title">참고</p>
+<p>굳이 타입스크립트를 사용하는 프로젝트를 생성하지 않아도 괜찮고 심지어는 Next.js가 아닌 다른 프론트엔드 라이브러리 또는 프레임워크를 사용해도 좋습니다. 다만 이 과정에서 배포하게 되는 디렉토리의 이름이 달라질 수 있습니다.</p>
+</div>
+<h3 id="aws-iam">AWS IAM<a class="headerlink" href="#aws-iam" title="Permanent link">&para;</a></h3>
+<h4 id="_4">개념<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>서비스를 만들 때 보통 다수의 인원이 함께 개발에 착수합니다. 이후 배포를 할 때 다양한 클라우드 호스팅 서비스를 사용할 수 있는데, 이때 사용자를 구분하는 것이 보안적인 측면에서 좋습니다.  </p>
+<p>쉽게 생각하면 프론트엔드 개발만 하는 사람에게 백엔드 관련 서버를 다운시킨다거나 혹은 다른 사람들의 계정을 지울 수 없게 권한을 제약하는 것입니다.  </p>
+<p>바로 이러한 개별 또는 그룹의 권한 설정을 가능하게 해주는 AWS의 서비스가 바로 <strong>IAM(Identity and Access Management)</strong>입니다.  </p>
+<h4 id="iam">IAM 계정 생성<a class="headerlink" href="#iam" title="Permanent link">&para;</a></h4>
+<p>AWS를 루트 계정으로 로그인 한 이후 아래 이미지와 같이 <strong>IAM</strong>을 검색하여 <strong>사용자</strong> 탭에 들어갑니다. 이후 <strong>사용자 추가</strong> 버튼을 누릅니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/1.png"></p>
+<p>아래 이미지와 같이 본인이 원하는 이름으로 <strong>사용자 이름</strong>을 설정하고 <strong>AWS 자격 증명 유형</strong>의 경우 <strong>액세스 키</strong>와 <strong>암호</strong>를 모두 체크합니다.  </p>
+<p><strong>액세스 키</strong>의 경우 <strong>GitHub Actions</strong> 환경 또는 설명에 적혀있는 것처럼 터미널과 같은 CLI(Command Line Interface) 환경에서 AWS 작업을 하기 위해 필요합니다.  </p>
+<p><strong>암호</strong>의 경우 해당 사용자 (이 예시에서는 <code>weekwith.me</code>) 가 AWS 웹 페이지에 로그인할 때 암호를 사용할 수 있게 해줍니다. <strong>콘솔 비밀번호</strong>의 경우 무엇을 선택해도 괜찮지만 보안을 위해 <strong>자동 생성된 비밀 번호</strong>로 설정하였습니다. 처음 로그인할 때는 이를 통해 자동으로 생성된 비밀번호를 입력해서 접속해야 합니다. 이후 <strong>비밀번호 재설정 필요 옵션</strong>을 체크하였기 때문에 사용자 (이 예시에서는 <code>weekwith.me</code>) 가  첫 로그인 이후 직접 본인이 원하는 비밀번호로 수정할 수 있습니다. 이에 관해서는 아래에서 더 자세히 알 수 있습니다.</p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/2.png"></p>
+<p>이제 해당 사용자가 어떤 AWS 서비스를 이용할 수 있는지 권한을 부여해줍니다. 우리의 경우 앞서 이야기했던 것처럼 <strong>S3</strong>, <strong>Route 53</strong>, <strong>CloudFront</strong>, <strong>Certificate Manager</strong>를 이용하기 때문에 아래 이미지와 같이 각각의 정책을 정책 필터에서 검색하여 체크해줍니다. 이때 각각의 서비스에 관해 FullAccess 권한이 아닌 더 제한적인 권한을 부여할 수 있지만 원활한 진행을 위해 <code>FullAccess</code>로 권한을 부여합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/3.png"></p>
+<p><strong>태그</strong>의 경우 선택 사항입니다. 추후 해당 사용자를 빠르게 검색하거나 인지할 수 있게 아래와 같이 <code>study</code>라는 키에 <code>next-js-deployment-practice</code>라는 값을 입력했습니다. 굳이 따라하지 않으셔도 좋습니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/4.png"></p>
+<p>태그까지 마무리를 지었다면 아래 이미지와 같이 사용자가 생성된 것을 확인할 수 있습니다. 이때 권한 요약 부분에 존재해야 할 권한은 아래와 같습니다.  </p>
+<ul>
+<li>AmazonS3FullAccess</li>
+<li>AmazonRoute53FullAccess</li>
+<li>AmazonCloudFrontFullAccess</li>
+<li>IAMUserChangePassword</li>
+<li>AWSCertificateManagerFullAccess</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">주의</p>
+<p>해당 이미지에는 ACM 관련 권한이 빠져있습니다.</p>
+</div>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/5.png"></p>
+<p>그 뒤에 사용자 만들기 버튼을 누르고나면 아래 이미지와 같이 액세스 키와 관련된 CSV 파일을 다운로드 받을 수 있는 페이지가 나타납니다.  </p>
+<div class="admonition danger">
+<p class="admonition-title">위험</p>
+<p>이때 꼭 해당 CSV 파일을 다운로드 받고 외부에 유출하거나 삭제해서는 안 됩니다.</p>
+<p>만약 해당 파일을 잃어버리거나, 파일이 유출되었을 경우 액세스 키를 삭제하고 재생성해야 합니다.</p>
+</div>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/6.png"></p>
+<p>다운로드 받은 CSV 파일을 열어보면 아래 이미지와 같습니다. 해당 파일에서 기억해야 할 부분은 아래와 같습니다.  </p>
+<ul>
+<li><strong>Password</strong>: IAM 계정으로 로그인할 때 필요한, 자동으로 생성된 비밀번호입니다.</li>
+<li><strong>Access key ID</strong>: 추후 GitHub Actions를 활용하여 AWS 서비스에 접근 및 해당 서비스를 사용할 때 필요한 액세스 키입니다.</li>
+<li><strong>Secret access key</strong>: 추후 GitHub Actions를 활용하여 AWS 서비스에 접근 및 해당 서비스를 사용할 때 필요한 시크릿 키입니다.</li>
+<li><strong>Console login link</strong>: 해당 IAM 계정으로 로그인할 때 사용되는 URL입니다.</li>
+</ul>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/7.png"></p>
+<h4 id="_5">액세스 키 재발급 또는 자동 생성된 비밀번호 재생성<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>만약 액세스 키를 잃어버리거나 해당 키가 외부에 유출되었을 때는 키를 비활성화하고 재생성해야 합니다. 또는 자동으로 생성했던 IAM 계정의 비밀번호를 잃어버려 다시 생성해야 하는 경우도 재생성해야 합니다. 이 과정이 필요 없다면 건너 뛰셔도 좋습니다.  </p>
+<p>액세스 키 또는 <strong>IAM</strong> 계정 비밀번호를 재생성하기 위해서는 루트 사용자로 로그인한 뒤 아래 이미지와 같이 IAM으로 가서 생성했던 사용자를 클릭합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/8.png"></p>
+<p>이제 아래 이미지와 같이 <strong>보안 자격 증명</strong> 탭으로 이동합니다. 만약 비밀번호를 재생성해야 하는 경우 <strong>콘솔 비밀번호</strong>를 활용하고, 액세스 키를 재생성해야 하는 경우 기존에 존재하던 액세스 키를 <strong>비활성화</strong>한 뒤 <strong>액세스 키 만들기</strong>를 통해 새로 생성합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/9.png"></p>
+<p>기존 액세스 키를 성공적으로 비활성화하고 새로 생성할 경우 아래 이미지와 같습니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/10.png"></p>
+<p>재생성된 CSV 파일을 확인하면 아래 이미지와 같습니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/11.png"></p>
+<h4 id="iam_1">IAM 계정 로그인<a class="headerlink" href="#iam_1" title="Permanent link">&para;</a></h4>
+<p>IAM 계정으로 로그인하기 위해서는 아래 이미지와 같이 <strong>계정 ID</strong>, <strong>계정 별칭</strong> 또는 <strong>해당 계정으로 로그인할 수 있는 URL</strong>을 사용해야 합니다. 이번에는 계정 별칭을 한 번 사용해보겠습니다. 간단하게 본인이 원하는 별칭으로 생성하면 됩니다. </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/12.png"></p>
+<p>이제 루트 계정에서 로그아웃한 뒤 아래 이미지와 같이 기존 AWS 로그인 화면으로 이동합니다. <strong>IAM 사용자</strong>를 선택하고 본인이 만든 <strong>계정 별칭</strong>을 입력합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/13.png"></p>
+<p>아래 이미지와 같이 <strong>계정 별칭</strong>, <strong>사용자 이름</strong>, 자동으로 생성된 비밀번호를 <strong>암호</strong>에 입력하고 로그인합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/14.png"></p>
+<p>IAM 계정을 생성할 때 <strong>비밀번호 재설정 필요 옵션</strong>을 체크했기 때문에 아래 이미지와 같이 비밀번호를 재생성하는 화면이 나타납니다. 원하는 비밀번호로 재생성하면 됩니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/15.png"></p>
+<h4 id="_6">기타<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>IAM과 관련해서는 그룹 및 MFA와 같은 개념이 추가적으로 존재합니다. 관련하여 궁금한 분들은 직접 검색하길 추천드립니다. 개별 사용자로 IAM 계정을 만드는 경우는 그룹으로 묶이는 경우보다 덜 자주 발생합니다.</p>
+<h3 id="aws-route53">AWS Route53<a class="headerlink" href="#aws-route53" title="Permanent link">&para;</a></h3>
+<h4 id="_7">개념<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p>Route53은 도메인 구매 및 관리를 위한 서비스입니다. 이 글에서는 도메인 구매를 <a href="https://www.hosting.kr/">호스팅케이알(HK)</a>에서 진행하였으며 Route53에서는 다른 AWS 서비스와의 연동을 위한 도메인 관리 기능만 사용합니다.  </p>
+<h4 id="_8">호스팅 생성<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p>아래 이미지와 같이 Route53을 검색하여 호스팅 영역으로 이동해 아래 이미지와 같이 새로운 호스팅 영역을 생성합니다. 이때 도메인 이름에는 본인이 구매한 도메인을 입력하고 유형은 퍼블릭 호스팅 영역을 선택하여 생성합니다. 설명 및 태그의 경우 선택 사항입니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/17.png"></p>
+<h4 id="_9">네임서버 등록<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p>생성을 마치면 아래 이미지와 같이 <strong>레코드</strong>를 확인할 수 있습니다. 여기서 중요한 건 네임서버(Name Server)를 의미하는 <strong>NS</strong>입니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/18.png"></p>
+<p>이제 해당 <strong>NS</strong> 값 네 개를 복사하여 아래 이미지와 같이 본인이 구매한 도메인 업체에 접속하여 네임서버를 입력합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/19.png"></p>
+<h3 id="acm">ACM<a class="headerlink" href="#acm" title="Permanent link">&para;</a></h3>
+<h4 id="_10">개념<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<p>HTTP보다 보안이 높은 HTTPS를 사용하기 위해서는 SSL/TLS 인증서를 발급 받아야합니다.  </p>
+<p>ACM(AWs Cerficate Manager)은 이런 인증서를 발급해주는 서비스입니다.  </p>
+<h4 id="_11">인증서 생성<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p>아래 이미지와 같이 Certificate Manager를 검색하여 이동한 뒤 <strong>인증서 프로비저닝</strong>을 선택합니다.  </p>
+<p>!!! "warning" 주의</p>
+<div class="codehilite"><pre><span></span><code>CloudFront에서 적용 가능한 인증서의 지역은 `us-east-1`이어야하기 때문에 먼저 우측 상단에서 해당 지역(`us-east-1`)이 맞는지 확인한 뒤 아닐 경우 선택하고나서 인증서를 생성합니다.
+</code></pre></div>
+
+<p><img src="https://weekwith.me/images/next-js/ci-cd/20.png"></p>
+<p>다음으로 아래 이미지와 같이 <strong>공인 인증서 요청</strong>을 선택합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/21.png"></p>
+<p>해당 인증서를 적용할 도메인을 입력합니다. 아래 이미지와 같이 앞서 Route53 서비스에 입력했던 도메인(<code>artfrom.life</code>)을 입력합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/22.png"></p>
+<p>다음으로 아래 이미지와 같이 검증 방법을 <strong>DNS 검증</strong>을 선택합니다. 이를 통해 앞서 Route53에 등록한 도메인을 통해 검증 받을 수 있습니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/23.png"></p>
+<p><strong>검증</strong> 전 마지막 <strong>검토 및 요청</strong>에서 아래 이미지와 같이 본인이 알맞게 입력 및 선택했는지 한 번 더 확인합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/24.png"></p>
+<p>다음으로 <strong>검증</strong>에서 아래 이미지와 같이 <strong>CNAME</strong>을 기록할 수 있게 <strong>이름</strong>과 <strong>값</strong>을 알려줍니다. Route 53에서 레코드 생성을 눌러 직접 입력하는 대신 AWS에서 대신 간편하게 해당 도메인에 <strong>CNAME</strong>을 입력할 수 있게 합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/25.png"></p>
+<p>이제 기다리면 아래 이미지와 같이 <strong>상태</strong>가 <strong>발급 완료</strong>가 된 것을 확인할 수 있습니다. 이제부터 정삭적으로 해당 도메인에서 HTTPS를 사용할 수 있게 되었습니다.  </p>
+<h3 id="aws-s3">AWS S3<a class="headerlink" href="#aws-s3" title="Permanent link">&para;</a></h3>
+<h4 id="_12">개념<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+<p>AWS S3는 파일을 저장할 수 있는 파일 스토리지(File Storage) 중 하나입니다. S3의 가장 큰 특징 중 하나는 다른 AWS 서비스에서도 S3에 업로드 된 파일에 바로 접근할 수 있다는 것입니다. 파일 스토리지라는 이름을 통해 알 수 있듯 S3에는 보통 웹 애플리케이션에서 사용되는 이미지 등이 업로드 됩니다. 이번에는 S3를 통해 정적 웹 사이트를 호스팅해보겠습니다.  </p>
+<h4 id="_13">버킷 생성<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<p><strong>S3</strong>를 검색하여 아래 이미지와 같이 <strong>버킷</strong>으로 이동한 다음 <strong>버킷 만들기</strong> 버튼을 클릭합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/26.png"></p>
+<p>이제 아래 이미지와 같이 생성할 <strong>버킷 이름</strong>을 입력하고 맨 아래 <strong>버킷 만들기</strong> 버튼을 클릭하여 버킷을 생성합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/27.png"></p>
+<p>이제 아래 이미지와 같이 만든 <strong>버킷</strong> (이 예시에서는 <code>next-js-deployment-pratice</code>) 으로 이동하여 <strong>객체</strong> 속성에서 <strong>업로드</strong> 버튼을 클릭하여 배포할 파일 및 폴더를 업로드합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/28.png"></p>
+<h4 id="nextjs">Next.js 배포 관련 주의 사항<a class="headerlink" href="#nextjs" title="Permanent link">&para;</a></h4>
+<p>Next.js의 빌드는 React.js와는 조금 다릅니다. <code>next export</code>에 관해 이미 알고 있다면 해당 부분을 넘어가도 좋습니다.  </p>
+<p>Next.js를 빌드하기 위해서는 <code>package.json</code> 파일 속 <code>"scripts"</code> 객체의 <code>"build"</code> 값에 <code>next export</code>를 추가해야 합니다.  </p>
+<p>정리하면 <code>"build": "next build &amp;&amp; next export"</code> 와 같습니다.  </p>
+<p>next build 의 경우 <code>.next</code>라는 폴더에 애플리케이션을 빌드합니다. <code>next export</code>의 경우 <code>.out</code> 폴더에 모든 페이지를 정적 HTML 파일로 내보냅니다. 따라서 <code>next export</code>를 통해 생성된 <code>.out</code> 폴더에는 빌드된 <code>.next</code> 폴더가 포함되어 있습니다.  </p>
+<p>관련된 더 자세한 설명은 이 글에서는 생략하겠습니다. 혹시 궁금한 분들은 Next.js 공식 도큐먼트에 나와있는 <a href="https://nextjs.org/docs/advanced-features/static-html-export">정적 HTML 내보내기</a>를 확인하기 바랍니다.  </p>
+<h4 id="_14">빌드 파일 및 폴더 업로드<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h4>
+<p>이제 아래 이미지와 같이 <strong>파일 추가</strong> 및 <strong>폴더 추가</strong> 버튼을 눌러 <code>.out</code> 폴더 내에 있는 프로젝트의 빌드 파일을 업로드합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/32.png"></p>
+<h4 id="_15">정적 웹 사이트 배포<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h4>
+<p>모든 빌드 파일 및 폴더를 업로드 완료했으면 이제 아래 이미지와 같이 <strong>속성</strong> 탭으로 넘어옵니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/33.png"></p>
+<p>그리고 아래 이미지와 같이 해당 탭 맨 아래 존재하는 <strong>정적 웹 사이트 호스팅</strong> 부분에서 <strong>편집</strong> 버튼을 클릭합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/34.png"></p>
+<p>아래 이미지와 같이 <strong>정적 웹 사이트 호스팅</strong>을 <strong>활성화</strong>하고 <strong>호스팅 유형</strong>을 <strong>정적 웹 사이트 호스팅</strong>으로 설정합니다.  </p>
+<p><strong>인덱스 문서</strong>의 경우 루트 경로(<code>/</code>)로 접근했을 때 보여질 문서를 의미합니다. <strong>오류 문서</strong>의 경우 오류가 발생했을 때 보여질 문서로 이 예시에서는 루트 경로로 리다이렉션 되게 하기 위해 <strong>인덱스 문서</strong> 및 <strong>오류 문서</strong> 모두 <code>index.html</code>로 설정합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">주의</p>
+<p><code>.out</code> 폴더 내에 있는 파일 및 폴더를 버킷에 정상적으로 업로드 했으면 <code>index.html</code>이 해당 버킷의 루트 디렉토리에 존재합니다.</p>
+<p>만약 <code>index.html</code> 파일이 루트 디렉토리에 존재하지 않을 경우 S3는 해당 파일을 읽을 수 없습니다.</p>
+</div>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/35.png"></p>
+<p>정적 웹 사이트 호스팅을 완료하면 아래 이미지와 같이 <strong>버킷 웹 사이트 엔드포인트</strong>가 생성된 것을 확인할 수 있습니다. 아래 URL로 한 번 접속해봅시다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/36.png"></p>
+<p>그러면 이제 아래 이미지와 같이 <strong>403 Forbidden</strong> 오류를 반환한 것을 확인할 수 있습니다. 반환된 오류의 메세지를 확인해보면 <strong>AccessDenied</strong>라고 되어 있습니다. 이는 퍼블릭 액세스 권한을 막아놨기 때문입니다. 따라서 이제 버킷의 권한을 수정해줘야 합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/37.png"></p>
+<p>이제 해당 버킷의 <strong>권한</strong> 탭으로 넘어와 <strong>퍼블릭 액세스 차단(버킷 설정)</strong> 부분을 <strong>편집</strong> 버튼을 눌러 수정합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/38.png"></p>
+<p>아래 이미지와 같이 외부에서 조회할 수 있게, 다시 말해 어느 곳에서나 정적 웹 사이트를 열람할 수 있게 <strong>모든 퍼블릭 액세스 차단</strong>을 <strong>비활성</strong>합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/39.png"></p>
+<p>이제 아래 이미지와 같이 조금 내려와 <strong>버킷 정책</strong> 부분에서 <strong>편집</strong>을 눌러 정책을 설정해줍니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/40.png"></p>
+<p>본인이 직접 정책을 입력할 수 있지만 조금 더 간단하게 설정하기 위해 아래 이미지와 같이 <strong>정책 생성기</strong> 버튼을 눌러 도움을 받습니다. 이때 <strong>버킷 ARN</strong> (이 예시에서는 <code>arn:aws:s3:::next-js-deployment-practice</code>) 을 복사합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/41.png"></p>
+<p>이제 아래 이미지와 같이 정책을 선택합니다. 하나씩 정리하면 아래와 같습니다.  </p>
+<ul>
+<li><strong>Select Type of Policy</strong>: 정책 유형을 의미합니다. S3 Bucket Policy를 선택합니다.</li>
+<li><strong>Effect</strong>: 정책의 유형을 허용(Allow) 또는 거부(Deny)로 선택할 수 있습니다. 허용(Allow)을 선택합니다.</li>
+<li><strong>Principal</strong>: 특정 부분에만 권한을 부여할 수 있습니다. * 를 입력하여 모든 부분에 권한을 허용합니다.</li>
+<li><strong>Actions</strong>: 어떤 권한을 부여할 것인지 선택합니다. 정적 웹 사이트 열람, 다시 말해 조회( GET )만 허용하는 것이기 때문에 GetObject 만을 선택합니다.</li>
+</ul>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/42.png"></p>
+<p>이제 아래 이미지와 같이 <strong>Amazon Resource Name (ARN)</strong>에 아까 복사한 <strong>버킷 ARN</strong> (이 예시에서는 <code>arn:aws:s3:::next-js-deployment-practice</code>) 을 입력하고 <strong>Add Statement</strong> 버튼을 클릭합니다.</p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/43.png"></p>
+<p>이제 아래 이미지와 같이 정리된 정책을 확인하고 <strong>Generate Policy</strong> 버튼을 눌러 정책을 생성하고 이를 복사합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/44.png"></p>
+<p>다시 <strong>버킷 정책 편집</strong>으로 돌아와 아래 이미지와 같이 앞서 복사한 정책을 붙여넣습니다.  </p>
+<p>이때 유의할 점은 <code>Resource</code> 부분의 끝에 <code>/*</code> 를 추가해야 합니다. 이는 해당 버킷 (이 예시에서는 <code>arn:aws:s3:::next-js-deployment-practice</code>) 에 업로드 된 모든 객체에 대해 해당 정책을 적용하겠다는 의미입니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/45.png"></p>
+<p>버킷 정책을 성공적으로 마무리하면 아래 이미지와 같이 생성되어 있습니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/46.png"></p>
+<p>이제 다시 <strong>버킷 웹 사이트 엔드포인트</strong>에 접근하면 아래 이미지와 같이 정상적으로 정적 웹 사이트가 배포된 것을 확인할 수 있습니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/47.png"></p>
+<h4 id="_16">기타<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
+<p>S3 서비스 및 특히 정책에 관해서는 심화된 내용이 많습니다. 관련해서는 다른 책, 강의 또는 AWS 공식 웹 사이트에 제공되어 있는 <a href="https://aws.amazon.com/ko/getting-started/hands-on/?awsf.getting-started-category=*all&amp;awsf.getting-started-level=*all&amp;awsf.getting-started-content-type=*all">자습서</a>를 통해 찾아보기 바랍니다.</p>
+<h3 id="aws-cloudfront">AWS CloudFront<a class="headerlink" href="#aws-cloudfront" title="Permanent link">&para;</a></h3>
+<h4 id="_17">개념<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
+<p>CloudFront는 AWS에서 제공하는 CDN(Contents Delivery Network) 서비스입니다.  </p>
+<p>CDN과 관련된 설명은 <a href="">[ React의 모든 것 ] 01. DOM과 Virtual DOM, 그리고 CDN</a>에서 간단하게 확인해보기 바랍니다.  </p>
+<h4 id="_18">배포 생성<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h4>
+<p>이제 CloudFront 서비스를 통해 해당 정적 웹 사이트에 구매한 도메인을 연결하고 HTTP로 접근하는 연결을 전부 HTTPS로 리다이렉션 해주겠습니다.  </p>
+<p>우선 아래 이미지와 같이 CloudFront를 검색한 뒤 <strong>배포</strong>로 이동하여 <strong>배포 생성</strong> 버튼을 누릅니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/48.png"></p>
+<p>아래 이미지와 같이 <strong>원본 도메인</strong>에 앞서 만들었던 S3 버킷의 도메인 (이 예시에서는 <code>next-js-deployment-practice.s3.us-east-1.amazonaws.com</code>) 을 입력 또는 선택합니다. 아래 <strong>이름</strong>의 경우 해당 <strong>원본 도메인</strong>을 입력 또는 선택할 경우 자동으로 입력됩니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/49.png"></p>
+<p>HTTP로 접근하는 모든 연결을 HTTPS로 리다이렉션 해주기 위해 아래 이미지와 같이 <strong>뷰어 프로토콜 정책</strong>을 <strong>Redirect HTTP to HTTPS</strong>로 선택합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/50.png"></p>
+<p>이제 아래 이미지와 같이 <strong>대체 도메인 이름(CNAME)</strong>, <strong>사용자 정의 SSL 인증서</strong>, <strong>기본값 루트 객체</strong>를 입력하여 S3를 통해 배포되었던 정적 웹 사이트에 구매한 도메인 (이 예시에서는 <code>artfrom.life</code>) 및 HTTPS를 적용합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/51.png"></p>
+<p>아래 이미지와 같이 <strong>대체 도메인 이름(CNAME)</strong>에 본인이 구매하여 Route5에 등록한 도메인 (이 예시에서는 <code>artfrom.life</code>) 을 입력하고 관련해서 ACM을 통해 만들었던 인증서를 <strong>사용자 정의 SSL 인증서</strong>에서 선택합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/52.png"></p>
+<p><strong>기본값 루트 객체</strong>의 경우 아래 이미지와 같이 <code>index.html</code>을 입력한 뒤 배포 생성 버튼을 클릭하여 CloudFront을 배포합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/53.png"></p>
+<h4 id="route53">Route53 서비스 연결<a class="headerlink" href="#route53" title="Permanent link">&para;</a></h4>
+<p>이제 배포된 CloudFront를 Route53 서비스에 연결하여 구매한 도메인으로 접근했을 때 S3에 배포된 정적 웹 사이트가 연결되게 해야합니다.  </p>
+<p>이를 위해 아래 이미지와 같이 Route53 서비스로 이동하여 <strong>호스팅 영역</strong>에서 이전에 생성했던 호스팅 (이 예시에서는 <code>artfrom.life</code>) 을 선택하고 <strong>레코드 생성</strong> 버튼을 눌러 레코드를 생성합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/54.png"></p>
+<p>아래 이미지와 같이 CloudFront 서비스를 연결하기 위해 <strong>별칭</strong> 토글을 클릭한 뒤 해당 <strong>트래픽 라우팅 대상</strong>에 <strong>CloudFront 배포에 대한 별칭</strong>을 선택하고 그 아래 생성한 CloudFront 배포를 선택합니다. 그리고 <strong>레코드 생성</strong> 버튼을 눌러 해당 레코드를 생성합니다.  </p>
+<p>이때 유의할 점은 다른 AWS 서비스 중 하나인 CloudFront를 Route53과 연동하는 것이기 때문에 <strong>레코드 유형</strong>이 <strong>A - IPv4 주소 및 일부 AWS 리소스로 트래픽 라우팅</strong>으로 되어 있어야 한다는 것입니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/55.png"></p>
+<p>이제 브라우저에서 본인이 구매한 도메인 (이 예시에서는 <code>artfrom.life</code>) 으로 접속해보면 아래 이미지와 같이 <strong>버킷 웹 사이트 엔드포인트</strong>로 접속했던 것과 동일한 페이지가 나타나는 것을 알 수 있습니다. 또한 주소를 자세히 살펴보시면 HTTPS 적용이 된 것을 알 수 있습니다.</p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/56.png"></p>
+<h3 id="github-actions-cicd">GitHub Actions를 통한 CI/CD<a class="headerlink" href="#github-actions-cicd" title="Permanent link">&para;</a></h3>
+<h4 id="cicd">CI/CD<a class="headerlink" href="#cicd" title="Permanent link">&para;</a></h4>
+<p>CI(Continuous Intergration)와 CD(Continuous Deployment 또는 Delivery)는 단어 그대로 지속적인 통합과 배포(또는 제공)를 의미합니다.  </p>
+<p>지속적인 통합을 의미하는 CI(Continuous Intergration)의 경우 애플리케이션에 대한 새로운 변경 사항이 발생했을 때 해당 변경 사항을 자동으로 빌드 및 테스트하여 통합하는 걸 의미합니다. CI를 사용하지 않았을 경우 새로운 변경 사항이 발생했을 때 충돌(Conflict) 등의 이슈가 발생하여 서비스에 장애가 발생할 수 있으며 이를 해결 및 예방하기 위해 수동(Manually)으로 빌드 및 테스트를 진행해야 합니다. CI를 사용할 경우 이러한 과정을 자동으로 작업해주고 결과를 개발자에게 알려줍니다.  </p>
+<p>지속적인 배포를 의미하는 CD(Continuous Deployment)의 경우 쉽게 애플리케이션 배포를 자동화하는 것을 의미합니다. 예를 들어 깃헙(Github)과 같은 클라우드 저장소를 사용하여 애플리케이션에 대한 소스 코드를 관리할 때 이를 AWS 같은 클라우드 호스팅 서비스에 배포할 경우 CD를 사용하지 않으면 위 예시와 같이 직접(Manually) 배포를 진행해야 합니다. CD를 사용할 경우 이러한 과정을 자동으로 작업해주고 결과를 개발자에게 알려줍니다.  </p>
+<p>CI/CD 파이프라인을 이미지로 표현하면 아래와 같습니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/65.png"></p>
+<p><a href="https://circleci.com/">CircleCI</a>, <a href="https://travis-ci.org/">Travis CI</a>, <a href="https://www.jenkins.io/">Jenkins</a> 등 다양한 CI/CD 툴(Tool)이 존재하지만 이번에는 GitHub Actions를 활용하여 간단하게 적용해보겠습니다.  </p>
+<h4 id="workflow">Workflow 파일 설정<a class="headerlink" href="#workflow" title="Permanent link">&para;</a></h4>
+<p>프로젝트의 루트 폴더에 <code>.github</code> 폴더를 만든 뒤 해당 폴더 내에 <code>worflows</code> 폴더를 만들고 아래 이미지와 같이 <code>yml</code> 파일 (이 예시에서는 <code>deploy.yml</code>) 을 만듭니다.</p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/62.png"></p>
+<p>GitHub Action의 경우 기본적으로 <strong>Worflow</strong>, <strong>Event</strong>, <strong>Job</strong>, <strong>Step</strong>, <strong>Action</strong> 등의 개념으로 구성되어 있습니다.  </p>
+<ul>
+<li>
+<p><strong>Workflow</strong>: GitHub Action이 실행하게 될 프로세스입니다. <code>.github</code> 폴더 속 <code>workflows</code> 폴더 내에 있는 <code>yml</code> 파일 (이 예시에서는 <code>deploy.yml</code>) 을 실행합니다.</p>
+</li>
+<li>
+<p><strong>Event</strong>: <strong>Workflow</strong> 실행을 유발(Trigger)하는 작업입니다. 이 예시에서는 <code>on</code> <strong>Event</strong>를 통해 <code>main</code> 브랜치에 <code>push</code> 되었을 때 <strong>Workflow</strong>를 실행합니다.</p>
+</li>
+<li>
+<p><strong>Job</strong>: 여러 <strong>Step</strong>으로 구성되어 GitHub 내의 가상 인스턴스에서 실행됩니다.</p>
+</li>
+<li>
+<p><strong>Step</strong>: 실행해야 할 태스크들의 집합입니다. <strong>Action</strong> 등을 실행할 수 있습니다. </p>
+</li>
+<li>
+<p><strong>Action</strong>: <a href="https://github.com/marketplace?type=actions">GitHub Marketplace</a> 등에 작성된 <strong>Action</strong>을 사용하거나 또는 본인이 직접 <code>run</code>을 통해 명령어를 실행하게 입력할 수 있습니다. 다음은 이 예시에서 사용된 <strong>Action</strong>입니다. <code>name</code>을 기준으로 작성되어 있습니다.</p>
+<ul>
+<li>
+<p><strong>Git Checkout</strong>: <code>checkout@v2</code> <strong>Action</strong>을 활용하여 깃헙(GitHub)에 업로드된 소스 코드를 가져옵니다.</p>
+</li>
+<li>
+<p><strong>Use Node.js version 14.x</strong>: <code>setup-node@v1</code> <strong>Action</strong>을 활용하여 <code>14.x</code> 버전의 노드를 가상 인스턴스에 설치합니다.</p>
+</li>
+<li>
+<p><strong>Build</strong>: <code>run</code> <strong>Action</strong>을 활용하여 가상 인스턴스에 패키지를 설치(이 예시에서는 <code>yarn install --frozen-lockfile</code>)하고 빌드 (이 예시에서는 <code>yarn build</code>) 합니다.</p>
+</li>
+<li>
+<p><strong>Configure AWS credentials</strong>: <code>configure-aws-credentials@v1</code> <strong>Action</strong>을 활용하여 가상 인스턴스에서 AWS CLI를 통해 필요한 서비스에 접근할 수 있게 <code>aws-access-key-id</code>, <code>aws-secret-access-key</code>, <code>aws-region</code>을 입력하여 사용자를 등록합니다.</p>
+</li>
+<li>
+<p><strong>Deploy to S3</strong>: <code>run</code> <strong>Action</strong>을 활용하여, AWS CLI를 통해 (이 예시에서는 <code>sync</code>를 사용하는데 이는 동기화를 의미합니다. <code>--acl public-read</code> 옵션의 경우 해당 업로드 파일 및 폴더를 읽을 수 있는 객체로 설정하고 <code>--delete</code>의 경우 기존의 객체에 동기화하는 객체 내에 존재하지 않는 파일 및 폴더가 있을 경우 자동으로 삭제합니다.) 빌드된 파일 및 폴더를 S3 서비스에 업로드합니다.</p>
+</li>
+<li>
+<p><strong>CloudFront Invalidate Cache</strong>: <code>run</code> <strong>Action</strong>을 활용하여, AWS CLI를 통해(이 예시에서는 <code>cloudfront create-invalidation</code>를 사용합니다. 이때 <code>--distruibution-id</code> 옵션은 CloudFront에 기존에 배포된 아이디를 의미하며 <code>--paths</code> 의 경우 삭제할 캐시의 경로를 의미합니다. 이 예시에서는 전부 삭제하여 새로 업로드된 S3를 연결하기 때문에 <code>'/*'</code> 로 설정합니다.) 기존 배포한 콘텐츠(캐시)를 삭제하고 S3에 새로 배포된 콘텐츠를 연결합니다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>이때 해당 <code>yml</code> 파일 (이 예시에서는 <code>deploy.yml</code>) 을 잘 보면 마치 변수를 사용하듯 <code>secrets.SOMETHING</code> 과 같은 형태로 작성되어 있는 걸 확인할 수 있습니다. 이는 AWS 액세스 키와 같이 보안에 취약한 값들을 GitHub 레포지토리 내에 <strong>Secrets</strong>라는 곳에서 관리하여 <strong>Action</strong> 단계에서 사용할 때 불러오게 (이 예시에서는 <code>SOMETHING</code>) 합니다.  </p>
+<h4 id="github-secret">GitHub Secret<a class="headerlink" href="#github-secret" title="Permanent link">&para;</a></h4>
+<p>이제 레포지토리에 비밀 값을 등록하기 위해 아래 이미지와 같이 배포하고자 하는 애플리케이션이 업로드되어 있는 레포지토리로 이동하여 <strong>Settings</strong>로 넘어갑니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/58.png"></p>
+<p>이제 아래 이미지와 같이 왼쪽 메뉴들 중에서 <strong>Secrets</strong>를 클릭합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/59.png"></p>
+<p>이제 아래 이미지와 같이 <strong>New repository secret</strong> 버튼을 클릭하여 비밀 값을 하나씩 등록합니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/60.png"></p>
+<p>아래 이미지와 같이 <strong>Name</strong>의 경우 <code>yml</code> 파일 (이 예시에서는 <code>deploy.yml</code>) 내에 작성된 <code>secrets.SOMETHING</code> 부분에서 <code>SOMETHING</code>에 해당합니다. 따라서 해당 이름과 동일하게 입력한 다음 <strong>Value</strong> 또한 알맞게 입력합니다. 이 예시에서는 <code>AWS_ACCESS_KEY_ID</code>를 <strong>Name</strong>에 입력하고 이에 알맞는 액세스 키를 이전에 IAM 계정을 생성하며 다운로드 받았던 CSV 파일에서 복사하여 붙여 넣었습니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/61.png"></p>
+<p>이 예시에서 입력해야 할 <strong>Secrets</strong>은 아래와 같습니다.  </p>
+<ul>
+<li><code>AWS_ACCESS_KEY_ID</code> : IAM 계정을 생성할 때 발급 받은 액세스 키입니다.</li>
+<li><code>AWS_SECRET_ACCESS_KEY</code> : IAM 계정을 생성할 때 발급 받은 시크릿 키입니다.</li>
+<li><code>AWS_REGION</code> : AWS 지역을 의미하며 이 예시에서는 <code>us-east-1</code>로 설정하였습니다.</li>
+<li><code>BUILD_DIRECTORY</code> : S3에 업로드할 폴더를 의미하며 이 예시에서는 <code>next export</code>를 통해 생성되는 <code>out</code>입니다.</li>
+<li><code>AWS_S3_BUCKET_NAME</code> : 빌드된 파일 및 폴더가 업로드될 S3 버킷의 이름을 의미하며 <code>s3://next-js-deployment-practice</code>와 같습니다.</li>
+<li><code>AWS_CLOUDFRONT_DISTRIBUTION_ID</code> : S3와 연결된 CloudFront의 배포 ID입니다.</li>
+</ul>
+<p>해당 <strong>Secrets</strong>를 모두 입력했으면 이제 푸쉬(<code>git push</code>)하여 변경 사항을 메인(<code>main</code>) 브랜치에 반영합니다. 그러면 아래 이미지와 같이 <strong>Actions</strong>에서 성공적으로 AWS 서비스에 배포가 된 것을 확인할 수 있습니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/63.png"></p>
+<p>다시 본인의 도메인 (이 예시에서는 <code>artfrom.life</code>) 에 접근하면 GitHub 레포지토리에 변경 사항만 적용시켰을 뿐인데 AWS에도 자동으로 반영되어 아래 이미지와 같이 성공적으로 배포 및 적용된 것을 확인할 수 있습니다.  </p>
+<p><img src="https://weekwith.me/images/next-js/ci-cd/64.png"></p>
+<h2 id="_19">결론<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<p><strong>AWS IAM</strong>, <strong>S3</strong>, <strong>CloudFront</strong>, <strong>Route53</strong>, <strong>Certificatoin Manager</strong>를 사용하여 구매한 도메인을 통해 정적 웹 사이트를 배포해봤습니다.  </p>
+<p>그리고 <strong>GitHub Actions</strong>를 활용해 <strong>CI/CD</strong> 파이프라인을 구축하여 애플리케이션에 변동 사항이 생겼을 때 이를 자동으로 빌드하고 배포되게 하였습니다.  </p>
+<hr />
+<h2 id="_20">참고<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/week-with-me/next-js-deployment-practice">GitHub 레포지토리</a></p>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7400981351083358"
+crossorigin="anonymous"></script>
+
+<h2 id="__comments"></h2>
+<div id="utteranc-thread"></div>
+<script src="https://utteranc.es/client.js"
+repo="0417taehyun/blog"
+issue-term="pathname"
+label="comments"
+theme="dark-blue"
+crossorigin="anonymous"
+async>
+</script>
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../../../java/live-study/chapter-03/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 3주차 과제: 연산자" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              3주차 과제: 연산자
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../../blockchain/hip-crypto/1-week/" class="md-footer__link md-footer__link--next" aria-label="Next: [ 힙한 크립토의 비밀 ] 1주차 과제" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              [ 힙한 크립토의 비밀 ] 1주차 과제
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.tabs", "search.suggest", "search.highlight", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.ec8bae80.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.2f76aa63.min.js"></script>
+      
+        <script src="../../../../js/termynal.js"></script>
+      
+        <script src="../../../../js/custom.js"></script>
+      
+        <script src="../../../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

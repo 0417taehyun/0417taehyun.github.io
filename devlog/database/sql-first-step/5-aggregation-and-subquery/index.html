@@ -1,0 +1,3580 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="[ SQL 첫걸음 ] 제 5장 집계와 서브쿼리">
+      
+      
+      
+        <link rel="canonical" href="https://weekwith.me/devlog/database/sql-first-step/5-aggregation-and-subquery/">
+      
+      
+        
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14+insiders-4.15.0">
+    
+    
+      
+        <title>[ SQL 첫걸음 ] 제 5장 집계와 서브쿼리 - weekwith.me</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.a7e54750.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.96b5c56e.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../css/termynal.css">
+    
+      <link rel="stylesheet" href="../../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <meta property="robots" content="index, follow" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sql-5" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="weekwith.me" class="md-header__button md-logo" aria-label="weekwith.me" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            weekwith.me
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              [ SQL 첫걸음 ] 제 5장 집계와 서브쿼리
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/0417taehyun" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+
+
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  weekwith.me
+
+      </a>
+    </li>
+  
+
+      
+        
+
+
+  
+    
+    
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../article/retrospect/etc/aws-girls-in-tech-mentoring/" class="md-tabs__link">
+          
+  
+  아티클
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+
+
+  
+    
+    
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../algorithms/programmers/sql/level-1/1-get-all-records/" class="md-tabs__link">
+          
+  
+  알고리즘
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+
+
+  
+    
+    
+      
+    
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      
+
+
+  
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../java/live-study/chapter-01/" class="md-tabs__link md-tabs__link--active">
+          
+  
+  프로그래밍 공부 일지
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+
+
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../tags/" class="md-tabs__link">
+        
+  
+  태그
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="weekwith.me" class="md-nav__button md-logo" aria-label="weekwith.me" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    weekwith.me
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/0417taehyun" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    weekwith.me
+  </span>
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          
+  
+  <span class="md-ellipsis">
+    아티클
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="아티클" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          아티클
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          
+  
+  <span class="md-ellipsis">
+    회고
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="회고" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          회고
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1" type="checkbox" id="__nav_2_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1">
+          
+  
+  <span class="md-ellipsis">
+    기타
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="기타" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          기타
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/etc/aws-girls-in-tech-mentoring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ AWS x Girls In Tech Mentoring Program ] 회고
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/etc/analyze-the-complex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    열등감 분석
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_2" type="checkbox" id="__nav_2_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_2">
+          
+  
+  <span class="md-ellipsis">
+    TWIL
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="TWIL" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          TWIL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/twil/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TWIL 3기 회고
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_3" type="checkbox" id="__nav_2_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_3">
+          
+  
+  <span class="md-ellipsis">
+    컨퍼런스
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="컨퍼런스" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          컨퍼런스
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/conference/toss-design-conference-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 토스 디자인 컨퍼런스 ] Simplicity21: 1일차 내용 정리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/conference/toss-design-conference-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 토스 디자인 컨퍼런스 ] Simplicity21: 2일차 내용 정리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/retrospect/conference/toss-design-conference-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 토스 디자인 컨퍼런스 ] Simplicity21: 3일차 내용 정리
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          
+  
+  <span class="md-ellipsis">
+    소프트-웨어
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="소프트-웨어" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          소프트-웨어
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/soft-where/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    개발에도 최최최종 파일이 있다고요?
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../article/soft-where/02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    데이터베이스에서 김 서방 찾기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          
+  
+  <span class="md-ellipsis">
+    알고리즘
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="알고리즘" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          알고리즘
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          
+  
+  <span class="md-ellipsis">
+    프로그래머스
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="프로그래머스" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          프로그래머스
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_1" type="checkbox" id="__nav_3_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1_1">
+          
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          SQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_1_1" type="checkbox" id="__nav_3_1_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1_1_1">
+          
+  
+  <span class="md-ellipsis">
+    LEVEL 1
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="LEVEL 1" data-md-level="4">
+        <label class="md-nav__title" for="__nav_3_1_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          LEVEL 1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/1-get-all-records/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 모든 레코드 조회하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/2-get-max-number/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 최댓값 구하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/3-no-name-animal-id/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 이름이 없는 동물의 아이디
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/4-reverse-ordering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 역순 정렬하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/5-exists-name-animal-id/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 이름이 있는 동물의 아이디
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/6-find-sick-animal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 아픈 동물 찾기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/7-find-young-animal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 어린 동물 찾기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/8-animal-id-and-name/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 동물의 아이디와 이름
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/9-ordering-with-multiple-options/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 여러 기준으로 정렬하기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/programmers/sql/level-1/10-top-nth-records/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 프로그래머스 ] SQL LEVEL 1 : 상위 n개 레코드
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          
+  
+  <span class="md-ellipsis">
+    이것이 취업을 위한 코딩 테스트다 with 파이썬
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="이것이 취업을 위한 코딩 테스트다 with 파이썬" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          이것이 취업을 위한 코딩 테스트다 with 파이썬
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/coding-test-for-employment/1-big-o/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    복잡도
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/coding-test-for-employment/2-greedy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    그리디
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          
+  
+  <span class="md-ellipsis">
+    쓰면서 익히는 알고리즘과 자료구조
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="쓰면서 익히는 알고리즘과 자료구조" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          쓰면서 익히는 알고리즘과 자료구조
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../algorithms/writing-algorithm/1-array/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    배열
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          
+  
+  <span class="md-ellipsis">
+    프로그래밍 공부 일지
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="프로그래밍 공부 일지" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          프로그래밍 공부 일지
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          
+  
+  <span class="md-ellipsis">
+    Java
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Java" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Java
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1_1" type="checkbox" id="__nav_4_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1_1">
+          
+  
+  <span class="md-ellipsis">
+    백기선의 자바 스터디
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="백기선의 자바 스터디" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          백기선의 자바 스터디
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../java/live-study/chapter-01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1주차 과제: JVM은 무엇이며 자바 코드는 어떻게 실행하는 것인가.
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../java/live-study/chapter-02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2주차 과제: 자바 데이터 타입, 변수 그리고 배열
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../java/live-study/chapter-03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3주차 과제: 연산자
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          
+  
+  <span class="md-ellipsis">
+    NextJS
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="NextJS" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          NextJS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_1" type="checkbox" id="__nav_4_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_1">
+          
+  
+  <span class="md-ellipsis">
+    개인 공부
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="개인 공부" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          개인 공부
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../next-js/etc/ci-cd-static-webstie-by-github-actions-and-aws-s3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ Next.js ] AWS, GitHub Actions를 활용한 정적 웹사이트 CI/CD
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          
+  
+  <span class="md-ellipsis">
+    Blockchain
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Blockchain" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Blockchain
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_1" type="checkbox" id="__nav_4_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_1">
+          
+  
+  <span class="md-ellipsis">
+    힙한 크리토의 비밀
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="힙한 크리토의 비밀" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          힙한 크리토의 비밀
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blockchain/hip-crypto/1-week/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 힙한 크립토의 비밀 ] 1주차 과제
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blockchain/hip-crypto/2-week/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ 힙한 크립토의 비밀 ] 2주차 과제
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          
+  
+  <span class="md-ellipsis">
+    Database
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Database" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Database
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4_1" type="checkbox" id="__nav_4_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4_1">
+          
+  
+  <span class="md-ellipsis">
+    SQL 첫걸음
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL 첫걸음" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          SQL 첫걸음
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-database-and-sql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 1장 데이터베이스와 SQL
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-data-selecting-from-table/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 2장 테이블에서 데이터 검색
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-sorting-and-operation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 3장 정렬과 연산
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-data-insert-delete-update/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 4장 데이터의 추가, 삭제, 갱신
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 5장 집계와 서브쿼리
+  </span>
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 5장 집계와 서브쿼리
+  </span>
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      행 개수 구하기 - COUNT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="행 개수 구하기 - COUNT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#count" class="md-nav__link">
+    <span class="md-ellipsis">
+      COUNT로 행 개수 구하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="COUNT로 행 개수 구하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where" class="md-nav__link">
+    <span class="md-ellipsis">
+      WHERE 구 지정하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null" class="md-nav__link">
+    <span class="md-ellipsis">
+      집계함수와 NULL값
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distinct" class="md-nav__link">
+    <span class="md-ellipsis">
+      DISTINCT로 중복 제거
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distinct_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      집계함수에서 DISTINCT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#count_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      COUNT 이외의 집계함수
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="COUNT 이외의 집계함수">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      SUM으로 합계 구하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avg" class="md-nav__link">
+    <span class="md-ellipsis">
+      AVG로 평균내기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#min-max" class="md-nav__link">
+    <span class="md-ellipsis">
+      MIN, MAX로 최솟값, 최댓값 구하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-group-by" class="md-nav__link">
+    <span class="md-ellipsis">
+      그룹화 - GROUP BY
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="그룹화 - GROUP BY">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#group-by" class="md-nav__link">
+    <span class="md-ellipsis">
+      GROUP BY로 그룹화
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#having" class="md-nav__link">
+    <span class="md-ellipsis">
+      HAVING 구로 조건 지정
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      복수열의 그룹화
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      결괏값 정렬
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      서브쿼리
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="서브쿼리">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delete-where" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE의 WHERE 구에서 서브쿼리 사용하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      스칼라 값
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select" class="md-nav__link">
+    <span class="md-ellipsis">
+      SELECT 구에서 서브쿼리 사용하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set" class="md-nav__link">
+    <span class="md-ellipsis">
+      SET 구에서 서브쿼리 사용하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from" class="md-nav__link">
+    <span class="md-ellipsis">
+      FROM 구에서 서브쿼리 사용하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FROM 구에서 서브쿼리 사용하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      실제 업무에서 FROM 구에 서브쿼리를 지정하여 사용하는 경우
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert" class="md-nav__link">
+    <span class="md-ellipsis">
+      INSERT 명령과 서브쿼리
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="INSERT 명령과 서브쿼리">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#insert-select" class="md-nav__link">
+    <span class="md-ellipsis">
+      INSERT SELECT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      상관 서브쿼리
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="상관 서브쿼리">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      EXISTS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      NOT EXISTS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      상관 서브쿼리
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="상관 서브쿼리">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      테이블명 붙이기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in" class="md-nav__link">
+    <span class="md-ellipsis">
+      IN
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-null" class="md-nav__link">
+    <span class="md-ellipsis">
+      IN과 NULL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-create-and-delete-database-object/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 6장 데이터베이스 객체 작성과 삭제
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7-manage-multi-tables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 7장 복수의 테이블 다루기
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8-design-database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [ SQL 첫걸음 ] 제 8장 데이터베이스 설계
+  </span>
+
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    태그
+  </span>
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      행 개수 구하기 - COUNT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="행 개수 구하기 - COUNT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#count" class="md-nav__link">
+    <span class="md-ellipsis">
+      COUNT로 행 개수 구하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="COUNT로 행 개수 구하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where" class="md-nav__link">
+    <span class="md-ellipsis">
+      WHERE 구 지정하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null" class="md-nav__link">
+    <span class="md-ellipsis">
+      집계함수와 NULL값
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distinct" class="md-nav__link">
+    <span class="md-ellipsis">
+      DISTINCT로 중복 제거
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distinct_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      집계함수에서 DISTINCT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#count_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      COUNT 이외의 집계함수
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="COUNT 이외의 집계함수">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      SUM으로 합계 구하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avg" class="md-nav__link">
+    <span class="md-ellipsis">
+      AVG로 평균내기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#min-max" class="md-nav__link">
+    <span class="md-ellipsis">
+      MIN, MAX로 최솟값, 최댓값 구하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-group-by" class="md-nav__link">
+    <span class="md-ellipsis">
+      그룹화 - GROUP BY
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="그룹화 - GROUP BY">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#group-by" class="md-nav__link">
+    <span class="md-ellipsis">
+      GROUP BY로 그룹화
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#having" class="md-nav__link">
+    <span class="md-ellipsis">
+      HAVING 구로 조건 지정
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      복수열의 그룹화
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      결괏값 정렬
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      서브쿼리
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="서브쿼리">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delete-where" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE의 WHERE 구에서 서브쿼리 사용하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      스칼라 값
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select" class="md-nav__link">
+    <span class="md-ellipsis">
+      SELECT 구에서 서브쿼리 사용하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set" class="md-nav__link">
+    <span class="md-ellipsis">
+      SET 구에서 서브쿼리 사용하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from" class="md-nav__link">
+    <span class="md-ellipsis">
+      FROM 구에서 서브쿼리 사용하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FROM 구에서 서브쿼리 사용하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      실제 업무에서 FROM 구에 서브쿼리를 지정하여 사용하는 경우
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert" class="md-nav__link">
+    <span class="md-ellipsis">
+      INSERT 명령과 서브쿼리
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="INSERT 명령과 서브쿼리">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#insert-select" class="md-nav__link">
+    <span class="md-ellipsis">
+      INSERT SELECT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      상관 서브쿼리
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="상관 서브쿼리">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      EXISTS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      NOT EXISTS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      상관 서브쿼리
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="상관 서브쿼리">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      테이블명 붙이기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in" class="md-nav__link">
+    <span class="md-ellipsis">
+      IN
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-null" class="md-nav__link">
+    <span class="md-ellipsis">
+      IN과 NULL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                <h1 id="sql-5">[ SQL 첫걸음 ] 제 5장 집계와 서브쿼리<a class="headerlink" href="#sql-5" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p><a href="http://www.kyobobook.co.kr/product/detailViewKor.laf?mallGb=KOR&amp;barcode=9788968482311">SQL 첫걸음</a>을 참고로 공부한 내용입니다. 따라서 아래 명령어를 통해 나오게 되는 결괏값은 전부 해당 책을 통해 다운로드한 파일의 결과물입니다.</p>
+</div>
+<h2 id="-count">행 개수 구하기 - <code>COUNT</code><a class="headerlink" href="#-count" title="Permanent link">&para;</a></h2>
+<p>SQL은 데이터베이스라 불리는 데이터 <strong>집합</strong>을 다루는 언어입니다. 따라서 집합의 개수나 합계를 구하기 위해 <strong>집계함수</strong>를 사용할 수 있습니다. SQL에서 사용하는 대표적인 집계함수는 아래와 같습니다.</p>
+<ul>
+<li><code>COUNT</code></li>
+<li><code>SUM</code></li>
+<li><code>AVG</code></li>
+<li><code>MIN</code></li>
+<li><code>MAX</code></li>
+</ul>
+<p>이때 유의할 점은 일반적인 함수는 인수로 하나의 <strong>값</strong>을 지정하는 데 집계함수는 인수로 <strong>집합</strong>을 지정합니다.</p>
+<h3 id="count"><code>COUNT</code>로 행 개수 구하기<a class="headerlink" href="#count" title="Permanent link">&para;</a></h3>
+<p><code>COUNT</code>는 테이블의 행 개수를 구하는 집계함수입니다.</p>
+<p>아래와 같은 테이블 <code>sample51</code>이 존재한다고 가정해봅시다.</p>
+<div class="highlight"><pre><span></span><code><span class="o">+</span><span class="c1">------+------+----------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">no</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+------+----------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w">    </span><span class="o">|</span><span class="w">        </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w">    </span><span class="o">|</span><span class="w">        </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">B</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">C</span><span class="w">    </span><span class="o">|</span><span class="w">        </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+------+----------+</span>
+</code></pre></div>
+<p><code>COUNT</code> 집계함수를 사용하여 행 개수를 구하는 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT COUNT<span class="o">(</span>*<span class="o">)</span> FROM sample51<span class="p">;</span>
+
++----------+
+<span class="p">|</span> COUNT<span class="o">(</span>*<span class="o">)</span> <span class="p">|</span>
++----------+
+<span class="p">|</span>        <span class="m">5</span> <span class="p">|</span>
++----------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>인자 값으로 애스터리스크(<code>*</code>)가 지정되어 있는 건 <code>SELECT</code> 구에서 모든 열을 나타낼 때 사용하는 메타문자와 동일한 의미입니다. 다만 앞서 설명한 것처럼 집계함수에서는 집합을 인수로 하기 때문에 이 경우 모든 열이 아닌 <strong>테이블 전체</strong>를 의미합니다. 다시 말해 테이블 전체에서 행의 갯수가 5개이기 때문에 그 결괏값으로 <code>5</code>를 반환했습니다.</p>
+<h4 id="where"><code>WHERE</code> 구 지정하기<a class="headerlink" href="#where" title="Permanent link">&para;</a></h4>
+<p>집합에서 하나의 값을 계산해내는 집계함수의 특징 때문에 <code>WHERE</code> 구의 유무와 관계없이 결괏값으로 하나의 행을 반환합니다. 단순 <code>SELECT</code>를 통한 검색과 <code>COUNT</code>를 사용한 결과 비교는 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT * FROM sample51 WHERE <span class="nv">name</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">;</span>
+
++------+------+----------+
+<span class="p">|</span> no   <span class="p">|</span> name <span class="p">|</span> quantity <span class="p">|</span>
++------+------+----------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span> A    <span class="p">|</span>        <span class="m">1</span> <span class="p">|</span>
+<span class="p">|</span>    <span class="m">2</span> <span class="p">|</span> A    <span class="p">|</span>        <span class="m">2</span> <span class="p">|</span>
++------+------+----------+
+<span class="m">2</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+
+$ mysql &gt; SELECT COUNT<span class="o">(</span>*<span class="o">)</span> FROM sample51 WHERE <span class="nv">name</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">;</span>
+
++----------+
+<span class="p">|</span> COUNT<span class="o">(</span>*<span class="o">)</span> <span class="p">|</span>
++----------+
+<span class="p">|</span>        <span class="m">2</span> <span class="p">|</span>
++----------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>우리는 앞서 <code>SELECT</code> 구의 처리 순서가 <code>WHERE</code> 구 다음이라는 걸 확인했습니다. 따라서 <code>WHERE</code> 구를 통해 지정된 조건에 맞는 테이블의 행만 검색이 되고 이후 해당 테이블에 집계함수가 사용되어 결괏값으로 <code>2</code>가 반환되었습니다.</p>
+<h3 id="null">집계함수와 <code>NULL</code>값<a class="headerlink" href="#null" title="Permanent link">&para;</a></h3>
+<p><code>COUNT</code>의 인수로 열명을 지정할 수 있습니다. 열명을 지정하면 그 열에 한해서 행의 개수를 구할 수 있습니다. 여기서 유의할 점은 바로 <code>NULL</code> 값을 처리하는 방식입니다. 집계함수는 집합 안에 <code>NULL</code> 값이 존재할 경우 이를 제외하고 처리합니다.</p>
+<p>아래 예시를 통해 <code>no</code>열과 <code>name</code>열의 <code>COUNT</code> 함수 결괏값이 <code>NULL</code> 때문에 다른 것을 확인할 수 있습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT COUNT<span class="o">(</span>no<span class="o">)</span>, COUNT<span class="o">(</span>name<span class="o">)</span> FROM sample51<span class="p">;</span>
+
++-----------+-------------+
+<span class="p">|</span> COUNT<span class="o">(</span>no<span class="o">)</span> <span class="p">|</span> COUNT<span class="o">(</span>name<span class="o">)</span> <span class="p">|</span>
++-----------+-------------+
+<span class="p">|</span>         <span class="m">5</span> <span class="p">|</span>           <span class="m">4</span> <span class="p">|</span>
++-----------+-------------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<div class="admonition warning">
+<p class="admonition-title">주의</p>
+<p>인수로 애스터리스크(<code>*</code>)를 사용할 때는 모든 열의 행수를 카운트하기 때문에 <code>NULL</code>값이 있어도 해당 정보가 무시되지 않고 집계됩니다.</p>
+<p>유의할 점은 인수로 애스터리스크(<code>*</code>)를 사용할 수 있는 건 집계함수에서 오로지 <code>COUNT</code> 뿐이라는 사실입니다.</p>
+</div>
+<h3 id="distinct"><code>DISTINCT</code>로 중복 제거<a class="headerlink" href="#distinct" title="Permanent link">&para;</a></h3>
+<p>중복된 값을 제거하기 위해서는 <code>DISTINC</code> 키워드를 사용하면 됩니다. 아래 예시를 통해 <code>ALL</code> 키워드를 명시적으로 사용하여 중복된 값도 표시하는 것과 <code>DISTINCT</code> 키워드를 사용하여 해당 열의 중복 값을 제외하고 표시하는 방법을 확인할 수 있습니다. 이때 키워드를 생략하면 <code>ALL</code>로 간주됩니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT ALL name FROM sample51<span class="p">;</span>
+
++------+
+<span class="p">|</span> name <span class="p">|</span>
++------+
+<span class="p">|</span> A    <span class="p">|</span>
+<span class="p">|</span> A    <span class="p">|</span>
+<span class="p">|</span> B    <span class="p">|</span>
+<span class="p">|</span> C    <span class="p">|</span>
+<span class="p">|</span> NULL <span class="p">|</span>
++------+
+<span class="m">5</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+
+$ mysql &gt; SELECT DISTINCT name FROM sample51<span class="p">;</span>
+
++------+
+<span class="p">|</span> name <span class="p">|</span>
++------+
+<span class="p">|</span> A    <span class="p">|</span>
+<span class="p">|</span> B    <span class="p">|</span>
+<span class="p">|</span> C    <span class="p">|</span>
+<span class="p">|</span> NULL <span class="p">|</span>
++------+
+<span class="m">4</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<h3 id="distinct_1">집계함수에서 <code>DISTINCT</code><a class="headerlink" href="#distinct_1" title="Permanent link">&para;</a></h3>
+<p>예를 들어 중복된 값을 제외한 그 개수를 알고 싶을 때 집계함수인 <code>COUNT</code>와 함께 <code>DISTINCT</code> 키워드를 사용할 수 있습니다. 이때 유의할 점은 <code>COUNT</code> 집계함수의 인수로 <code>DISTINCT</code>를 사용한다는 것입니다. 그 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT COUNT<span class="o">(</span>name<span class="o">)</span>, COUNT<span class="o">(</span>DISTINCT name<span class="o">)</span> FROM sample51<span class="p">;</span>
+
++-------------+----------------------+
+<span class="p">|</span> COUNT<span class="o">(</span>name<span class="o">)</span> <span class="p">|</span> COUNT<span class="o">(</span>DISTINCT name<span class="o">)</span> <span class="p">|</span>
++-------------+----------------------+
+<span class="p">|</span>           <span class="m">4</span> <span class="p">|</span>                    <span class="m">3</span> <span class="p">|</span>
++-------------+----------------------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<h2 id="count_1"><code>COUNT</code> 이외의 집계함수<a class="headerlink" href="#count_1" title="Permanent link">&para;</a></h2>
+<p>앞서 집계함수의 대표적인 종류를 살펴봤던 것처럼 <code>COUNT</code> 외에도 다양한 집계함수가 존재합니다. 그리고 이때 유의할 점은 <code>COUNT</code> 집계함수에서는 인수로 애스터리스크(<code>*</code>)를 사용할 수 있었지만 다른 집계함수에서는 불가능하다는 것입니다.</p>
+<h3 id="sum"><code>SUM</code>으로 합계 구하기<a class="headerlink" href="#sum" title="Permanent link">&para;</a></h3>
+<p><code>SUM</code> 집계함수를 사용하여 합를 구할 수 있습니다. 이전 <code>COUNT</code> 집계함수에서 사용한 테이블 <code>sample51</code>의 <code>qauntity</code>열 합계를 구하는 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT SUM<span class="o">(</span>quantity<span class="o">)</span> FROM sample51<span class="p">;</span>
+
++---------------+
+<span class="p">|</span> SUM<span class="o">(</span>quantity<span class="o">)</span> <span class="p">|</span>
++---------------+
+<span class="p">|</span>            <span class="m">16</span> <span class="p">|</span>
++---------------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.01 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>이때 유의할 점은 <code>SUM</code> 집계함수가 지정할 수 있는 집합은 수치형만 가능하다는 것입니다. 문자열형이나 날짜시간형의 경우 합계를 구할 수 없습니다. 또한 <code>COUNT</code> 집계함수와 마찬가지로 <code>NULL</code> 값은 제거한 뒤에 합계를 계산합니다.</p>
+<h3 id="avg"><code>AVG</code>로 평균내기<a class="headerlink" href="#avg" title="Permanent link">&para;</a></h3>
+<p><code>AVG</code> 집계함수를 사용하여 평균을 구할 수 있습니다. <code>quantity</code>열의 평균을 구하는 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql&gt; SELECT AVG<span class="o">(</span>quantity<span class="o">)</span>, SUM<span class="o">(</span>quantity<span class="o">)</span>/COUNT<span class="o">(</span>quantity<span class="o">)</span> FROM sample51<span class="p">;</span>
+
++---------------+-------------------------------+
+<span class="p">|</span> AVG<span class="o">(</span>quantity<span class="o">)</span> <span class="p">|</span> SUM<span class="o">(</span>quantity<span class="o">)</span>/COUNT<span class="o">(</span>quantity<span class="o">)</span> <span class="p">|</span>
++---------------+-------------------------------+
+<span class="p">|</span>        <span class="m">4</span>.0000 <span class="p">|</span>                        <span class="m">4</span>.0000 <span class="p">|</span>
++---------------+-------------------------------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.01 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>이때 유의할 점은 <code>AVG</code> 집계함수를 사용하지 않더라도 <code>SUM</code>과 <code>COUNT</code> 집계함수를 통해 평균을 계산할 수 있다는 것입니다. 또한 <code>NULL</code> 값을 제거한 뒤에 평균값을 계산하는데 만약 이를 포함하여 계산하고 싶다면 아래와 같이 <code>CASE</code> 문을 사용해 <code>NULL</code> 값을 특정한 값으로 변환한 뒤에 <code>AVG</code> 집계함수를 사용하면 됩니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT AVG<span class="o">(</span>CASE WHEN quantity IS NULL THEN <span class="m">0</span> ELSE quantity END<span class="o">)</span> FROM sample51<span class="p">;</span>
+
++----------------------------------------------------------+
+<span class="p">|</span> AVG<span class="o">(</span>CASE WHEN quantity IS NULL THEN <span class="m">0</span> ELSE quantity END<span class="o">)</span> <span class="p">|</span>
++----------------------------------------------------------+
+<span class="p">|</span>                                                   <span class="m">3</span>.2000 <span class="p">|</span>
++----------------------------------------------------------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<h3 id="min-max"><code>MIN</code>, <code>MAX</code>로 최솟값, 최댓값 구하기<a class="headerlink" href="#min-max" title="Permanent link">&para;</a></h3>
+<p><code>MIN</code>과 <code>MAX</code> 집계함수를 사용하여 각각 집합에서의 최솟값과 최댓값을 구할 수 있습니다. 그 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT MIN<span class="o">(</span>name<span class="o">)</span>, MIN<span class="o">(</span>quantity<span class="o">)</span>, MAX<span class="o">(</span>name<span class="o">)</span>, MAX<span class="o">(</span>quantity<span class="o">)</span> FROM sample51<span class="p">;</span>
+
++-----------+---------------+-----------+---------------+
+<span class="p">|</span> MIN<span class="o">(</span>name<span class="o">)</span> <span class="p">|</span> MIN<span class="o">(</span>quantity<span class="o">)</span> <span class="p">|</span> MAX<span class="o">(</span>name<span class="o">)</span> <span class="p">|</span> MAX<span class="o">(</span>quantity<span class="o">)</span> <span class="p">|</span>
++-----------+---------------+-----------+---------------+
+<span class="p">|</span> A         <span class="p">|</span>             <span class="m">1</span> <span class="p">|</span> C         <span class="p">|</span>            <span class="m">10</span> <span class="p">|</span>
++-----------+---------------+-----------+---------------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>이때 유의할 점은 문자열형의 경우 사전식 배열을 통해 그 대소비교가 가능하고 날짜시간형 또한 마찬가지이므로 <code>SUM</code> 또는 <code>AVG</code> 집계함수와 다르게 수치형이 아는 다른 것에도 <code>MIN</code> 및 <code>MAX</code> 집계함수를 사용할 수 있다는 것입니다. 그러나 <code>NULL</code> 값을 무시하는 점은 다른 집계함수와 동일합니다.</p>
+<h2 id="-group-by">그룹화 - <code>GROUP BY</code><a class="headerlink" href="#-group-by" title="Permanent link">&para;</a></h2>
+<p><code>GROUP BY</code>를 사용하여 집계함수로 넘겨줄 집합을 <strong>그룹</strong>으로 나눌 수 있습니다.</p>
+<h3 id="group-by"><code>GROUP BY</code>로 그룹화<a class="headerlink" href="#group-by" title="Permanent link">&para;</a></h3>
+<p>다시 한 번 <code>sample51</code> 테이블의 데이터를 보면 아래와 같이 중복되는 값이 존재하는 것을 알 수 있습니다.</p>
+<div class="highlight"><pre><span></span><code><span class="o">+</span><span class="c1">------+------+----------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">no</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+------+----------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w">    </span><span class="o">|</span><span class="w">        </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">A</span><span class="w">    </span><span class="o">|</span><span class="w">        </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">B</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">C</span><span class="w">    </span><span class="o">|</span><span class="w">        </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+------+----------+</span>
+</code></pre></div>
+<p><code>name</code> 열을 기준으로 <code>GROUP BY</code>를 사용하여 그룹화하면 그 결과가 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql&gt; SELECT name FROM sample51 GROUP BY name<span class="p">;</span>
+
++------+
+<span class="p">|</span> name <span class="p">|</span>
++------+
+<span class="p">|</span> A    <span class="p">|</span>
+<span class="p">|</span> B    <span class="p">|</span>
+<span class="p">|</span> C    <span class="p">|</span>
+<span class="p">|</span> NULL <span class="p">|</span>
++------+
+<span class="m">4</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p><code>DISTINCT</code> 키워드를 사용했을 때와 마찬가지로 지정된 열의 값이 같은 행이 하나의 <strong>그룹</strong>으로 묶입니다. <code>GROUP BY</code>와 집계함수를 같이 사용하지 않으면 사실 <code>DISTINCT</code>와 큰 차이가 없습니다. 중복만 제거되기 때문입니다. <code>GROUP BY</code>와 집계함수를 함께 사용한 결과는 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT name, COUNT<span class="o">(</span>name<span class="o">)</span>, SUM<span class="o">(</span>quantity<span class="o">)</span> FROM sample51 GROUP BY name<span class="p">;</span>
+
++------+-------------+---------------+
+<span class="p">|</span> name <span class="p">|</span> COUNT<span class="o">(</span>name<span class="o">)</span> <span class="p">|</span> SUM<span class="o">(</span>quantity<span class="o">)</span> <span class="p">|</span>
++------+-------------+---------------+
+<span class="p">|</span> A    <span class="p">|</span>           <span class="m">2</span> <span class="p">|</span>             <span class="m">3</span> <span class="p">|</span>
+<span class="p">|</span> B    <span class="p">|</span>           <span class="m">1</span> <span class="p">|</span>            <span class="m">10</span> <span class="p">|</span>
+<span class="p">|</span> C    <span class="p">|</span>           <span class="m">1</span> <span class="p">|</span>             <span class="m">3</span> <span class="p">|</span>
+<span class="p">|</span> NULL <span class="p">|</span>           <span class="m">0</span> <span class="p">|</span>          NULL <span class="p">|</span>
++------+-------------+---------------+
+<span class="m">4</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p><code>A</code> 그룹의 경우 두 개의 행이 존재했기 때문에 <code>COUNT(name)</code>의 결괏값이 <code>2</code>이며 <code>SUM(quantity)</code>의 결괏값 또한 두 행의 <code>quantity</code>열의 값이 합산되어 반환되었습니다.</p>
+<p><code>GROUP BY</code>는 실제로 업무 환경에서 쓰이는 경우가 많습니다. 예를 들어 판매 실적 등을 통계 내어 살펴볼 때면 날짜별 또는 상품별 등 특정한 단위로 집계할 때 <code>GROUP BY</code>를 사용해 그룹화하게 됩니다.</p>
+<h3 id="having"><code>HAVING</code> 구로 조건 지정<a class="headerlink" href="#having" title="Permanent link">&para;</a></h3>
+<p>집계함수는 <code>WHERE</code> 구의 조건식에는 사용할 수 없습니다. 예를 들어 <code>SELECT name, COUNT(name) FROM sample51 WHERE COUNT(name) = 1 GROUP BY name;</code>과 같은 형태의 명려운을 입력하면 오류가 발생합니다. 이는 <code>GROUP BY</code>와 <code>WHERE</code> 구의 내부처리 순서 때문입니다. <code>WHERE</code> 구로 행을 검색하는 처리가 <code>GROUP BY</code>로 그룹화하는 것보다 앞섭니다. </p>
+<p>집계한 결과에서 조건에 맞는 값만 걸러내기 위해서는 <code>SELECT</code> 명령에 <code>HAVING</code> 구를 사용할 수 있습니다. <code>WHERE</code> 구와 <code>HAVING</code> 구를 전부 사용하여 지정된 조건으로 검색하는 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT name, COUNT<span class="o">(</span>name<span class="o">)</span>, SUM<span class="o">(</span>quantity<span class="o">)</span> FROM sample51 WHERE quantity &lt; <span class="m">10</span> GROUP BY name HAVING COUNT<span class="o">(</span>name<span class="o">)</span> &gt; <span class="m">1</span><span class="p">;</span>
+
++------+-------------+---------------+
+<span class="p">|</span> name <span class="p">|</span> COUNT<span class="o">(</span>name<span class="o">)</span> <span class="p">|</span> SUM<span class="o">(</span>quantity<span class="o">)</span> <span class="p">|</span>
++------+-------------+---------------+
+<span class="p">|</span> A    <span class="p">|</span>           <span class="m">2</span> <span class="p">|</span>             <span class="m">3</span> <span class="p">|</span>
++------+-------------+---------------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.01 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>이는 아래와 같은 순서로 작동하여 최종 결과물을 반환합니다.</p>
+<ol>
+<li><code>WHERE</code> 구를 통해 <code>quantity</code>열의 데이터 값이 <code>10</code>을 초과하는 행은 제외했습니다.</li>
+<li><code>GROUP BY</code> 구를 통해 <code>name</code>열을 기준으로 데이터를 그룹화하였습니다.</li>
+<li><code>HAVING</code> 구를 통해 집계함수 <code>COUNT</code>를 사용하여 <code>name</code>열의 수가 <code>1</code> 이하인 행은 제외했습니다.</li>
+<li><code>SELECT</code> 구를 통해 <code>name</code>열과 집계함수 <code>COUNT</code>를 사용하여 <code>name</code>열의 갯수를 센 것, 그리고 집계함수 <code>SUM</code>을 사용하여 <code>quantity</code>열의 합산을 구한 것을 검색하여 반환했습니다.</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">정보</p>
+<p>결과적으로 내부처리 순서를 정리해보면 <code>WHERE</code> 구, <code>GROUP BY</code> 구, <code>HAVING</code> 구, <code>SELECT 구</code> 그리고 <code>ORDER BY</code> 구 순서입니다.</p>
+<p>유의할 점은 <code>WHERE</code> 구, <code>GROUP BY</code> 구, <code>HAVING</code> 구 모두 <code>SELECT</code> 구보다 먼저 처리되기 때문에 <code>SELECT</code> 구에서 사용하는 별명(<code>AS</code>)을 사용할 수 없습니다.</p>
+</div>
+<h3 id="_1">복수열의 그룹화<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p><code>GROUP BY</code>를 사용할 때는 <code>GROUP BY</code>에 지정한 열 이외의 열은 집계함수를 사용하지 않으면 <code>SELECT</code> 구에 기술해서는 안됩니다. 왜냐하면 어떤 값을 반환해야 할 지 모르기 때문입니다.</p>
+<p>예를 들어 <code>name</code>열을 <code>GROUP BY</code>로 그룹화하였을 때 <code>no</code>열을 집계함수를 사용하지 않고 <code>SELECT</code> 구에 기술할 경우 아래와 같은 오류를 반환합니다</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT no, name FROM sample51 GROUP BY name<span class="p">;</span>
+
+ERROR <span class="m">1055</span> <span class="o">(</span><span class="m">42000</span><span class="o">)</span>: Expression <span class="c1">#1 of SELECT list is not in GROUP BY clause and contains nonaggregated column &#39;sample.sample51.no&#39; which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by</span>
+</code></pre></div>
+
+</div>
+
+<p>만약 그룹화된 열 이외의 열을 사용하고 싶다면 아래와 같이 콤마(<code>,</code>)를 통해 복수의 열을 그룹화하면 됩니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT no, name FROM sample51 GROUP BY no, name<span class="p">;</span>
+
++------+------+
+<span class="p">|</span> no   <span class="p">|</span> name <span class="p">|</span>
++------+------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span> A    <span class="p">|</span>
+<span class="p">|</span>    <span class="m">2</span> <span class="p">|</span> A    <span class="p">|</span>
+<span class="p">|</span>    <span class="m">3</span> <span class="p">|</span> B    <span class="p">|</span>
+<span class="p">|</span>    <span class="m">4</span> <span class="p">|</span> C    <span class="p">|</span>
+<span class="p">|</span>    <span class="m">5</span> <span class="p">|</span> NULL <span class="p">|</span>
++------+------+
+<span class="m">5</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<h3 id="_2">결괏값 정렬<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><code>GROUP BY</code>로 그룹화해도 실행결과 순서를 정렬할 수는 없습니다. 같은 값을 내부적으로 나누는 과정에서 순서가 뒤바뀌는 부작용이 발생할 수 있기 때문입니다. 그러나 이는 결국 내부처리 문제이기 때문에 데이터베이스 제품에 따라 다릅니다.</p>
+<p>만약 <code>GROUP BY</code>를 사용한 뒤에 결괏값을 정렬하고 싶다면 아래와 같이 <code>ORDER BY</code> 구를 사용하면 됩니다. 이때 <code>ORDER BY</code> 구는 <code>SELECT</code> 구 다음에 실행되기 때문에 별명(<code>AS</code>)을 사용할 수 있습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT name, COUNT<span class="o">(</span>name<span class="o">)</span>, SUM<span class="o">(</span>quantity<span class="o">)</span> AS quantity_sum FROM sample51 GROUP BY name ORDER BY quantity_sum DESC<span class="p">;</span>
+
++------+-------------+--------------+
+<span class="p">|</span> name <span class="p">|</span> COUNT<span class="o">(</span>name<span class="o">)</span> <span class="p">|</span> quantity_sum <span class="p">|</span>
++------+-------------+--------------+
+<span class="p">|</span> B    <span class="p">|</span>           <span class="m">1</span> <span class="p">|</span>           <span class="m">10</span> <span class="p">|</span>
+<span class="p">|</span> A    <span class="p">|</span>           <span class="m">2</span> <span class="p">|</span>            <span class="m">3</span> <span class="p">|</span>
+<span class="p">|</span> C    <span class="p">|</span>           <span class="m">1</span> <span class="p">|</span>            <span class="m">3</span> <span class="p">|</span>
+<span class="p">|</span> NULL <span class="p">|</span>           <span class="m">0</span> <span class="p">|</span>         NULL <span class="p">|</span>
++------+-------------+--------------+
+<span class="m">4</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<h2 id="_3">서브쿼리<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p><strong>서브쿼리</strong>란 <code>SELECT</code> 명령에 의한 부수적인 데이터 질의입니다. <code>(SELECT 명령)</code>과 같이 괄호(<code>()</code>)를 통해 사용하며 주로 <code>WHERE</code> 구에서 사용됩니다.</p>
+<h3 id="delete-where"><code>DELETE</code>의 <code>WHERE</code> 구에서 서브쿼리 사용하기<a class="headerlink" href="#delete-where" title="Permanent link">&para;</a></h3>
+<p>아래와 같은 테이블 <code>sample54</code>이 있다고 가정해봅시다.</p>
+<div class="highlight"><pre><span></span><code><span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">no</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">100</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">900</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">20</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">80</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+------+</span>
+</code></pre></div>
+<p>이때 <code>a</code>열의 값이 가장 작은 행을 삭제하는 방법은 아래와 같습니다. (MySQL 기준 쿼리입니다.)</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; DELETE FROM sample54 WHERE <span class="nv">a</span> <span class="o">=</span> <span class="o">(</span>SELECT a FROM <span class="o">(</span>SELECT MIN<span class="o">(</span>a<span class="o">)</span> AS a FROM sample54<span class="o">)</span> AS x<span class="o">)</span><span class="p">;</span>
+
+Query OK, <span class="m">1</span> row affected <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+
+$ mysql &gt; SELECT * FROM sample54<span class="p">;</span>
+
++------+------+
+<span class="p">|</span> no   <span class="p">|</span> a    <span class="p">|</span>
++------+------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span>  <span class="m">100</span> <span class="p">|</span>
+<span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>  <span class="m">900</span> <span class="p">|</span>
+<span class="p">|</span>    <span class="m">4</span> <span class="p">|</span>   <span class="m">80</span> <span class="p">|</span>
++------+------+
+<span class="m">3</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<div class="admonition info">
+<p class="admonition-title">정보</p>
+<p>다른 SQL의 경우 <code>DELETE FROM sample54 WHERE a = (SELECT MIN(a) FROM sample54);</code>와 같이 명령문을 입력해도 정상 작동합니다.</p>
+<p>MySQL의 경우 데이터를 추가하거나 갱신할 때 동일한 테이블을 서브쿼리에서 사용할 수 없도록 되어 있기 때문에 인라인 뷰로 임시 테이블을 만들도록 처리해야 합니다.</p>
+<p>또한 서브쿼리에 별명(<code>AS</code>)을 무조건 붙여줘야 오류가 발생하지 않기 때문에 <code>x</code>라는 별명을 붙였습니다.</p>
+</div>
+<p>SQL에는 변수가 따로 존재하지 않지만 사용하는 것은 가능합니다. 아래는 MySQL 클라이언트에 한해서 사용가능한 예시입니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SET @a <span class="o">=</span> <span class="o">(</span>SELECT MIN<span class="o">(</span>a<span class="o">)</span> FROM sample54<span class="o">)</span><span class="p">;</span>
+
+Query OK, <span class="m">0</span> rows affected <span class="o">(</span><span class="m">0</span>.01 sec<span class="o">)</span>
+
+$ mysql &gt; DELETE FROM sample54 WHERE <span class="nv">a</span> <span class="o">=</span> @a<span class="p">;</span>
+
+Query OK, <span class="m">1</span> row affected <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+
+$ mysql &gt; SELECT * FROM sample54<span class="p">;</span>
+
++------+------+
+<span class="p">|</span> no   <span class="p">|</span> a    <span class="p">|</span>
++------+------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span>  <span class="m">100</span> <span class="p">|</span>
+<span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>  <span class="m">900</span> <span class="p">|</span>
++------+------+
+<span class="m">2</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<h3 id="_4">스칼라 값<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>서브쿼리를 사용할 때는 해당 <code>SELECT</code> 명령이 반환하는 값이 무엇인지 주의할 필요가 있습니다. 보통 다음과 같은 네 가지가 일반적인 서브쿼리의 반환 패턴입니다.</p>
+<ul>
+<li>하나의 값을 반환하는 패턴<ul>
+<li>예시 : <code>SELECT MIN(a) FROM sample54;</code></li>
+</ul>
+</li>
+<li>복수의 행이 반횐되지만 열은 하나인 패턴<ul>
+<li>예시 : <code>SELECT no FROM sample54;</code></li>
+</ul>
+</li>
+<li>하나의 행이 반환되지만 열이 복수인 패턴<ul>
+<li>예시 : <code>SELECT MIN(a), MAX(no) FROM sample54;</code></li>
+</ul>
+</li>
+<li>복수의 행, 복수의 열이 반환되는 패턴<ul>
+<li>예시 : <code>SELECT no, a FROM sample54;</code></li>
+</ul>
+</li>
+</ul>
+<p>이때 하나의 값을 반환하는 패턴을 데이터베이스에서 <strong>스칼라 값</strong>을 반환한다고 합니다.</p>
+<p>통상적으로 두 가지가 서로 동일한지 여부를 비교할 때는 단일 값으로 비교합니다. 이를 더 자세하게 말하면 <code>WHERE</code> 구에서 서브쿼리가 반환한 스칼라 값을 비교(<code>=</code>)할 수 있어 이럴 경우에 유용합니다.</p>
+<p>이처럼 스칼라 값을 반환하는 서브쿼리를 특별히 <strong>스칼라 서브쿼리</strong>라 부르기도 합니다. 앞서 집계함수를 <code>WHERE</code> 구에서 사용할 수 없다는 걸 알게 되었는데 스칼라 서브쿼리를 사용하면 집계함수 또한 <code>WHERE</code> 구에서 사용할 수 있습니다.</p>
+<h3 id="select"><code>SELECT</code> 구에서 서브쿼리 사용하기<a class="headerlink" href="#select" title="Permanent link">&para;</a></h3>
+<p>문법적으로 서브쿼리는 하나의 항목으로 취급합니다. 따라서 서브쿼리를 사용할 때는 스칼라 서브쿼리인지 확인해야 합니다.</p>
+<p><code>SELECT</code> 구에서 스칼라 서브쿼리를 사용하는 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT <span class="o">(</span>SELECT COUNT<span class="o">(</span>*<span class="o">)</span> FROM sample51<span class="o">)</span> AS <span class="s1">&#39;sample51&#39;</span>, <span class="o">(</span>SELECT COUNT<span class="o">(</span>*<span class="o">)</span> FROM sample54<span class="o">)</span> AS <span class="s1">&#39;sample54&#39;</span> FROM DUAL<span class="p">;</span>
+
++----------+----------+
+<span class="p">|</span> sample51 <span class="p">|</span> sample54 <span class="p">|</span>
++----------+----------+
+<span class="p">|</span>        <span class="m">5</span> <span class="p">|</span>        <span class="m">2</span> <span class="p">|</span>
++----------+----------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<div class="admonition info">
+<p class="admonition-title">정보</p>
+<p>MySQL 등에서는 <code>FROM DUAL</code> 부분을 생략해도 좋습니다. 하지만 Oracle과 같은 전통적인 데이터베이스에서는 <code>FROM</code> 구를 생략할 수 없습니다.</p>
+<p><code>DUAL</code> 키워드는 시스템 쪽에서 데이터베이스에 기본으로 작성되는 일종의 임시 테이블입니다.</p>
+</div>
+<h3 id="set"><code>SET</code> 구에서 서브쿼리 사용하기<a class="headerlink" href="#set" title="Permanent link">&para;</a></h3>
+<p><code>UDPATE</code>의 <code>SET</code> 구에도 서브쿼리를 사용할 수 있습니다. 방법은 아래와 같으며 그 결과 <code>a</code>열의 값이 전부 <code>a</code>열의 최댓값으로 갱신되었습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; UPDATE sample54 SET <span class="nv">a</span> <span class="o">=</span> <span class="o">(</span>SELECT a FROM <span class="o">(</span>SELECT MAX<span class="o">(</span>a<span class="o">)</span> AS a FROM sample54<span class="o">)</span> AS x<span class="o">)</span><span class="p">;</span>
+
+Query OK, <span class="m">1</span> row affected <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+Rows matched: <span class="m">2</span>  Changed: <span class="m">1</span>  Warnings: <span class="m">0</span>
+
+$ mysql &gt; SELECT * FROM sample54<span class="p">;</span>
+
++------+------+
+<span class="p">|</span> no   <span class="p">|</span> a    <span class="p">|</span>
++------+------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span>  <span class="m">900</span> <span class="p">|</span>
+<span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>  <span class="m">900</span> <span class="p">|</span>
++------+------+
+<span class="m">2</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<h3 id="from"><code>FROM</code> 구에서 서브쿼리 사용하기<a class="headerlink" href="#from" title="Permanent link">&para;</a></h3>
+<p><code>FROM</code> 구에서도 서브쿼리를 사용할 수 있습니다. 다만 굳이 스칼라 서브쿼리가 아니더라도 상관 없습니다. 예를 들어 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT * FROM <span class="o">(</span>SELECT * FROM sample54<span class="o">)</span> AS sq<span class="p">;</span>
+
++------+------+
+<span class="p">|</span> no   <span class="p">|</span> a    <span class="p">|</span>
++------+------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span>  <span class="m">900</span> <span class="p">|</span>
+<span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>  <span class="m">900</span> <span class="p">|</span>
++------+------+
+<span class="m">2</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>이처럼 <code>SELECT</code> 명령 안에 <code>SELECT</code> 명령이 들어 있는 구조를 <strong>중첩 구조(Nested Structure)</strong>라 합니다. 이때 중첩 구조는 몇 단계로 구성되어 있어도 상관 없습니다.</p>
+<h4 id="from_1">실제 업무에서 <code>FROM</code> 구에 서브쿼리를 지정하여 사용하는 경우<a class="headerlink" href="#from_1" title="Permanent link">&para;</a></h4>
+<p>Oracle 같은 경우 <code>LIMIT</code> 구 존재하지 않기 때문에 <code>ROWNUM</code> 구로 행 개수를 제한하는 걸 이전에 한 번 살펴봤습니다. 그러나 <code>ROWNUM</code>의 경우 <code>WHERE</code> 구로 인해 번호가 할당되는 방식이기 때문에 행 개수가 제한됩니다. 따라서 이를 정렬한 이후에 상위 몇 건을 추출하는 등의 부수 조건을 붙일 수 없습니다. 이럴 때 <code>FROM</code> 구에 서브쿼리를 사용합니다. 방법은 아래와 같습니다.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">sample54</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">DESC</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">sq</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ROWNUM</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+<h3 id="insert"><code>INSERT</code> 명령과 서브쿼리<a class="headerlink" href="#insert" title="Permanent link">&para;</a></h3>
+<p><code>INSERT</code> 명령에도 서브쿼리를 사용할 수 있습니다. 방법은 아래와 같이 두 가지 입니다.</p>
+<ul>
+<li><code>VALUES</code> 구의 일부로 서브쿼리를 사용하는 방법</li>
+<li><code>VALUES</code> 구 대신 <code>SELECT</code> 명령을 사용하는 방법</li>
+</ul>
+<p>아래와 같은 테이블 구조를 가진 테이블 <code>sample541</code>이 있다고 가정해봅시다.</p>
+<div class="highlight"><pre><span></span><code><span class="o">+</span><span class="c1">-------+------+------+-----+---------+-------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Field</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Type</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Key</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Default</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Extra</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">-------+------+------+-----+---------+-------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="nb">int</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="nb">int</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">YES</span><span class="w">  </span><span class="o">|</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w">    </span><span class="o">|</span><span class="w">       </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">-------+------+------+-----+---------+-------+</span>
+</code></pre></div>
+<p>다음은 <code>VALUES</code> 구의 값으로 서브쿼리를 사용하는 방법입니다. 이때 유의할 점은 서브쿼리로 스칼라 서브쿼리를 지정해야 합니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; INSERT INTO sample541 VALUES<span class="o">((</span>SELECT COUNT<span class="o">(</span>*<span class="o">)</span> FROM sample51<span class="o">)</span>, <span class="o">(</span>SELECT COUNT<span class="o">(</span>*<span class="o">)</span> FROM sample54<span class="o">))</span><span class="p">;</span>
+
+Query OK, <span class="m">1</span> row affected <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+
+$ mysql &gt; SELECT * FROM sample541<span class="p">;</span>
+
++------+------+
+<span class="p">|</span> a    <span class="p">|</span> b    <span class="p">|</span>
++------+------+
+<span class="p">|</span>    <span class="m">5</span> <span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>
++------+------+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<h4 id="insert-select"><code>INSERT SELECT</code><a class="headerlink" href="#insert-select" title="Permanent link">&para;</a></h4>
+<p>아래와 같이 <code>VALUES</code> 대신에 <code>SELECT</code> 명령을 사용할 수도 있습니다. 예들 들면 아래와 같습니다.</p>
+<div class"termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; INSERT INTO sample541 SELECT <span class="m">1</span>, <span class="m">2</span><span class="p">;</span>
+
+Query OK, <span class="m">1</span> row affected <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+Records: <span class="m">1</span>  Duplicates: <span class="m">0</span>  Warnings: <span class="m">0</span>
+
+$ mysql &gt; SELECT * FROM sample541<span class="p">;</span>
+
++------+------+
+<span class="p">|</span> a    <span class="p">|</span> b    <span class="p">|</span>
++------+------+
+<span class="p">|</span>    <span class="m">5</span> <span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span>    <span class="m">2</span> <span class="p">|</span>
++------+------+
+<span class="m">2</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>이때 <code>SELECT 1, 2</code>의 경우 MySQL에서 실행해보면 그 결과가 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT <span class="m">1</span>, <span class="m">2</span><span class="p">;</span>
+
++---+---+
+<span class="p">|</span> <span class="m">1</span> <span class="p">|</span> <span class="m">2</span> <span class="p">|</span>
++---+---+
+<span class="p">|</span> <span class="m">1</span> <span class="p">|</span> <span class="m">2</span> <span class="p">|</span>
++---+---+
+<span class="m">1</span> row <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>위와 같이 <code>VALUES</code> 대신에 <code>SELECT</code> 명령을 서브쿼리로 쓰는 걸 <code>INSERT</code>와 <code>SELECT</code>를 합친 것만 같아서 <code>INSERT SELECT</code> 명령이라 부릅니다. 이때 <code>SELECT</code> 명령이 반환하는 값이 꼭 스칼라 값일 필요는 없습니다. 단지 반환하는 열 수와 자료형이 <code>INSERT</code>할 테이블과 일치하기만 하면 됩니다. 결과적으로 이러한 특징 덕분에 데이터의 복사나 이동을 할 때 자주 사용하는 명령입니다.</p>
+<h2 id="_5">상관 서브쿼리<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>서브쿼리의 일종을 <strong>상관 서브쿼리</strong>라 합니다. 더 자세한 정의는 <a href="#상관-서브쿼리">상관 서브쿼리</a>에서 확인하겠습니다.</p>
+<h3 id="exists"><code>EXISTS</code><a class="headerlink" href="#exists" title="Permanent link">&para;</a></h3>
+<p>서브쿼리를 사용해 검색할 때 데이터 <strong>존재여부</strong>를 판별하기 위해 조건을 지정할 수 있습니다. 이런 경우 <code>EXISTS</code> 술어를 사용할 수 있습니다. 이때 <code>EXISTS</code> 술어는 단지 반환된 행이 있는지를 확인해보고 값의 있으면 <strong>참(True)</strong>, 없으면 <strong>거짓(False)</strong>을 반환하므로 굳이 스칼라 서브쿼리일 필요는 없습니다.</p>
+<p>아래와 같은 테이블 <code>sample551</code>이 있다고 가정해봅시다.</p>
+<div class="highlight"><pre><span></span><code><span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">no</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">a</span><span class="w">    </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+------+</span>
+</code></pre></div>
+<p>그리고 아래와 같은 테이블 <code>sample552</code>도 있다고 가정해봅시다.</p>
+<div class="highlight"><pre><span></span><code><span class="o">+</span><span class="c1">------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">no2</span><span class="w">  </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+</span>
+<span class="o">|</span><span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+</span><span class="c1">------+</span>
+</code></pre></div>
+<p><code>sample552</code> 테이블 속 <code>no</code>열의 값과 같은 행이 있다면 <code>sample551</code> 테이블의 해당 행의 <code>a</code> 열 값을 <code>있음</code>이라는 값으로, 아니면 <code>없음</code>이라는 값으로 갱신하는 방법은 아래와 같습니다.</p>
+<div class="highlight"><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="n">sample551</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;있음&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">sample551</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;없음&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+</code></pre></div>
+<p>이때 <code>WHERE</code> 구에 <code>no = 1</code>과 같은 단순한 조건식을 기술할 수 없습니다. 이를 위해서는 아래와 같이 <code>EXISTS</code> 술어를 사용해야 합니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; UPDATE sample551 SET <span class="nv">a</span> <span class="o">=</span> <span class="s1">&#39;있음&#39;</span> WHERE EXISTS <span class="o">(</span>SELECT * FROM sample552 WHERE <span class="nv">no2</span> <span class="o">=</span> no<span class="o">)</span><span class="p">;</span>
+
+Query OK, <span class="m">2</span> rows affected <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+Rows matched: <span class="m">2</span>  Changed: <span class="m">2</span>  Warnings: <span class="m">0</span>
+
+$ mysql &gt; SELECT * FROM sample551<span class="p">;</span>
+
++------+--------+
+<span class="p">|</span> no   <span class="p">|</span> a      <span class="p">|</span>
++------+--------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span> NULL   <span class="p">|</span>
+<span class="p">|</span>    <span class="m">2</span> <span class="p">|</span> NULL   <span class="p">|</span>
+<span class="p">|</span>    <span class="m">3</span> <span class="p">|</span> 있음    <span class="p">|</span>
+<span class="p">|</span>    <span class="m">4</span> <span class="p">|</span> NULL   <span class="p">|</span>
+<span class="p">|</span>    <span class="m">5</span> <span class="p">|</span> 있음    <span class="p">|</span>
++------+--------+
+<span class="m">5</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>이때 서브쿼리가 한 줄 이상의 행을 반환하면 참이 되고 행이 없으면 거짓이 됩니다.</p>
+<h3 id="not-exists"><code>NOT EXISTS</code><a class="headerlink" href="#not-exists" title="Permanent link">&para;</a></h3>
+<p><code>없음</code>의 경우 행이 존재하지 않는 상태가 참이므로 <code>NOT EXISTS</code>를 사용합니다. 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; UPDATE sample551 SET <span class="nv">a</span> <span class="o">=</span> <span class="s1">&#39;없음&#39;</span> WHERE NOT EXISTS <span class="o">(</span>SELECT * FROM sample552 WHERE <span class="nv">no2</span> <span class="o">=</span> no<span class="o">)</span><span class="p">;</span>
+
+Query OK, <span class="m">3</span> rows affected <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+Rows matched: <span class="m">3</span>  Changed: <span class="m">3</span>  Warnings: <span class="m">0</span>
+
+$ mysql &gt; SELECT * FROM sample551<span class="p">;</span>
+
++------+--------+
+<span class="p">|</span> no   <span class="p">|</span> a      <span class="p">|</span>
++------+--------+
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span> 없음   <span class="p">|</span>
+<span class="p">|</span>    <span class="m">2</span> <span class="p">|</span> 없음   <span class="p">|</span>
+<span class="p">|</span>    <span class="m">3</span> <span class="p">|</span> 있음   <span class="p">|</span>
+<span class="p">|</span>    <span class="m">4</span> <span class="p">|</span> 없음   <span class="p">|</span>
+<span class="p">|</span>    <span class="m">5</span> <span class="p">|</span> 있음   <span class="p">|</span>
++------+--------+
+<span class="m">5</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<div class="admonition info">
+<p class="admonition-title">정보</p>
+<p><code>UPDATE</code> 외에도 <code>SELECT</code> 또는 <code>DELETE</code> 명령으로도 <code>EXISTS</code> 또는 <code>NOT EXISTS</code> 서브쿼리를 사용할 수 있습니다.</p>
+</div>
+<h3 id="_6">상관 서브쿼리<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>아래 <code>있음</code>으로 데이터를 갱신하는 명령문을 다시 한 번 살펴보겠습니다.</p>
+<div class="highlight"><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="n">sample551</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;있음&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"></span>
+<span class="w">    </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">sample552</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">no2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">no</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<p><code>UPDATE</code> 명령이 <strong>부모</strong>가 되고 <code>WHERE</code> 구에 괄호로 묶은 부분이 <strong>자식</strong>, 다시 말해 서브쿼리가 됩니다. 이때 자식인 서브쿼리에서 <code>sample552</code> 테이블의 <code>no2</code>열 값이 부모인 <code>sample551</code> 테이블의 <code>no</code>열 값과 일치하는 지 판별하게 되며 이처럼 부모 명령과 자식인 서브쿼리가 특정 관계를 맺는 것을 <strong>상관 서브쿼리</strong>라 합니다.</p>
+<p>앞서 <code>DELETE</code>에서 사용한 다음과 같은 명령문은 상관 서브쿼리가 아닙니다. 해당 서브쿼리를 단독 쿼리로 실행할 수 있기 때문입니다.</p>
+<div class="highlight"><pre><span></span><code><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">sample54</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">sample54</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<p>상관 서브쿼리의 경우 부모 명령과 연관되어 처리되기 때문에 서브쿼리 부분만을 따로 떼어내어 실행시킬 수 없습니다.</p>
+<h4 id="_7">테이블명 붙이기<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p>만약에 테이블 <code>sample552</code>의 열 이름이 <code>no2</code>가 아닌 <code>no</code>였다면 <code>sample551</code>의 열과 중복됩니다. 이렇게 해당 열의 이름이 중복되어 어떤 테이블에 속해있는 열인지 구분이 되지 않을 경우 오류가 발생합니다. 이런 경우 점(<code>.</code>)을 사용해 앞 부분에 해당 열이 속한 테이블 명을 입력해서 구분지을 수 있습니다. 명령문 예시는 아래와 같습니다.</p>
+<div class="highlight"><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="n">sample551</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;있음&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">sample552</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">sample552</span><span class="p">.</span><span class="k">no</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample551</span><span class="p">.</span><span class="k">no</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">정보</p>
+<p>MySQL에서 만약 <code>WHERE no = no</code>와 같이 기술했다면 해당 <code>no</code>열이 전부 <code>sample551</code> 테이블의 열로 판단되어 결국 무조건 참이기 때문에 모든 <code>a</code>열의 값이 <code>있음</code>으로 갱신됩니다.</p>
+</div>
+<h3 id="in"><code>IN</code><a class="headerlink" href="#in" title="Permanent link">&para;</a></h3>
+<p>스칼라 값끼리 비교할 때는 비교 연산자(<code>=</code>)를 사용하지만 집합을 비교할 때는 이를 사용할 수 없습니다. 이때 <code>IN</code>을 사용하여 집합 안의 값이 존재하는 지 조사할 수 있어 이를 통해 집합끼리의 비교가 가능해집니다.</p>
+<p><code>IN</code>을 사용해서 테이블 <code>sample551</code>의 <code>no</code>열에 <code>3</code>과 <code>5</code>가 들어있는 경우만을 반환하는 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT * FROM sample551 WHERE no IN<span class="o">(</span><span class="m">3</span>, <span class="m">5</span><span class="o">)</span><span class="p">;</span>
+
++------+--------+
+<span class="p">|</span> no   <span class="p">|</span> a      <span class="p">|</span>
++------+--------+
+<span class="p">|</span>    <span class="m">3</span> <span class="p">|</span> 있음    <span class="p">|</span>
+<span class="p">|</span>    <span class="m">5</span> <span class="p">|</span> 있음    <span class="p">|</span>
++------+--------+
+<span class="m">2</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>위 방법은 <code>SELECT * FROM sample551 WHERE no = 3 OR no = 5</code> 명령문과 반환되는 결괏값이 동일합니다. 그러나 <code>IN</code>의 경우 더 많은 집합을 비교해야 할 때 유용합니다.</p>
+<p>집합 부분을 서브쿼리로 지정할 수도 있습니다. 위 예시를 서브쿼리로 지정하는 방법은 아래와 같습니다.</p>
+<div class="termy">
+    <div class="highlight"><pre><span></span><code>$ mysql &gt; SELECT * FROM sample551 WHERE no IN <span class="o">(</span>SELECT * FROM sample552<span class="o">)</span><span class="p">;</span>
+
++------+--------+
+<span class="p">|</span> no   <span class="p">|</span> a      <span class="p">|</span>
++------+--------+
+<span class="p">|</span>    <span class="m">3</span> <span class="p">|</span> 있음   <span class="p">|</span>
+<span class="p">|</span>    <span class="m">5</span> <span class="p">|</span> 있음   <span class="p">|</span>
++------+--------+
+<span class="m">2</span> rows <span class="k">in</span> <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</code></pre></div>
+
+</div>
+
+<p>이때 서브쿼리가 반드시 스칼라 서브쿼리일 필요는 없습니다. <code>IN</code>의 경우 좌측에 하나의 열이 지정되어 있기 때문에 <code>IN</code>을 통한 우측 집합 내에 값이 포함되어 있으면 참이 됩니다. 반대로 <code>NOT EXISTS</code>처럼 <code>NOT IN</code>을 지정하면 집합에 값이 포함되어 있지 않을 경우 참이 됩니다.</p>
+<h4 id="in-null"><code>IN</code>과 <code>NULL</code><a class="headerlink" href="#in-null" title="Permanent link">&para;</a></h4>
+<p>집계함수에서는 집합 안의 <code>NULL</code> 값을 무시하고 처리했습니다. 그러나 <code>IN</code>에서는 집합 안에 <code>NULL</code> 값이 있어도 무시하지 않습니다. 다만 <code>NULL</code> 값을 비교 연산자(<code>=</code>)를 통해 비교하지 못하기 때문에 <code>IN</code>을 사용해도 <code>NULL</code> 값을 비교할 수는 없습니다. 만약 <code>NOT IN</code>을 사용할 경우 <code>NULL</code> 값이 있으면 좌측 값이 집합 안에 포함되어 있지 않아도 참을 반환하지 않고 결괏값으로 <code>UNKNOWN</code>을 반환합니다.</p>
+<p>결론적으로 <code>NULL</code> 값을 비교하기 위해서는 <code>IS NULL</code>을 사용해야합니다.</p>
+<div class="admonition info">
+<p class="admonition-title">정보</p>
+<p>MySQL의 경우 집합에 <code>NULL</code>이 포함되어 있는 경우, 조건식 <code>IN</code>은 왼쪽 값이 집합에 포함되어 있으면 <strong>참</strong>을, 그렇지 않으면 <code>NULL</code>을 반환합니다. <code>NOT IN</code>의 경우 반대로 왼쪽 값이 집합에 포함되어 있으면 <strong>거짓</strong>을, 그렇지 않으면 <code>NULL</code>을 반환합니다. 따라서 <code>NOT IN</code>의 경우 집합에 <code>NULL</code>이 포함되어 있다면 결괏값이 <code>0</code>이 됩니다.</p>
+<p>좌측 값이 <code>NULL</code>인 경우에도 결국 <code>NULL</code>은 우측 값과 비교가 불가능하기 때문에 조건식은 참 또는 거짓이 아닌 <code>NULL</code>을 반환합니다.</p>
+</div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7400981351083358"
+crossorigin="anonymous"></script>
+
+<h2 id="__comments"></h2>
+<div id="utteranc-thread"></div>
+<script src="https://utteranc.es/client.js"
+repo="0417taehyun/blog"
+issue-term="pathname"
+label="comments"
+theme="dark-blue"
+crossorigin="anonymous"
+async>
+</script>
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../4-data-insert-delete-update/" class="md-footer__link md-footer__link--prev" aria-label="Previous: [ SQL 첫걸음 ] 제 4장 데이터의 추가, 삭제, 갱신" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              [ SQL 첫걸음 ] 제 4장 데이터의 추가, 삭제, 갱신
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../6-create-and-delete-database-object/" class="md-footer__link md-footer__link--next" aria-label="Next: [ SQL 첫걸음 ] 제 6장 데이터베이스 객체 작성과 삭제" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              [ SQL 첫걸음 ] 제 6장 데이터베이스 객체 작성과 삭제
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.tabs", "search.suggest", "search.highlight", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.ec8bae80.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.2f76aa63.min.js"></script>
+      
+        <script src="../../../../js/termynal.js"></script>
+      
+        <script src="../../../../js/custom.js"></script>
+      
+        <script src="../../../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
